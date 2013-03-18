@@ -1,0 +1,14 @@
+<div class="row pull-left">
+  <div class="span6" style="font-size: 20px;margin-top:5%">
+    <span class = "selected" style="color: #CB2027"> Box </span>
+    ·
+    <a href =  "/search/name/?search=<%="#{params[:search]}" %>"  style="text-decoration: underline;color: black">Name</a>
+    ·
+    <a href =  "/search/pin/?search=<%="#{params[:search]}" %>" style="text-decoration: underline;color: black">Pin</a>
+
+    <span class = "greyselected" style="color: #8C7E7E" >   — search results for <%= "#{params[:search]}" %>  </span>
+  </div>
+  <br>
+</div>
+<%= render :partial => 'users/box_show' %>
+

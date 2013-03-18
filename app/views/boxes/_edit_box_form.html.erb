@@ -1,0 +1,19 @@
+<% provide(:title, "Edit box") %>
+<div class ="pull-left">
+  <h1>Update your box information</h1>
+</div>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@box) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+     <%= f.label :name %>
+      <%= f.text_field :name, placeholder: "Board Name" %>
+      <%= f.label :category_id %>
+      <%= f.select :category_id, Category.all.collect { |n| [n.name, n.id] } %>
+
+    <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+  <% end %>
+
+  </div>
+</div>

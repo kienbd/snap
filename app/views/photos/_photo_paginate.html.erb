@@ -1,0 +1,108 @@
+<div id="container" class="container transitions-enabled infinite-scroll clearfix">
+  <% @photos.each do |photo| %>
+    <div class = "box col2">
+      <% if photo.image_remote_url.nil? %>
+        <% source= photo.image.url %>
+      <% else %>
+        <% source= photo.source %>
+      <% end %>
+      <img id="img-src-<%= photo.id %>" src="<%=source%>" data-toggle = "modal" href="#ZoomIn" onclick="change_source(<%= photo.id %>)">
+      <div>
+        <div class="btn-group" style="position: relative;">
+          <a class="btn btn-small" style="background: initial; border: 0;" href="#ZoomIn" data-toggle = "modal" onclick="change_source(<%= photo.id %>)"><i class="icon-zoom-in"></i></a>
+          <% if box_owner?(photo.box) %>
+            <a class="btn btn-small" style="background: initial; border: 0;" href="<%= edit_photo_path(photo) %>"><i class="icon-edit"></i></a>
+            <a href="/photos/<%= photo.id%>" class="btn btn-small"  style="background: initial; border: 0;" data-confirm="You sure?" data-method="delete" rel="nofollow"><i class="icon-trash"></i></a>
+          <% end %>
+          <a href="/reports/?photo=<%=photo.id%>" class="btn btn-small"  style="background: initial; border: 0;" data-confirm="You sure?" data-method="post" rel="nofollow"><i class="icon-warning-sign"></i></a>
+
+          <%= render 'photos/like_photo_form', photo: photo %>
+        </div>
+        <div style="position: relative; margin-left: 3px;">
+          <%= photo.name %>
+          <!--   	<%= Notification.find_all_by_relation_type("user_photo_actions like #{photo.id}").count %> -->
+          <div style="color: gray"><%= UserPhotoAction.find_all_by_photo_id(photo.id).count %> likes
+            <br/>pinned on <%= link_to photo.box.name, box_path( photo.box) %>
+          <% if !current_user?(photo.box.owner)%>
+            of <%= link_to photo.box.owner.name, user_path(photo.box.owner) %>
+        <% else %>
+          of <%= link_to "You", user_path(current_user) %>
+      <% end %>
+    </div>
+
+  </div>
+</div>
+
+</div>
+<div style="display: none"><%= will_paginate @photos %></div>
+<%end%>
+
+<div class="modal hide " id="ZoomIn">
+  <div class="modal-body">
+
+    <div align="center" ><img id="popup"src="" style="height: 350px; width: auto;"  > </div>
+  </div>
+  <div class="modal-footer">
+
+    <span id="like_button">abc</span>
+  </div>
+</div>
+</div>
+<script type="text/javascript">
+
+
+  function change_source(id){
+    $('#popup').attr('src', $('#img-src-'+id).attr('src'));
+
+    if ( $('#like_photo_' + id).length > 0){
+
+      $('#like_button').html($('#like_photo_' + id).html());
+    }
+    else
+      $('#like_button').html($('#unlike_photo_' + id).html());
+
+  }
+
+
+jQuery(function() {                                              // <== Doc ready
+    //  jQuery(".btn-group").hide();                  // Initially hide all buttons
+
+    jQuery('.show-image').hover(function() {
+      jQuery(this).find('.btn-group').show();         // use .find() !
+      }, function() {
+      jQuery(this).find('.btn-group').hide();         // use .find() !
+      });
+    });
+
+var $container = $('#container');
+
+$container.imagesLoaded(function(){
+    $container.masonry({
+itemSelector: '.box',
+columnWidth: 100
+});
+    });
+
+$container.infinitescroll({
+navSelector  : '.next_page',    // selector for the paged navigation
+nextSelector : '.next_page a',  // selector for the NEXT link (to page 2)
+itemSelector : '.box',         // selector for all items you'll retrieve
+loading: {
+finishedMsg: 'No more pages to load.',
+img: 'http://i.imgur.com/6RMhx.gif'
+}
+},
+// trigger Masonry as a callback
+function( newElements ) {
+// hide new items while they are loading
+var $newElems = $( newElements ).css({ opacity: 0 });
+// ensure that images load before adding to masonry layout
+$newElems.imagesLoaded(function(){
+  // show elems now they're ready
+  $newElems.animate({ opacity: 1 });
+  $container.masonry( 'appended', $newElems, true );
+  });
+}
+);
+</script>
+

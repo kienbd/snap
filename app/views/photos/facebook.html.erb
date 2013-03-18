@@ -1,0 +1,11 @@
+<% provide(:title, 'Upload') %>
+<div class="container">
+<h1>Upload via facebook</h1>
+<ul class="thumbnails">
+	<% @photos.each do |photo| %>
+		<%= render 'photo', photo: photo %>
+	<% end %>	
+</ul>
+ <%= will_paginate %>
+</div>
+
