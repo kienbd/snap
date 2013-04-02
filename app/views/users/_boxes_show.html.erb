@@ -1,0 +1,28 @@
+<div id="ColumnContainer" style="margin-left: 30px">
+  <ul class="sortable">
+
+      <%= render partial: "box" , collection: @boxes %>
+
+      <% if params[:search].nil? && current_user?(@user) %>
+        <% @new_box = @user.boxes.build %>
+        <li class="Form FancyForm">
+          <div class="pin pinBoard createBoard">
+            <%= form_for(@new_box) do |f| %>
+              <div class="FancyContainer">
+                <%= f.text_field :title,placeholder: "Box Name" %>
+                <%# <input type="text" name="boardName" id="boardName" placeholder="Box Name"> %>
+                <%# <span class="fff"></span> %>
+              </div>
+            <%= f.submit "Create Box" , class: "Button RedButton Button13 createBoardSubmit", style: "width: 89px;margin-left: -43px"%>
+            <%= image_tag("BoardCellRep.png") %>
+          <%end%>
+          </div>
+        </li>
+
+    <%end%>
+
+    </ul>
+
+</div>
+
+

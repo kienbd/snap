@@ -7,6 +7,7 @@ gem 'rails', '3.2.6'
 
 gem 'mysql2','0.3.11'
 gem "rails-erd"
+gem "rails_config"
 
 gem 'execjs'
 gem "therubyracer", "~> 0.11.4"
