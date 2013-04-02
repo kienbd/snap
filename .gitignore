@@ -15,5 +15,6 @@
 /tmp
 /public/*
 /db/database.*
+/config/database.*
 Gemfile.lock
 Gemfile.lock.*
