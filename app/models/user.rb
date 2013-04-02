@@ -11,7 +11,7 @@
 
 class User < ActiveRecord::Base
   include AuthenticationsHelper
-  
+
   attr_accessible :email, :name, :password, :password_confirmation,:location,:gender
   has_secure_password
 
@@ -25,42 +25,37 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
 
-  has_many :user_user_relationships, foreign_key: "follower_id",
+  has_many :user_follow_relationships, foreign_key: "follower_id",
   dependent: :destroy
-  has_many :following_users, through: :user_user_relationships, source: :following
+  has_many :following_users, through: :user_follow_relationships, source: :following
 
-  has_many :reverse_user_user_relationships, foreign_key: "following_id",
-  class_name:  "UserUserRelationship",
+  has_many :reverse_user_follow_relationships, foreign_key: "following_id",
+  class_name:  "UserFollowRelationship",
   dependent:   :destroy
 
-  has_many :followers, through: :reverse_user_user_relationships, source: :follower
+  has_many :followers, through: :reverse_user_follow_relationships, source: :follower
 
   has_many :user_box_follows, foreign_key: "user_id",
   dependent: :destroy
 
   has_many :following_boxes, through: :user_box_follows, source: :box
 
-  # has_many :user_own_box_rel, foreign_key: "user",
-  # class_name: "Boxes",
-  # dependent: :destroy
-
-  # has_many :owning_boxes, through: :user_own_box_rel, source: :id
   has_many :boxes, class_name: "Box"
 
-  has_many :user_photo_actions, foreign_key: "user_id", 
+  has_many :likes, foreign_key: "user_id",
   dependent: :destroy
 
-  has_many :action_photos, through: :user_photo_actions, source: :photo
+  has_many :liked_photos, through: :likes, source: :photo
 
   has_many :authentications, dependent: :destroy
 
   def following?(other_user)
-    user_user_relationships.find_by_following_id(other_user.id)
+    user_follow_relationships.find_by_following_id(other_user.id)
   end
 
   def follow!(other_user)
     if !following?(other_user)
-      user_user_relationships.create!(following_id: other_user.id)
+      user_follow_relationships.create!(following_id: other_user.id)
       Notification.create!(source_id: self.id, target_id: other_user.id,
        relation_type: "user_user_relationships")
       other_user.boxes.each do | box |
@@ -71,7 +66,7 @@ class User < ActiveRecord::Base
 
   def unfollow!(other_user)
     if following?(other_user)
-      user_user_relationships.find_by_following_id(other_user.id).destroy
+      user_follow_relationships.find_by_following_id(other_user.id).destroy
       other_user.boxes.each do | box |
         unfollow_box(box)
       end
@@ -104,7 +99,7 @@ class User < ActiveRecord::Base
     end
 
     user_photo_actions.create!(photo_id: photo.id, action: action)
-    Notification.create!(source_id: self.id, target_id: photo.box.owner.id, 
+    Notification.create!(source_id: self.id, target_id: photo.box.owner.id,
       relation_type: "user_photo_actions like #{photo.id}")
 
   end
@@ -145,7 +140,7 @@ class User < ActiveRecord::Base
     self.persistence_token = SecureRandom.urlsafe_base64
   end
 
-  def right_action?(action) 
+  def right_action?(action)
     return action == :like || action == :repin
   end
 

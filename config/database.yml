@@ -15,8 +15,8 @@ development:
   database: snap_development
   pool: 5
   username: root
-  password:
-  socket: /var/run/mysqld/mysqld.sock
+  password: handoi
+  socket: /tmp/mysql.sock
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -28,8 +28,8 @@ test:
   database: snap_test
   pool: 5
   username: root
-  password:
-  socket: /var/run/mysqld/mysqld.sock
+  password: handoi
+  socket: /tmp/mysql.sock
 
 production:
   adapter: mysql2
@@ -38,5 +38,5 @@ production:
   database: snap_production
   pool: 5
   username: root
-  password:
-  socket: /var/run/mysqld/mysqld.sock
+  password: handoi
+  socket: /tmp/mysql.sock

@@ -6,6 +6,7 @@ gem 'rails', '3.2.6'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2','0.3.11'
+gem "rails-erd"
 
 gem 'execjs'
 gem "therubyracer", "~> 0.11.4"
@@ -24,6 +25,8 @@ gem 'pry'
 gem 'fb_graph'
 gem 'paperclip'
 gem 'mail', '2.4.4'
+
+gem 'carrierwave'
 
 gem 'tweet-button'
 
