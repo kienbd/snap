@@ -41,24 +41,32 @@ class PhotosController < ApplicationController
 	end
 
 	def create
+    binding.pry
+    if params[:photo][:remote_image_url] == ""
+      params[:photo].delete("remote_image_url")
+    elsif(params[:photo][:remote_image_url].index("http://#{Settings.hostname}/").nil?)
+      image = open(params[:photo][:remote_image_url])
+      if image.is_a? StringIO
+      else
+        params[:photo][:image] = image
+        params[:photo].delete("remote_image_url")
+      end
+    end
+
 		@photo=Photo.new(params[:photo])
 		if @photo.save
-# 			flash[:success] = "Upload new photo successfully"
 			@flashfacebook = "Upload new photo successfully"
 			respond_to do |format|
 				format.html { redirect_back_or upload_path }
 				format.js
 			end
-			# redirect_back_or upload_path
 
 		else
-			# flash[:error] = "Upload failed"
 			@flashfacebook = "Upload failed"
 			respond_to do |format|
 				format.html { render 'pc' }
 				format.js
 			end
-			# render 'pc'
 		end
 
 

@@ -20,13 +20,7 @@ class UsersController < ApplicationController
     @user.boxes.each do |box|
       @count_photo += box.photos.count
     end
-    @count_like = @user.user_photo_actions.count
-    # @count_like = 0
-    # @user.user_photo_actions.each do |r|
-      # if r.action == :like
-        # count_like += 1
-      # end
-    # end
+    @count_like = @user.likes.count
   end
 
   def send_invite

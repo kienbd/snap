@@ -4,7 +4,7 @@
   <%= form_for @photo, :html => { multipart: true } do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
     <%= f.label :box_id %><br />
-    <%= f.collection_select :box_id, current_user.boxes.all, :id, :name %>
+    <%= f.collection_select :box_id, current_user.boxes.all, :id, :title %>
 
     <%= f.label :name %>
     <%= f.text_field :name %>
@@ -12,7 +12,7 @@
     <%= f.label :description %>
     <%= f.text_area :description, rows: 3 %>
 
-    URL: <%= f.text_field :image_url %>
+    URL: <%= f.text_field :remote_image_url %>
 
   <br>
   <%= f.submit "UPLOAD", class: "btn btn-large btn-primary" %>

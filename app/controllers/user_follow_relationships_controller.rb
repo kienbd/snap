@@ -1,4 +1,4 @@
-class UserUserRelationshipsController < ApplicationController
+class UserFollowRelationshipsController < ApplicationController
 
 	def create
 
