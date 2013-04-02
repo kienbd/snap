@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120711062349) do
+ActiveRecord::Schema.define(:version => 20130402063122) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -24,19 +24,42 @@ ActiveRecord::Schema.define(:version => 20120711062349) do
   end
 
   create_table "boxes", :force => true do |t|
-    t.string   "name"
-    t.integer  "user_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
     t.string   "title"
     t.string   "description"
+    t.integer  "user_id"
     t.integer  "category_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "comments", :force => true do |t|
+    t.integer  "photo_id"
+    t.integer  "user_id"
+    t.string   "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "img_sizes", :force => true do |t|
+    t.integer  "photo_id"
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "likes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "photo_id"
+    t.integer  "quantity",   :default => 1
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   create_table "notifications", :force => true do |t|
@@ -54,13 +77,9 @@ ActiveRecord::Schema.define(:version => 20120711062349) do
     t.string   "name"
     t.string   "source"
     t.integer  "box_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-    t.string   "image_remote_url"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "image"
   end
 
   create_table "reports", :force => true do |t|
@@ -80,46 +99,31 @@ ActiveRecord::Schema.define(:version => 20120711062349) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "user_photo_actions", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "photo_id"
-    t.string   "action"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "user_user_relationships", :force => true do |t|
+  create_table "user_follow_relationships", :force => true do |t|
     t.integer  "following_id"
     t.integer  "follower_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
 
-  add_index "user_user_relationships", ["follower_id", "following_id"], :name => "index_user_user_relationships_on_follower_id_and_following_id", :unique => true
-  add_index "user_user_relationships", ["follower_id"], :name => "index_user_user_relationships_on_follower_id"
-  add_index "user_user_relationships", ["following_id"], :name => "index_user_user_relationships_on_following_id"
+  add_index "user_follow_relationships", ["follower_id", "following_id"], :name => "index_user_follow_relationships_on_follower_id_and_following_id", :unique => true
+  add_index "user_follow_relationships", ["follower_id"], :name => "index_user_follow_relationships_on_follower_id"
+  add_index "user_follow_relationships", ["following_id"], :name => "index_user_follow_relationships_on_following_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
     t.string   "password_digest"
+    t.string   "gender"
+    t.boolean  "active"
+    t.boolean  "admin"
+    t.boolean  "banned"
+    t.boolean  "verified"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.string   "persistence_token"
     t.string   "single_access_token"
-    t.string   "about"
-    t.string   "firstName"
-    t.string   "lastName"
-    t.string   "gender"
-    t.string   "language"
-    t.string   "location"
-    t.string   "userName"
-    t.string   "website"
-    t.boolean  "active",              :default => true
-    t.boolean  "admin",               :default => false
-    t.string   "perishable_token",    :default => "",    :null => false
-    t.boolean  "banned",              :default => false
-    t.boolean  "verified",            :default => false
+    t.string   "perishable_token",    :default => "", :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

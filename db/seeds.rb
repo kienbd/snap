@@ -14,8 +14,9 @@ Photo.delete_all
 Report.delete_all
 Notification.delete_all
 UserBoxFollow.delete_all
-UserUserRelationship.delete_all
-UserPhotoAction.delete_all
+UserFollowRelationship.delete_all
+Like.delete_all
+Comment.delete_all
 
 def make_users
   10.times do |n|
@@ -55,9 +56,9 @@ end
 def make_boxes
   users = User.all(limit: 5)
   5.times do
-    name = Faker::Company.name
+    title = Faker::Company.name
     category = rand(32) + 1
-    users.each { |user| user.boxes.create!(name: name, category_id: category)}
+    users.each { |user| user.boxes.create!(title: title, category_id: category)}
   end
   puts 'make boxes'
 end
@@ -146,8 +147,8 @@ end
   make_users
   make_categories
   make_boxes
-  make_photos
+  # make_photos
   make_relationships
-  make_users_like_photos
+  # make_users_like_photos
 
 puts 'seed completed'
