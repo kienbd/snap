@@ -150,7 +150,7 @@ end
   make_users
   make_categories
   make_boxes
-  make_photos
+  # make_photos
   make_relationships
   # make_users_like_photos
 

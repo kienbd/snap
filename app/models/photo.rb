@@ -1,6 +1,6 @@
 require 'open-uri'
 class Photo < ActiveRecord::Base
-  attr_accessible :box_id, :description, :name, :source, :image
+  attr_accessible :box_id, :description, :name, :image,:origin_owner_id
 
   validates :name, presence: true
   validates :box_id, presence: true

@@ -18,9 +18,9 @@ ActiveRecord::Schema.define(:version => 20130402063122) do
     t.string   "provider"
     t.string   "uid"
     t.string   "access_token"
+    t.string   "token_secret"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-    t.string   "token_secret"
   end
 
   create_table "boxes", :force => true do |t|
@@ -75,11 +75,11 @@ ActiveRecord::Schema.define(:version => 20130402063122) do
   create_table "photos", :force => true do |t|
     t.string   "description"
     t.string   "name"
-    t.string   "source"
     t.integer  "box_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "origin_owner_id"
     t.string   "image"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "reports", :force => true do |t|
@@ -115,15 +115,16 @@ ActiveRecord::Schema.define(:version => 20130402063122) do
     t.string   "email"
     t.string   "password_digest"
     t.string   "gender"
+    t.string   "avatar"
     t.boolean  "active"
     t.boolean  "admin"
     t.boolean  "banned"
     t.boolean  "verified"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
     t.string   "persistence_token"
     t.string   "single_access_token"
     t.string   "perishable_token",    :default => "", :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -3,7 +3,7 @@
     <%if current_user?(@user) %>
       <h1>
         <%= link_to " E d i t ", edit_box_path(@box), class: "btn btn-primary btn-large"%>
-        <%= @box.name %>
+        <%= @box.title %>
       </h1>
     </div>
   <% else %>
@@ -17,7 +17,7 @@
   </div>
 <%end%>
 <section class="content">
-  <%= render :partial => 'photos/photo_paginate' %>
+  <%= render :partial => 'photos/photos_paginate' %>
 </section>
 </div>
 
