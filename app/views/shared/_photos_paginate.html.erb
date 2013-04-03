@@ -1,0 +1,71 @@
+<div id="container" class="container transitions-enabled infinite-scroll clearfix">
+  <% @photos.each do |photo| %>
+    <div class = "box col2">
+      <div class="image-holder" style="height: <%=img_thumb(photo)[:height]%>px;width: 100%;">
+          <%= image_tag photo.image.thumb.url %>
+      </div>
+      <div>
+        <div style="position: relative; margin-left: 3px;">
+          <div style="color: gray">
+            <%= link_to photo.box.title, box_path( photo.box) %>
+            <% if !current_user?(photo.box.owner)%>
+              of
+              <%= link_to photo.box.owner.name, user_path(photo.box.owner) %>
+            <% else %>
+              of
+              <%= link_to "You", user_path(current_user) %>
+            <% end %>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  <%end%>
+  <div style="display: none"><%= will_paginate @photos %></div>
+</div>
+
+<script type="text/javascript">
+
+jQuery(function() {                                              // <== Doc ready
+
+    jQuery('.show-image').hover(function() {
+      jQuery(this).find('.btn-group').show();         // use .find() !
+      }, function() {
+      jQuery(this).find('.btn-group').hide();         // use .find() !
+      });
+    });
+
+var $container = $('#container');
+
+$container.imagesLoaded(function(){
+    $container.masonry({
+      itemSelector: '.box',
+      isFitWidth: true,
+      isResizable: true,
+      gutterWidth: 10
+    });
+  });
+
+$container.infinitescroll({
+navSelector  : '.next_page',    // selector for the paged navigation
+nextSelector : '.next_page a',  // selector for the NEXT link (to page 2)
+itemSelector : '.box',         // selector for all items you'll retrieve
+loading: {
+finishedMsg: 'No more pages to load.',
+}
+},
+// trigger Masonry as a callback
+function( newElements ) {
+// hide new items while they are loading
+var $newElems = $( newElements ).css({ opacity: 0 });
+// ensure that images load before adding to masonry layout
+$newElems.imagesLoaded(function(){
+  // show elems now they're ready
+  $newElems.animate({ opacity: 1 });
+  $container.masonry( 'appended', $newElems, true );
+  });
+}
+);
+</script>
+

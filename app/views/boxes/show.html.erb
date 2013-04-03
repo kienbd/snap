@@ -1,23 +1,24 @@
-<div style="margin-left: 30px;">
+<%if current_user?(@user) %>
   <div class="page-header">
-    <%if current_user?(@user) %>
       <h1>
         <%= link_to " E d i t ", edit_box_path(@box), class: "btn btn-primary btn-large"%>
         <%= @box.title %>
       </h1>
-    </div>
-  <% else %>
-    <div class="page-header">
-      <h1>
-        Author: <%= @user.name %>
+  </div>
+<% else %>
+  <div class="page-header">
+    <h1>
+      Author: <%= @user.name %>
     </h1>
   </div>
+
   <div class="row center" style="margin-bottom: 20px;">
     <%= render 'follow_box_form', :box => @box if @box.id != nil%>
   </div>
+
 <%end%>
+
 <section class="content">
   <%= render :partial => 'photos/photos_paginate' %>
 </section>
-</div>
 

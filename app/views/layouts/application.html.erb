@@ -5,16 +5,18 @@
   <%= stylesheet_link_tag    "application", media: "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-  <%= render 'layouts/shim' %>
 </head>
 <body>
   <%= render 'layouts/header' %>
-  <div class="container">
-    <% flash.each do |key, value| %>
-    <div class="alert alert-<%= key %>"><%= value %></div>
-    <% end %>
-    <span id="upload-facebook-flash" style="display:none">Upload photo successfully</span>
-    <%= yield %>
+  <div class="container" id="appContent">
+    <div class="mainContent">
+      <%= yield %>
+    </div>
+    <div class="popup">
+      <div class="popup-content">
+
+      </div>
+    </div>
   </div>
 </body>
 </html>
