@@ -1,84 +1,69 @@
-<header class="navbar navbar-fixed-top">
-<% if signed_in? %>
-  <div class="navbar-inner">
-    <div class="container">
-      <nav>
-        <form class="navbar-search"action="/search" method="post">
-          <input type="text" class="search-query" name="search" placeholder="Search">
-        </form>
-        <ul class= "nav" style="left: 30%;">
-          <ul class="LiquidContainer HeaderContainer">
-            <li class="submenu">
-              <a id="logo" href="/all" class="nav">SNAP<span></span></a>
-              <ul id="CategoriesDropdown">
-                <li>
-                  <span class="SubmenuColumn">
-                    <% i=1 %>
-                    <% while i <= 16 do%>
-                      <a href="/all/?category_id=<%=i%>">
-                      <%= Category.find(i).name %>
-                      </a>
-                      <% i += 1 %>
-                    <% end%>
-                  </span>
-                  <span class="SubmenuColumn">
-                    <% i=17 %>
-                    <% while i <= 32 do%>
-                      <a href="/all/?category_id=<%=i%>">
-                        <%= Category.find(i).name %>
-                      </a>
-                      <% i += 1 %>
-                    <% end%>
-                  </span>
+<header>
+  <div class="Header Module">
+    <div class="headerBackground"></div>
+
+    <div class="headerContainer centeredWithinWrapper">
+      <div class="leftHeaderContent">
+        <div class="categoriesButton HoverButton Module" data-is-hovering="">
+          <button type="button" class="rounded Button Module primaryOnHover btn categories">
+            <em></em>
+            <span class="accessibilityText">Categories</span>
+          </button>
+        </div>
+        <div class="ui-SearchForm Module"><form action="/search/" method="GET" name="search">
+            <div class="search Module ui-TypeaheadField">
+              <input type="text" name="q" value="" placeholder="Search" autocomplete="off" class="field">
+              <div class="hidden ui-Typeahead Module" style="display: none;">
+                <ul class="results"></ul>
+              </div>
+            </div>
+            <button class="submit" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+
+      <%# <a href="/" data-force-refresh="1"><h1>Pinterest</h1></a> %>
+
+      <div class="rightHeaderContent">
+        <div class="UserMenu Module" data-is-hovering="">
+          <a href="/tadx/" class="usernameLink" data-force-refresh="1">
+            <span class="profileImage" style="background-image:url(http://media-cache-ec1.pinterest.com/avatars/tadx_1330046538_30.jpg)"></span>
+            <span class="profileName"><%= current_user.name%></span>
+          </a>
+        </div>
+
+        <div id="UserDropdown" class="Module Dropdown" data-is-hovering="">
+          <div class="dropdownContainer userDropdown fixedDropdownContainer">
+            <div class="UserDropdown ajax Module" style="display: block;">
+              <div class="moduleMask"></div>
+              <ul class="ajax List Module">
+                <li data-index="0">
+                <a class="myPins" href="/tadx/pins/">Your Pins</a>
+                </li>
+                <li data-index="1">
+                <a class="myBoards" href="/tadx/boards/">Your Boards</a>
+                </li>
+                <li data-index="2">
+                <a class="addPin" href="/">Add Pin</a>
+                </li>
+                <li data-index="3">
+                <a class="" href="/settings/">Settings</a>
+                </li>
+                <li data-index="4">
+                <a class="" href="http://help.pinterest.com/" data-ga="site_help">Help Center</a>
+                </li>
+                <li data-index="5">
+                <a class="findFriends" href="/find_friends/">Find Friends</a>
+                </li>
+                <li data-index="6">
+                <a class="" href="/logout/" data-ga="site_logout">Log Out</a>
                 </li>
               </ul>
-            </li>
-          </ul>
-        </ul>
-        <ul class="nav pull-right" style="margin-right: 30px;">
-          <li><%= link_to "Home", root_path %></li>
-          <% if signed_in? %>
-            <li id="fat-menu" class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="icon-upload"></i> Upload <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-                <li><%= link_to "Upload via PC", upload_pc_path %></li>
-                <li><%= link_to "Upload via URL", upload_url_path %></li>
-                <% if current_user.authentications.find_by_provider('facebook').nil? %>
-                  <%= link_to "Upload via Facebook", "/auth/facebook"%>
-                <% else %>
-                  <%= link_to "Upload via Facebook", upload_facebook_path%>
-                <% end %>
-              </ul>
-            </li>
+            </div>
+          </div>
+        </div>
 
-            <li id="fat-menu" class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <%= current_user.name%> <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-                <li><%= link_to "Invite Friends", '/invite' %></li>
-                <li><%= link_to "Find Friends", '/entry/findfriends' %></li>
-                <li class = "divider"></li>
-                <li><%= link_to "Boxes", current_user %></li>
-                <li><%= link_to "Pins", photos_user_path(current_user)%></li>
-                <li><%= link_to "Likes",likedphotos_user_path(current_user)%></li>
-                <li class="divider"></li>
-                <% if current_user.admin? %>
-                  <li><%= link_to "Admin" ,admin_path %></li>
-                  <li class="divider"></li>
-                <%end%>
-                <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-                <li><%= link_to "Sign out", signout_path, method: "delete" %></li>
-              </ul>
-            </li>
-          <% else %>
-            <li><%= link_to "Sign in", signin_path %></li>
-          <% end %>
-        </ul>
-      </nav>
+      </div>
     </div>
   </div>
-<% end %>
 </header>
