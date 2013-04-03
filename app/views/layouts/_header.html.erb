@@ -26,7 +26,7 @@
 
       <div class="rightHeaderContent">
         <div class="UserMenu Module" data-is-hovering="">
-          <a href="/tadx/" class="usernameLink" data-force-refresh="1">
+          <a href="<%= user_path(current_user.id) %>" class="usernameLink" data-force-refresh="1">
             <span class="profileImage" style="background-image:url(http://media-cache-ec1.pinterest.com/avatars/tadx_1330046538_30.jpg)"></span>
             <span class="profileName"><%= current_user.name%></span>
           </a>
@@ -47,7 +47,7 @@
                 <a class="addPin" href="/">Add Pin</a>
                 </li>
                 <li data-index="3">
-                <a class="" href="/settings/">Settings</a>
+                <a class="" href="<%= edit_user_path(current_user.id) %>">Settings</a>
                 </li>
                 <li data-index="4">
                 <a class="" href="http://help.pinterest.com/" data-ga="site_help">Help Center</a>
@@ -56,7 +56,7 @@
                 <a class="findFriends" href="/find_friends/">Find Friends</a>
                 </li>
                 <li data-index="6">
-                <a class="" href="/logout/" data-ga="site_logout">Log Out</a>
+                <a class="" href="<%= signout_path %>" data-ga="site_logout">Log Out</a>
                 </li>
               </ul>
             </div>
