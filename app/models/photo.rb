@@ -29,6 +29,10 @@ class Photo < ActiveRecord::Base
     end
   end
 
+  def is_origin?
+    return self.origin_owner_id.nil?
+  end
+
   private
 
   def do_download_remote_image

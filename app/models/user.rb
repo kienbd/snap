@@ -129,7 +129,6 @@ class User < ActiveRecord::Base
     photos
   end
 
-
   private
 
   def create_persistence_token

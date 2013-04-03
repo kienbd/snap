@@ -68,8 +68,6 @@ class PhotosController < ApplicationController
 			end
 		end
 
-
-
 	end
 
 	def edit
@@ -93,6 +91,16 @@ class PhotosController < ApplicationController
 		flash[:success] = "Photo deleted"
 		redirect_back_or box_path(box)
 	end
+
+
+  def repin
+    if Photo.create(params[:photo])
+      respond_to do |format|
+        format.html
+        format.js
+      end
+    end
+  end
 
 	def authenticated_user
 		redirect_to root_path unless !current_user.authentications.find_by_provider('facebook').nil?
