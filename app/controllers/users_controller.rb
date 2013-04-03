@@ -53,7 +53,7 @@ class UsersController < ApplicationController
 
   def likedphotos
     @user = User.find(params[:id])
-    @photos = @user.action_photos.paginate(page: params[:page],per_page: 15)
+    @photos = @user.liked_photos.paginate(page: params[:page],per_page: 15)
   end
 
 

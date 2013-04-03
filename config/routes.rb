@@ -37,7 +37,7 @@ Snap::Application.routes.draw do
   resources :photos
   resources :sessions, only: [ :new, :create, :destroy]
   resources :user_box_follows, only: [ :create, :destroy]
-  resources :user_user_relationships, only: [ :create, :destroy]
+  resources :user_follow_relationships, only: [ :create, :destroy]
   resources :user_photo_actions, only: [ :create, :destroy]
   resources :authentications
   resources :find_friends, only: [ :find_facebook]
@@ -48,7 +48,7 @@ Snap::Application.routes.draw do
 
   match '/signup', to: 'users#new'
   match '/signin', to: 'sessions#new'
-  match '/signout', to: 'sessions#destroy', via: :delete
+  match '/signout', to: 'sessions#destroy', via: :get
   match '/sendinvite', to: 'users#send_invite'
   match '/forgot', to: 'password_resets#new'
   # match '/editpassword', to: 'password_resets#edit'

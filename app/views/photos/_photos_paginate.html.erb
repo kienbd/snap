@@ -1,7 +1,9 @@
 <div id="container" class="container transitions-enabled infinite-scroll clearfix">
   <% @photos.each do |photo| %>
     <div class = "box col2">
-      <%= image_tag photo.image.url %>
+      <div class="image-holder" style="height: <%=img_thumb(photo)[:height]%>px;width: 100%;">
+          <%= image_tag photo.image.thumb.url %>
+      </div>
       <div>
         <div style="position: relative; margin-left: 3px;">
           <div style="color: gray">

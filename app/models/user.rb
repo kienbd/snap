@@ -90,35 +90,20 @@ class User < ActiveRecord::Base
     user_box_follows.find_by_box_id(box.id) != nil
   end
 
-  def act_on_photo!(photo, action)
-    unless right_action?(action)
-      return false
-    end
-    if action == :like && liked_photo?(photo)
+  def like(photo)
+    if liked_photo?(photo)
       return false
     end
 
-    user_photo_actions.create!(photo_id: photo.id, action: action)
-    Notification.create!(source_id: self.id, target_id: photo.box.owner.id,
-      relation_type: "user_photo_actions like #{photo.id}")
-
+    self.likes.create!(photo_id: photo.id)
   end
 
-  def un_act_on_photo!(photo, action)
-    unless right_action?(action)
-      return false
-    end
-    user_photo_actions.find_by_photo_id(photo.id).destroy
+  def unlike(photo)
+    self.likes.find_by_photo_id(photo.id).destroy
   end
 
   def liked_photo?(photo)
-    rels = user_photo_actions.find_all_by_action(:like)
-    rels.each do | rel |
-      if rel.photo_id == photo.id
-        return true
-      end
-    end
-    false
+    return !self.likes.find_by_photo_id(photo.id).nil?
   end
 
   def tweet(content)
@@ -148,10 +133,6 @@ class User < ActiveRecord::Base
 
   def create_persistence_token
     self.persistence_token = SecureRandom.urlsafe_base64
-  end
-
-  def right_action?(action)
-    return action == :like || action == :repin
   end
 
   def unfollow_box(box)

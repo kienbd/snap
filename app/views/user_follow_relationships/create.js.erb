@@ -3,4 +3,5 @@ $("#follow_user_<%= @user.id %>").html("<%= escape_javascript(render('users/unfo
 $("#follow_box_<%= box.id %>").html("<%= escape_javascript(render('boxes/unfollow_box', box: box )) %>")
 <% end %>
 
+$("li#follower-pinbar strong").text(parseInt($("li#follower-pinbar strong").text())+ 1);
 

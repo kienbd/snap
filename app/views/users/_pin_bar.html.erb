@@ -30,14 +30,14 @@
 
       <ul class="follow pinbar">
 
-        <li>
+        <li id='follower-pinbar'>
         <a href="/users/<%="#{@user.id}"%>/followers">
           <strong><%=@user.followers.count%></strong> Followers
         </a>
         </li>
 
 
-        <li>
+        <li id='following-pinbar'>
         <a href="/users/<%="#{@user.id}"%>/following">
           <strong><%=@user.following_users.count%></strong> Following
         </a>

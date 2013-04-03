@@ -2,7 +2,7 @@ class UserFollowRelationshipsController < ApplicationController
 
 	def create
 
-    @user = User.find(params[:user_user_relationship][:following_id])
+    @user = User.find(params[:user_follow_relationship][:following_id])
     if !current_user.following?(@user)
       current_user.follow!(@user)
     @boxes = @user.boxes
@@ -16,7 +16,7 @@ class UserFollowRelationshipsController < ApplicationController
   end
 
   def destroy
-    @user = UserUserRelationship.find(params[:id]).following
+    @user = UserFollowRelationship.find(params[:id]).following
     current_user.unfollow!(@user)
     @boxes = @user.boxes
 
