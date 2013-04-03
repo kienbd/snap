@@ -118,9 +118,12 @@ def make_photos
         5.times do
           name = Faker::PhoneNumber.phone_number
           description = Faker::Internet.domain_name
-          temp = size[rand(3)]
-          source = "http://lorempixel.com/#{temp[:x]}/#{temp[:y]}"
-          b.photos.create(name: name, description: description, source: source, image_remote_url: source)
+          temp = rand(30)
+          source = "http://localhost:8484/#{temp}.jpg"
+          image = open(source)
+          if !image.is_a? StringIO
+            b.photos.create(name: name, description: description, image: image)
+          end
         end
       end
     end
@@ -147,7 +150,7 @@ end
   make_users
   make_categories
   make_boxes
-  # make_photos
+  make_photos
   make_relationships
   # make_users_like_photos
 

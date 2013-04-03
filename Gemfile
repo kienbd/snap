@@ -26,6 +26,7 @@ gem 'pry'
 gem 'fb_graph'
 gem 'paperclip'
 gem 'mail', '2.4.4'
+gem 'rmagick'
 
 gem 'carrierwave'
 

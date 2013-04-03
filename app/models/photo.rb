@@ -19,6 +19,16 @@ class Photo < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
+  after_create :create_imgsize
+
+  def create_imgsize
+    if self.image.url
+      ImgSize.create(photo_id: self.id,width: self.image.geometry[:width],height: self.image.geometry[:height])
+    else
+      ImgSize.create(photo_id: self.id, width: 300, height: 100);
+    end
+  end
+
   private
 
   def do_download_remote_image

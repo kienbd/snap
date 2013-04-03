@@ -43,12 +43,11 @@ Snap::Application.routes.draw do
   resources :find_friends, only: [ :find_facebook]
   resources :invitations, only: [ :index, :facebook, :twitter, :mail]
 
-  root to: 'static_pages#home'
+  root to: 'tops#index'
 
 
   match '/signup', to: 'users#new'
   match '/signin', to: 'sessions#new'
-  match '/about', to: 'static_pages#about'
   match '/signout', to: 'sessions#destroy', via: :delete
   match '/sendinvite', to: 'users#send_invite'
   match '/forgot', to: 'password_resets#new'

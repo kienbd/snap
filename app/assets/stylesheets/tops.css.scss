@@ -1,0 +1,43 @@
+// Place all the styles related to the StaticPages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+.BoardLayout {
+  opacity: 1;
+  visibility: visible;
+  #ColumnContainer {
+    margin-top: 49px;
+    height: auto;
+    .feed {
+      position: absolute;
+      top: 10px;
+      left: 30px;
+      width: 222px;
+      border: 1px solid #CFCACA;
+      -webkit-box-shadow: 0 1px 10px rgba(34, 25, 25, 0.4);
+      box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+      background-color: white;
+    }
+    #user-recommendations {
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+
+    #recent-activity-holder {
+      h2 {
+        text-align: left;
+        margin-left: 5px;
+      }
+    }
+    #tweet-btn {
+      margin: 5px;
+    }
+
+    .content {
+      margin-right: 0px;
+      margin-left: 300px;
+    }
+ }
+}

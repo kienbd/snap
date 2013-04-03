@@ -3,7 +3,7 @@
 class ImageUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
-  # include CarrierWave::RMagick
+  include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
 
   # Include the Sprockets helpers for Rails 3.1+ asset pipeline compatibility:
@@ -11,7 +11,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # include Sprockets::Helpers::IsolatedHelper
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
+  storage Settings.uploader.storage
   # storage :fog
 
   # Override the directory where uploaded files will be stored.
@@ -34,6 +34,26 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def scale(width, height)
   #   # do something
   # end
+  #
+  def geometry
+    @geometry
+  end
+
+  process :resize_to_limit => [500, nil]
+  # Create different versions of your uploaded files:
+
+  version :thumb do
+    process :resize_to_limit => [300, nil]
+  end
+
+  process :get_geometry
+
+  def get_geometry
+    if (@file)
+      img = ::Magick::Image::read(@file.file).first
+      @geometry = {width: img.columns,height: img.rows }
+    end
+  end
 
   # Create different versions of your uploaded files:
   # version :thumb do
