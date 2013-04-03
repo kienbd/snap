@@ -1,4 +1,16 @@
-@import "bootstrap";
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+@import "bootstrap/buttons";
+@import "bootstrap/tooltip";
+@import "bootstrap/alerts";
+@import "bootstrap/dropdowns";
+@import "bootstrap/labels";
+@import "bootstrap/navbar";
+@import "bootstrap/forms";
+@import "bootstrap/navs";
+@import "bootstrap/progress-bars";
+@import "bootstrap/tables";
+@import "bootstrap/button-groups";
 
 /* mixins, variables, etc. */
 
@@ -234,18 +246,6 @@ aside {
   }
 }
 
-.container {
-  width: 100% !important;
-  /* background: #f7f5f5 url(../images/paper.jpg) repeat; */
-  margin-bottom: 20px;
-  border-radius: 5px;
-  clear: none;
-}
-
-.container::after{
-  clear: none;
-}
-
 /* dropdown menu */
 .navbar .nav > li > a {
   padding: 10px 10px 11px;
@@ -356,7 +356,7 @@ ul.pinbar li {
 
 
 .notification {
- 
+
   width: 200px;
   float: left;
   margin: 0 3px 0 0;

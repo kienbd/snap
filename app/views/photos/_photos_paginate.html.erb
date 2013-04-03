@@ -40,10 +40,12 @@ var $container = $('#container');
 
 $container.imagesLoaded(function(){
     $container.masonry({
-itemSelector: '.box',
-columnWidth: 100
-});
+      itemSelector: '.box',
+      isFitWidth: true,
+      isResizable: true,
+      gutterWidth: 10
     });
+  });
 
 $container.infinitescroll({
 navSelector  : '.next_page',    // selector for the paged navigation
@@ -51,7 +53,6 @@ nextSelector : '.next_page a',  // selector for the NEXT link (to page 2)
 itemSelector : '.box',         // selector for all items you'll retrieve
 loading: {
 finishedMsg: 'No more pages to load.',
-img: 'http://i.imgur.com/6RMhx.gif'
 }
 },
 // trigger Masonry as a callback
