@@ -41,10 +41,9 @@ class PhotosController < ApplicationController
 	end
 
 	def create
-    binding.pry
     if params[:photo][:remote_image_url] == ""
       params[:photo].delete("remote_image_url")
-    elsif(params[:photo][:remote_image_url].index("http://#{Settings.hostname}/").nil?)
+    elsif !params[:photo][:remote_image_url].nil? && params[:photo][:remote_image_url].index("http://#{Settings.hostname}/").nil?
       image = open(params[:photo][:remote_image_url])
       if image.is_a? StringIO
       else
@@ -69,8 +68,6 @@ class PhotosController < ApplicationController
 			end
 		end
 
-
-
 	end
 
 	def edit
@@ -94,6 +91,16 @@ class PhotosController < ApplicationController
 		flash[:success] = "Photo deleted"
 		redirect_back_or box_path(box)
 	end
+
+
+  def repin
+    if Photo.create(params[:photo])
+      respond_to do |format|
+        format.html
+        format.js
+      end
+    end
+  end
 
 	def authenticated_user
 		redirect_to root_path unless !current_user.authentications.find_by_provider('facebook').nil?

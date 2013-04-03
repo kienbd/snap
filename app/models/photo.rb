@@ -1,6 +1,6 @@
 require 'open-uri'
 class Photo < ActiveRecord::Base
-  attr_accessible :box_id, :description, :name, :source, :image
+  attr_accessible :box_id, :description, :name, :image,:origin_owner_id
 
   validates :name, presence: true
   validates :box_id, presence: true
@@ -27,6 +27,10 @@ class Photo < ActiveRecord::Base
     else
       ImgSize.create(photo_id: self.id, width: 300, height: 100);
     end
+  end
+
+  def is_origin?
+    return self.origin_owner_id.nil?
   end
 
   private

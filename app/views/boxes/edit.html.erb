@@ -6,8 +6,8 @@
     <%= form_for(@box) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
 
-      <%= f.label :name %>
-      <%= f.text_field :name, placeholder: "Board Name" %>
+      <%= f.label :title %>
+      <%= f.text_field :title, placeholder: "Board Name" %>
       <%= f.label :category_id %>
       <%= f.select :category_id, Category.all.collect { |n| [n.name, n.id] } %>
 

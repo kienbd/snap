@@ -12,7 +12,7 @@
 class User < ActiveRecord::Base
   include AuthenticationsHelper
 
-  attr_accessible :email, :name, :password, :password_confirmation,:location,:gender
+  attr_accessible :email, :name, :password, :password_confirmation,:gender,:avatar
   has_secure_password
 
   before_save { |user| user.email = email.downcase }
@@ -22,8 +22,7 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false}
 
-  validates :password, presence: true, length: { minimum: 6 }
-  validates :password_confirmation, presence: true
+  validates :password, presence: true, length: { minimum: 6 }, on: :create
 
   has_many :user_follow_relationships, foreign_key: "follower_id",
   dependent: :destroy
@@ -48,6 +47,8 @@ class User < ActiveRecord::Base
   has_many :liked_photos, through: :likes, source: :photo
 
   has_many :authentications, dependent: :destroy
+
+  mount_uploader :avatar, ImageUploader
 
   def following?(other_user)
     user_follow_relationships.find_by_following_id(other_user.id)
@@ -127,7 +128,6 @@ class User < ActiveRecord::Base
     photos = photos.sort_by{|t| - t.created_at.to_i}.uniq
     photos
   end
-
 
   private
 
