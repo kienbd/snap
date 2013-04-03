@@ -75,10 +75,10 @@ ActiveRecord::Schema.define(:version => 20130402063122) do
   create_table "photos", :force => true do |t|
     t.string   "description"
     t.string   "name"
-    t.string   "source"
     t.integer  "box_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "origin_owner_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.string   "image"
   end
 
