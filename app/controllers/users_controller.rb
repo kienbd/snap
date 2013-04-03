@@ -66,14 +66,23 @@ class UsersController < ApplicationController
     authentication = session[:authentication]
     if authentication
       @user.authentications << authentication
+      @user.verify!
       session.delete :authentication
-    end
-    if @user.save
-      deliver_verification_instructions(@user)
-      flash[:notice] = "Thanks for signing up, we've delivered an email to you with instructions on how to complete your registration!"
-      redirect_to root_path
+      if @user.save
+        flash[:notice] = "Thanks for signing up"
+        sign_in @user
+        redirect_to root_path
+      else
+        render 'new'
+      end
     else
-      render 'new'
+      if @user.save
+        deliver_verification_instructions(@user)
+        flash[:notice] = "Thanks for signing up, we've delivered an email to you with instructions on how to complete your registration!"
+        redirect_to root_path
+      else
+        render 'new'
+      end
     end
   end
 

@@ -36,7 +36,7 @@ class AuthenticationsController < ApplicationController
 
   def destroy
     # binding.pry
-    @authentication = current_user.authentications.find_by_provider(params[:provider]) 
+    @authentication = current_user.authentications.find_by_provider(params[:provider])
     if @authentication
       @authentication.destroy
       flash[:notice] = 'Successfully destroyed authentication.'
