@@ -379,6 +379,7 @@ ul.pinbar li {
     border-radius: 2px 2px 0 0;
     border-bottom: 1px solid rgba(0,0,0,0.1);
     &:hover {
+      opacity: 0.9;
       .functBtns-holder {
         display: block;
       }

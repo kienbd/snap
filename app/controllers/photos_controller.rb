@@ -84,13 +84,26 @@ class PhotosController < ApplicationController
 		end
 	end
 
-	def destroy
-		photo = Photo.find(params[:id])
-		box = photo.box
-		photo.destroy
-		flash[:success] = "Photo deleted"
-		redirect_back_or box_path(box)
-	end
+  def show
+    @photo = Photo.find(params[:id])
+    if @photo
+      respond_to do |format|
+        format.js
+      end
+    else
+      respond_to do |format|
+        format.js { render "show_error" }
+      end
+    end
+  end
+
+  def destroy
+    photo = Photo.find(params[:id])
+    box = photo.box
+    photo.destroy
+    flash[:success] = "Photo deleted"
+    redirect_back_or box_path(box)
+  end
 
 
   def repin
@@ -102,9 +115,8 @@ class PhotosController < ApplicationController
     end
   end
 
-	def authenticated_user
-		redirect_to root_path unless !current_user.authentications.find_by_provider('facebook').nil?
-	end
-
+  def authenticated_user
+    redirect_to root_path unless !current_user.authentications.find_by_provider('facebook').nil?
+  end
 
 end

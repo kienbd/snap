@@ -1,24 +1,20 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title><%= full_title(yield(:title)) %></title>
-  <%= stylesheet_link_tag    "application", media: "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <% if signed_in? %>
-    <%= render 'layouts/header' %>
-  <% end %>
-  <div class="container" id="appContent">
-    <div class="mainContent">
-      <%= yield %>
-    </div>
-    <div class="popup">
-      <div class="popup-content">
-
+  <head>
+    <title><%= full_title(yield(:title)) %></title>
+    <%= stylesheet_link_tag    "application", media: "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <% if signed_in? %>
+      <%= render 'layouts/header' %>
+    <% end %>
+    <div class="container" id="appContent">
+      <div class="mainContent">
+        <%= yield %>
       </div>
+      <%= render :partial => 'layouts/popup' %>
     </div>
-  </div>
-</body>
+  </body>
 </html>

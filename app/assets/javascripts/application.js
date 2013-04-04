@@ -13,3 +13,14 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+var popupShow = function() {
+  $('#back_fader').show();
+  $('#back_fader .popup_content').show();
+  $('body').css('overflow', 'hidden');
+}
+var popupHide = function() {
+  $('#back_fader').hide();
+  $('#back_fader .popup_content').hide();
+  $('body').css('overflow', 'auto');
+}
