@@ -20,8 +20,11 @@ Snap::Application.routes.draw do
   get 'boxes/delete'
 
   resources :users do
-      member do
+    member do
       get :following, :followers, :photos, :likedphotos
+    end
+    collection do
+
     end
   end
   resources :boxes do
@@ -34,12 +37,16 @@ Snap::Application.routes.draw do
   resources :password_resets
   resources :reports
   resources :categories
-  resources :photos
   resources :likes
+  resources :photos do
+    collection do
+      post :repin
+    end
+  end
   resources :sessions, only: [ :new, :create, :destroy]
   resources :user_box_follows, only: [ :create, :destroy]
   resources :user_follow_relationships, only: [ :create, :destroy]
-  resources :user_photo_actions, only: [ :create, :destroy]
+  resources :likes, only: [ :create, :destroy]
   resources :authentications
   resources :find_friends, only: [ :find_facebook]
   resources :invitations, only: [ :index, :facebook, :twitter, :mail]
