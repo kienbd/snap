@@ -20,8 +20,11 @@ Snap::Application.routes.draw do
   get 'boxes/delete'
 
   resources :users do
-      member do
+    member do
       get :following, :followers, :photos, :likedphotos
+    end
+    collection do
+
     end
   end
   resources :boxes do
