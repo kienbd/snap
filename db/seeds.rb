@@ -23,10 +23,14 @@ def make_users
     name  = Faker::Name.name
     email = "user#{n+1}@gmail.com"
     password  = "123456789"
+    temp = rand(31)
+    source = "http://localhost:8484/#{temp}.jpg"
+    image = open(source)
     u = User.create(name:     name,
      email:    email,
      password: password,
-     password_confirmation: password)
+     password_confirmation: password,
+     avatar: image)
     if(n< 7)
       u.verify!
     end
@@ -112,18 +116,16 @@ def make_photos
     { x: 640, y: 480 },
     { x: 300, y: 600 }
   ]
-  5.times do
-    users.each do |user|
-      user.boxes.each do |b|
-        5.times do
-          name = Faker::PhoneNumber.phone_number
-          description = Faker::Internet.domain_name
-          temp = rand(30)
-          source = "http://localhost:8484/#{temp}.jpg"
-          image = open(source)
-          if !image.is_a? StringIO
-            b.photos.create(name: name, description: description, image: image)
-          end
+  users.each do |user|
+    user.boxes.each do |b|
+      5.times do
+        name = Faker::PhoneNumber.phone_number
+        description = Faker::Internet.domain_name
+        temp = rand(30)
+        source = "http://localhost:8484/#{temp}.jpg"
+        image = open(source)
+        if !image.is_a? StringIO
+          b.photos.create(name: name, description: description, image: image)
         end
       end
     end

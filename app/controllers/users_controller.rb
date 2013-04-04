@@ -14,7 +14,6 @@ class UsersController < ApplicationController
 
   def show
     store_location
-    binding.pry
     @user = User.find(params[:id])
     @boxes = @user.boxes
     @count_photo = 0

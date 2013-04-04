@@ -77,7 +77,7 @@
       <div class="rightHeaderContent">
         <div class="UserMenu Module" data-is-hovering="">
           <a href="<%= user_path(current_user.id) %>" class="usernameLink" data-force-refresh="1">
-            <span class="profileImage" style="background-image:url(<%= current_user.avatar.thumb.url %>)"></span>
+            <span class="profileImage" style="background-image:url(<%= current_user.avatar.small_avatar.url %>)"></span>
             <span class="profileName"><%= current_user.name%></span>
           </a>
         </div>

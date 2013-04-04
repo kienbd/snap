@@ -1,20 +1,45 @@
 <% provide(:title, 'Sign up') %>
-<h1>Sign up</h1>
-<div class="row center">
-    <%= form_for(@user) do |f| %>
+<h1>Welcome To Ponterest</h1>
+
+<div class="intermission">
+  <h2>Connect with </h2>
+</div>
+<div class="center hero-unit">
+  <%= link_to "Log in with Facebook", "/auth/facebook",
+    class: "btn btn-large btn-primary" %>
+  <%= link_to "Log in with Twitter", "/auth/twitter",
+    class: "btn btn-large btn-primary" %>
+  <br>
+</div>
+<div class="intermission">
+  <h2>Or with Email </h2>
+</div>
+
+<div class="row center signup-form-holder">
+  <%= form_for @user do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
-    <%= f.label :name %>
-        <%= f.text_field :name %>
 
-        <%= f.label :email %>
-        <%= f.text_field :email %>
+    <div class="avatar-holder">
+      <%= f.file_field :avatar,onchange: "readURL(this)" %>
+      <div class="avatar-frame">
+        <img src="/assets/default_avatar.png"/>
+      </div>
+      <div class="avatar-button">
+        <label> Upload Avatar </label>
+      </div>
 
-        <%= f.label :password %>
-        <%= f.password_field :password %>
+    </div>
 
-        <%= f.label :password_confirmation, "Confirmation" %>
-        <%= f.password_field :password_confirmation %>
+    <div class="user-infos">
+      <%= f.text_field :name ,placeholder: "Username"%>
 
-        <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+      <%= f.text_field :email,placeholder: "Email" %>
+
+      <%= f.password_field :password,placeholder: "Password" %>
+
+      <%= f.password_field :password_confirmation,placeholder:"Password Confirmation" %>
+
+      <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+    </div>
   <% end %>
 </div>

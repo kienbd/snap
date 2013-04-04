@@ -39,11 +39,19 @@ class ImageUploader < CarrierWave::Uploader::Base
     @geometry
   end
 
-  process :resize_to_limit => [500, nil]
+  process :resize_to_limit => [750, nil]
   # Create different versions of your uploaded files:
 
   version :thumb do
-    process :resize_to_limit => [300, nil]
+    process :resize_to_limit => [236, nil]
+  end
+
+  version :small_avatar do
+    process :resize_to_limit => [50,nil]
+  end
+
+  version :medium_avatar do
+    process :resize_to_limit => [200,nil]
   end
 
   process :get_geometry

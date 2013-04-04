@@ -5,6 +5,7 @@ class CreatePhotos < ActiveRecord::Migration
       t.string :name
       t.integer :box_id
       t.integer :origin_owner_id
+      t.integer :repin_count , default: 0
       t.string :image
 
       t.timestamps

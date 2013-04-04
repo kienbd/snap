@@ -1,8 +1,7 @@
 uploader:
   storage: :file
 hostname: "localhost:3000"
-img_thumb_size: {width: 240}
+img_thumb_size: {width: 236}
 default_box_size:
-  width: 300
-  height: 333
-  minsize: 170
+  width: 236
+  minsize: 120

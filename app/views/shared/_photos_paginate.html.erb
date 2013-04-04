@@ -30,7 +30,7 @@
 
         <div class="user-attributes">
             <a href="#" class="attr-holder">
-              <%= image_tag photo.owner_user.avatar.thumb if !photo.owner_user.avatar.nil?%>
+              <%= image_tag photo.owner_user.avatar.small_avatar.url if !photo.owner_user.avatar.nil?%>
               <% if photo.is_origin? %>
                   <span class="attr-title"> Pinned by </span>
               <%else%>
@@ -39,7 +39,7 @@
               <span class="attr-name"><%= photo.owner_user.name%> </span>
             </a>
             <a href="#" class="attr-holder">
-              <%= image_tag photo.image.url %>
+              <%= image_tag photo.image.small_avatar.url %>
               <span class="attr-title"> onto </span>
               <span class="attr-name"> <%=photo.box.title%></span>
             </a>

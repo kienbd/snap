@@ -2,6 +2,149 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.login-logo-holder {
+  display: block;
+  width: 100%;
+  margin: 50px 0 0;
+  a {
+    display: block;
+    width: 259px;
+    height: 66px;
+    margin: 0 auto 50px;
+    background: url("login_icons.png") 0 0;
+  }
+}
+
+.intermission {
+  background: url(rule_split.png) no-repeat center center;
+  color: #888;
+  font-family: 'Georgia';
+  font-size: 18px;
+  text-align: center;
+  margin: 30px 0 20px 0;
+  h2 {
+    background: #f7f5f5;
+    display: inline-block;
+    padding: 0 10px;
+    text-align: center;
+  }
+}
+
+.signup-form-holder {
+  position: relative;
+  padding: 5px;
+  width: 555px;
+  margin: 0 auto;
+  background: none;
+  padding-top: 0px;
+  z-index: 20;
+  .new_user {
+    .avatar-holder {
+      position: absolute;
+      height: 200px;
+      width: 200px;
+      top: 0px;
+      background: #fff;
+      -moz-box-shadow: 0 1px 3px rgba(34,25,25,0.5);
+      -webkit-box-shadow: 0 1px 3px rgba(34,25,25,0.5);
+      box-shadow: 0 1px 3px rgba(34,25,25,0.5);
+      padding: 4px;
+      .avatar-frame {
+        max-height: 200px;
+        overflow: hidden;
+        img {
+          width: 200px;
+        }
+      }
+      .avatar-button {
+        z-index: 1;
+        bottom: 10px;
+        left: 0;
+        position: absolute;
+        text-align: center;
+        width: 100%;
+        opacity: 0.6;
+        label {
+          cursor: pointer;
+          display: inline-block;
+          font-family: "helvetica neue",arial,sans-serif;
+          font-weight: bold;
+          line-height: 1em;
+          margin: 0;
+          padding: .45em .825em .45em;
+          text-align: center;
+          -webkit-border-radius: 4px;
+          border-radius: 4px;
+          font-size: 13px;
+          background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fdfafb), to(#f0eded), color-stop(.5,#f9f7f7),color-stop(.5,#f6f3f4));
+          background-image: -moz-linear-gradient(top, #fdfafb, #f9f7f7 50%, #f6f3f4 50%, #f0eded);
+          background-image: -o-linear-gradient(top, #fdfafb, #f9f7f7 50%, #f6f3f4 50%, #f0eded);
+          background-image: -webkit-linear-gradient(top, #fdfafb, #f9f7f7 50%, #f6f3f4 50%, #f0eded);
+          border-color: #bbb;
+          color: #524d4d;
+          filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdfafb', endColorstr='#f0eded');
+          text-shadow: 0 1px rgba(255,255,255,0.9);
+          -moz-box-shadow: inset 0 1px rgba(255,255,255,0.35), 0 0 0 1px rgba(140,126,126,0.5);
+          -webkit-box-shadow: inset 0 1px rgba(255,255,255,0.35), 0 0 0 1px rgba(140,126,126,0.5);
+          box-shadow: inset 0 1px rgba(255,255,255,0.35), 0 0 0 1px rgba(140,126,126,0.5);
+        }
+      }
+
+      input[type='file'] {
+        height: 24px;
+        margin: 0;
+        position: absolute;
+        bottom: 10px;
+        z-index: 2;
+        opacity: 0;
+        cursor: pointer;
+      }
+      input[type='file']:hover ~ .avatar-button {
+        opacity: 1;
+        label {
+          -webkit-box-shadow: inset 0 1px rgba(255,255,255,0.35), 0 0 0 1px rgba(140,126,126,0.5), 0 1px 2px rgba(35,24,24,0.75);
+          box-shadow: inset 0 1px rgba(255,255,255,0.35), 0 0 0 1px rgba(140,126,126,0.5), 0 1px 2px rgba(35,24,24,0.75);
+        }
+      }
+    }
+    .user-infos {
+      position: absolute;
+      left: 220px;
+      input[type='text'],input[type='password'] {
+        width: 250px;
+        border-radius: 5px;
+      }
+    }
+  }
+
+  #error_explanation {
+    margin-left: 220px;
+    text-align: left;
+  }
+}
+
+
+.login-form {
+  input[type='text'],input[type='password'] {
+    width: 300px;
+    display: block;
+    margin: 0 auto 15px;
+  }
+}
+
+.authen-btns {
+  a:hover {
+    color: rgb(197, 24, 24);
+    text-decoration: underline;
+  }
+}
+
+
+
+
+
+
+
 
 
 .BoardLayout {
@@ -36,8 +179,8 @@
     }
 
     /* .content { */
-      /* margin-right: 0px; */
-      /* margin-left: 300px; */
+    /* margin-right: 0px; */
+    /* margin-left: 300px; */
     /* } */
- }
+  }
 }
