@@ -265,7 +265,7 @@ body#building {height: 100%;}
   border: none;
 }
 .BoardLayout { visibility: hidden; /*opacity: 0;*/}
-#CategoriesDropdown {
-  margin-top: 30px;
-  margin-left: -100px;
-}
+/* #CategoriesDropdown { */
+  /* margin-top: 30px; */
+  /* margin-left: -100px; */
+/* } */

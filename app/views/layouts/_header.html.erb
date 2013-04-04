@@ -10,6 +10,56 @@
             <span class="accessibilityText">Categories</span>
           </button>
         </div>
+        <div id="CategoriesDropdown" class="Module Dropdown">
+          <div class="categoriesDropdownWrapper">
+            <span class="caret categoriesMenuCaret fixedCaret large" style="left: 13px; top: 37px; position: fixed;"></span>
+            <div class="dropdownContainer categoriesMenu fixedDropdownContainer" style="left: 7.5px; position: fixed; top: 50px;">
+              <div class="ajax Module CategoriesMenu" style="display: block;">
+                <div class="moduleMask"></div>
+                <div class="categoriesWrapper">
+                  <% noCategoryOfColumn = Category.all.count/3 %>
+                  <ul class="firstColumn">
+                    <% Category.all[0..noCategoryOfColumn].each do |c| %>
+                      <li>
+                        <a class="item" href="<%= category_path(c.id) %>" data-force-refresh="1"><%= c.name %></a>
+                      </li>
+                    <% end %>
+                  </ul>
+                  <ul class="secondColumn">
+                    <% Category.all[noCategoryOfColumn+1..noCategoryOfColumn*2].each do |c| %>
+                      <li>
+                        <a class="item" href="<%= category_path(c.id) %>" data-force-refresh="1"><%= c.name %></a>
+                      </li>
+                    <% end %>
+                  </ul>
+                  <ul class="thirdColumn">
+                    <% Category.all[noCategoryOfColumn*2+1..noCategoryOfColumn*3].each do |c| %>
+                      <li>
+                        <a class="item" href="<%= category_path(c.id) %>" data-force-refresh="1"><%= c.name %></a>
+                      </li>
+                    <% end %>
+                  </ul>
+                </div>
+                <div class="AboutLinks ajax Module">
+                  <ul class="ajax List Module">
+                    <li data-index="0">
+                      <a class="" href="http://about.pinterest.com/">About</a>
+                    </li>
+                    <li data-index="1">
+                      <a class="" href="http://business.pinterest.com/">Businesses</a>
+                    </li>
+                    <li data-index="2">
+                      <a class="skinny" href="http://about.pinterest.com/terms/">Privacy &amp; Terms</a>
+                    </li>
+                    <li data-index="3">
+                      <a class="skinny" href="http://about.pinterest.com/copyright/">Copyright &amp; Trademark</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="ui-SearchForm Module"><form action="/search/" method="GET" name="search">
             <div class="search Module ui-TypeaheadField">
               <input type="text" name="q" value="" placeholder="Search" autocomplete="off" class="field">
@@ -38,25 +88,25 @@
               <div class="moduleMask"></div>
               <ul class="ajax List Module">
                 <li data-index="0">
-                <a class="myPins" href="/tadx/pins/">Your Pins</a>
+                  <a class="myPins" href="/tadx/pins/">Your Pins</a>
                 </li>
                 <li data-index="1">
-                <a class="myBoards" href="/tadx/boards/">Your Boards</a>
+                  <a class="myBoards" href="/tadx/boards/">Your Boards</a>
                 </li>
                 <li data-index="2">
-                <a class="addPin" href="/">Add Pin</a>
+                  <a class="addPin" href="/">Add Pin</a>
                 </li>
                 <li data-index="3">
-                <a class="" href="<%= edit_user_path(current_user.id) %>">Settings</a>
+                  <a class="" href="<%= edit_user_path(current_user.id) %>">Settings</a>
                 </li>
                 <li data-index="4">
-                <a class="" href="http://help.pinterest.com/" data-ga="site_help">Help Center</a>
+                  <a class="" href="http://help.pinterest.com/" data-ga="site_help">Help Center</a>
                 </li>
                 <li data-index="5">
-                <a class="findFriends" href="/find_friends/">Find Friends</a>
+                  <a class="findFriends" href="/find_friends/">Find Friends</a>
                 </li>
                 <li data-index="6">
-                <a class="" href="<%= signout_path %>" data-ga="site_logout">Log Out</a>
+                  <a class="" href="<%= signout_path %>" data-ga="site_logout">Log Out</a>
                 </li>
               </ul>
             </div>
@@ -67,3 +117,5 @@
     </div>
   </div>
 </header>
+
+
