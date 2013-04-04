@@ -34,7 +34,11 @@ Snap::Application.routes.draw do
   resources :password_resets
   resources :reports
   resources :categories
-  resources :photos
+  resources :photos do
+    collection do
+      post :repin
+    end
+  end
   resources :sessions, only: [ :new, :create, :destroy]
   resources :user_box_follows, only: [ :create, :destroy]
   resources :user_follow_relationships, only: [ :create, :destroy]

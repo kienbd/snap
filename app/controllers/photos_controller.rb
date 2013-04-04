@@ -94,7 +94,11 @@ class PhotosController < ApplicationController
 
 
   def repin
-    if Photo.create(params[:photo])
+    binding.pry
+    origin = Photo.find(params[:origin_id])
+    box = Box.find(params[:box_id])
+    repin = box.photos.new(name: params[:name],description: params[:description],origin_owner_id: origin.owner_user.id,image: origin.image)
+    if repin.save
       respond_to do |format|
         format.html
         format.js

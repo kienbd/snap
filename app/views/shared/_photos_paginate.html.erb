@@ -3,10 +3,10 @@
 
 
     <div class = "box col2">
-      <div class="photo-detail">
+      <div class="photo-detail" id="photo_<%=photo.id%>">
 
         <div class="image-holder" style="height: <%=img_thumb(photo)[:height]%>px;width: 100%; background-image: url(<%= photo.image.thumb.url%>)">
-          <div class="functBtns-holder" id="photo_<%=photo.id%>">
+          <div class="functBtns-holder">
             <div class="photo-like-btn">
               <% if !current_user.liked_photo?(photo) %>
                 <%= render partial: "likes/like",locals: {photo: photo} %>
@@ -15,7 +15,7 @@
               <% end %>
             </div>
             <div class="photo-pon-btn">
-              <button class="functBtn">PIN</button>
+              <%= render :partial => 'photos/photo_repin_form',locals: {photo: photo} %>
             </div>
           </div>
         </div>
