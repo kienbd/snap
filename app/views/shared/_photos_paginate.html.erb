@@ -1,26 +1,46 @@
 <div id="container" class="container transitions-enabled infinite-scroll clearfix">
   <% @photos.each do |photo| %>
+
+
     <div class = "box col2">
-      <div class="image-holder" style="height: <%=img_thumb(photo)[:height]%>px;width: 100%;">
-          <%= image_tag photo.image.thumb.url %>
-      </div>
-      <div>
-        <div style="position: relative; margin-left: 3px;">
-          <div style="color: gray">
-            <%= link_to photo.box.title, box_path( photo.box) %>
-            <% if !current_user?(photo.box.owner)%>
-              of
-              <%= link_to photo.box.owner.name, user_path(photo.box.owner) %>
-            <% else %>
-              of
-              <%= link_to "You", user_path(current_user) %>
-            <% end %>
+      <div class="photo-detail">
+
+        <div class="image-holder" style="height: <%=img_thumb(photo)[:height]%>px;width: 100%; background-image: url(<%= photo.image.thumb.url%>)">
+          <div class="functBtns-holder">
+            <button class="functBtn">LIKE</button>
+            <button class="functBtn">PIN</button>
           </div>
-
         </div>
-      </div>
 
+        <div class="photo-infos">
+          <p><%= photo.description %></p>
+          <div class="acts-on-user">
+            <a href="#" class="photo-act">100 Likes</a>
+            <a href="#" class="photo-act"> 100 Repins</a>
+          </div>
+        </div>
+
+        <div class="user-attributes">
+            <a href="#" class="attr-holder">
+              <%= image_tag photo.owner_user.avatar.thumb if !photo.owner_user.avatar.nil?%>
+              <% if photo.is_origin? %>
+                  <span class="attr-title"> Pinned by </span>
+              <%else%>
+                  <span class="attr-title"> Repinned by </span>
+              <%end%>
+              <span class="attr-name"><%= photo.owner_user.name%> </span>
+            </a>
+            <a href="#" class="attr-holder">
+              <%= image_tag photo.image.url %>
+              <span class="attr-title"> onto </span>
+              <span class="attr-name"> <%=photo.box.title%></span>
+            </a>
+        </div>
+
+      </div>
     </div>
+
+
   <%end%>
   <div style="display: none"><%= will_paginate @photos %></div>
 </div>
@@ -67,5 +87,11 @@ $newElems.imagesLoaded(function(){
   });
 }
 );
+
+$(".image-holder" ).click(function(e) {
+  if($(e.toElement).hasClass("image-holder")) {
+
+  }
+})
 </script>
 

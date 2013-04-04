@@ -7,7 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <%= render 'layouts/header' %>
+  <% if signed_in? %>
+    <%= render 'layouts/header' %>
+  <% end %>
   <div class="container" id="appContent">
     <div class="mainContent">
       <%= yield %>

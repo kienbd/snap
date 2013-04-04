@@ -373,3 +373,85 @@ ul.pinbar li {
   height: 30px;
 
 }
+
+.box > .photo-detail {
+  .image-holder {
+    border-radius: 2px 2px 0 0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    &:hover {
+      .functBtns-holder {
+        display: block;
+      }
+    }
+    .functBtns-holder {
+      display: none;
+    }
+  }
+  .photo-infos {
+    padding: 6px 14px 7px;
+    p {
+      margin: 5px 0;
+    }
+    .photo-act {
+      display: inline-block;
+      vertical-align: middle;
+      zoom: 1;
+      color: #a7a7a7;
+      padding-right: 7px;
+      font-weight: normal;
+      &:hover {
+        background: #f1f1f1;
+      }
+    }
+  }
+  .user-attributes {
+    border-top:  1px solid #e7e7e7;
+    a:hover {
+      background: #f1f1f1;
+    }
+    .attr-holder {
+      -webkit-border-radius: 0 0 3px 3px;
+      -moz-border-radius: 0 0 3px 3px;
+      -ms-border-radius: 0 0 3px 3px;
+      -o-border-radius: 0 0 3px 3px;
+      border-radius: 0 0 3px 3px;
+      overflow: hidden;
+      display: block;
+      line-height: 14px;
+      padding: 5px 14px;
+      &:first-child {
+        padding-top: 10px;
+      }
+      &:last-child {
+        padding-bottom: 10px;
+      }
+      img {
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        -ms-border-radius: 2px;
+        -o-border-radius: 2px;
+        border-radius: 2px;
+        float: left;
+        height: 30px;
+        margin-right: 5px;
+        width: 30px;
+        vertical-align: middle;
+        border: 1px solid rgba(183, 183, 183, 0.23);
+        max-width: 100%;
+      }
+      .attr-title {
+        color: #b7b7b7;
+      }
+      .attr-name {
+        white-space: nowrap;
+        overflow: hidden;
+        -ms-text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        color: #717171;
+        display: block;
+      }
+    }
+  }
+}
+

@@ -8,6 +8,8 @@ class Photo < ActiveRecord::Base
   #imgsize
   has_one :img_size
 
+  has_one :owner_user,through: :box,source: :owner
+
   # like
   has_many :likes, dependent: :destroy
   has_many :like_users, through: :likes, source: :user
