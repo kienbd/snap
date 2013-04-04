@@ -1,4 +1,5 @@
-class LikeController < ApplicationController
+class LikesController < ApplicationController
+
 	def create
 		photo_id = params[:like][:photo_id]
 

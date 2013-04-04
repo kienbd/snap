@@ -6,9 +6,17 @@
       <div class="photo-detail">
 
         <div class="image-holder" style="height: <%=img_thumb(photo)[:height]%>px;width: 100%; background-image: url(<%= photo.image.thumb.url%>)">
-          <div class="functBtns-holder">
-            <button class="functBtn">LIKE</button>
-            <button class="functBtn">PIN</button>
+          <div class="functBtns-holder" id="photo_<%=photo.id%>">
+            <div class="photo-like-btn">
+              <% if !current_user.liked_photo?(photo) %>
+                <%= render partial: "likes/like",locals: {photo: photo} %>
+              <% else %>
+                <%= render partial: "likes/unlike",locals: {photo: photo} %>
+              <% end %>
+            </div>
+            <div class="photo-pon-btn">
+              <button class="functBtn">PIN</button>
+            </div>
           </div>
         </div>
 

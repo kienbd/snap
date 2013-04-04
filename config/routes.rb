@@ -38,7 +38,7 @@ Snap::Application.routes.draw do
   resources :sessions, only: [ :new, :create, :destroy]
   resources :user_box_follows, only: [ :create, :destroy]
   resources :user_follow_relationships, only: [ :create, :destroy]
-  resources :user_photo_actions, only: [ :create, :destroy]
+  resources :likes, only: [ :create, :destroy]
   resources :authentications
   resources :find_friends, only: [ :find_facebook]
   resources :invitations, only: [ :index, :facebook, :twitter, :mail]

@@ -1,2 +1,1 @@
-$("#unlike_photo_<%= @photo.id %>").html("<%= escape_javascript(render('photos/like_photo', photo: @photo )) %>")
-$("#like_button").html("<%= escape_javascript(render('photos/like_photo', photo: @photo )) %>")
+$("#photo_<%=@photo.id%> .photo-like-btn").html("<%=j render partial: 'likes/like', locals:{photo: @photo}%> ");
