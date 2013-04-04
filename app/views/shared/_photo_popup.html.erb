@@ -25,7 +25,7 @@
     </div>
     <div class="imageClipper">
       <div class="imageClipperWrapper">
-        picaso
+        <%=h photo.description%>
       </div>
     </div>
 
@@ -34,32 +34,22 @@
         <%= link_to image_tag(photo.owner_user.avatar.thumb.url), user_path(photo.owner_user.id), class: "userThumbContainer" %>
         <div class="comment">
           <div class="commenter">
-            <%= link_to photo.owner_user.name, user_path(photo.owner_user.id), class: "descriptionCreator" %>
-            <span class="commentTimeAgo">dasdasd</div>
+            <%=h link_to photo.owner_user.name, user_path(photo.owner_user.id), class: "descriptionCreator" %>
+            <span class="commentTimeAgo"><%= time_ago_in_words(photo.created_at) %></span>
           </div>
-          <p class="commentContent">
-            dasdsadasdasdasdasd
+          <p class="commentContent"><%=h photo.description%></p>
+          <% if !photo.is_origin? %>
+          <p class="viaPinner">
+            Pinned From <%=h link_to photo.owner_user.name, user_path(photo.owner_user.id) %>
           </p>
+          <% end %>
         </div>
       </div>
-
-      <div class="userComment imageDescription">
-        <div class="detailed">
-          <%= link_to image_tag(current_user.avatar.thumb.url), user_path(current_user.id), class: "userThumbContainer" %>
-          <div class="comment">
-            <div class="commenter">
-              <%= link_to current_user.name, user_path(current_user.id), class: "descriptionCreator" %>
-              <span class="commentTimeAgo">dasdasd</div>
-            </div>
-            <p class="commentContent">
-              dasdsadasdasdasdasd
-            </p>
-          </div>
-        </div>
-
-      </div>
     </div>
-    <div class="right_content">
-      <div class="right1"></div>
-      <div class="right2"></div>
+      <%= render partial: 'shared/photo_popup_comments', :locals => { comments: photo.comments, photo: photo } %>
     </div>
+  </div>
+  <div class="right_content">
+    <div class="right1"></div>
+    <div class="right2"></div>
+  </div>

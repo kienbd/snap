@@ -1,0 +1,25 @@
+<div class="userCommentsWrapper">
+<% comments.each do |c| %>
+  <%= render :partial => 'shared/user_comment_photo_popup', :locals => { c: c} %>
+<% end %>
+</div>
+
+<div class="newComment userComment imageDescription">
+  <div class="detailed">
+    <%= link_to image_tag(current_user.avatar.thumb.url), user_path(current_user.id), class: "userThumbContainer" %>
+    <div class="comment">
+      <div class="commenter">
+        <%= link_to current_user.name, user_path(current_user.id), class: "descriptionCreator" %>
+        <span class="commentTimeAgo"> - That's you!</span>
+      </div>
+      <%= form_for Comment.new, remote: true do |c| %>
+        <%= c.hidden_field :user_id, value: current_user.id %>
+        <%= c.hidden_field :photo_id, value: photo.id %>
+        <div class="ui-TextField">
+          <%= c.text_area :content, placeholder: "Add a comment ...", rows: "3", class: "content" %>
+        </div>
+        <%= c.submit "Comment", class: "btn btn-success btn-large" %>
+      <% end %>
+    </div>
+  </div>
+</div>

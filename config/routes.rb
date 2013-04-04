@@ -38,6 +38,7 @@ Snap::Application.routes.draw do
   resources :reports
   resources :categories
   resources :likes
+  resources :comments
   resources :photos do
     collection do
       post :repin

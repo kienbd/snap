@@ -1,0 +1,4 @@
+$el1 = $('#back_fader .popup_content .left_content .image .newComment');
+$el2 = $('#back_fader .popup_content .left_content .image .userCommentsWrapper');
+$el2.append("<%=j render :partial => 'shared/user_comment_photo_popup', :locals => { c: @comment} %>").fadeIn('slow');
+$el1.find('.ui-TextField textarea').val("");
