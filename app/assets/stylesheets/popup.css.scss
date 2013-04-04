@@ -19,11 +19,23 @@
   border-radius: 3px;
   height: 50px;
   &:hover {
-    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #d62229), color-stop(100%, #ab171e));
-    background: -webkit-linear-gradient(#d62229,#ab171e);
-    background: -moz-linear-gradient(#d62229,#ab171e);
-    background: -o-linear-gradient(#d62229,#ab171e);
-    background: linear-gradient(#d62229,#ab171e);
+    /* background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #d62229), color-stop(100%, #ab171e)); */
+    /* background: -webkit-linear-gradient(#d62229,#ab171e); */
+    /* background: -moz-linear-gradient(#d62229,#ab171e); */
+    /* background: -o-linear-gradient(#d62229,#ab171e); */
+    /* background: linear-gradient(#d62229,#ab171e); */
+    background: #5bb65b;
+    background-image: -moz-linear-gradient(top, #62c462, #51a351);
+    background-image: -ms-linear-gradient(top, #62c462, #51a351);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#62c462), to(#51a351));
+    background-image: -webkit-linear-gradient(top, #62c462, #51a351);
+    background-image: -o-linear-gradient(top, #62c462, #51a351);
+    background-image: linear-gradient(top, #62c462, #51a351);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF62C462', endColorstr='#FF51A351', GradientType=0);
+    border-color: #51a351 #51a351 #387038;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) fadein(rgba(0, 0, 0, 0.1), 15%);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
     em {
       background: url('/assets/p0.png') 0 -954px no-repeat;
     }
@@ -286,6 +298,53 @@
             margin-top: 0;
             max-width: 600px;
           }
+          .viaPinner {
+            -webkit-font-smoothing: antialiased;
+            color: #999;
+            font-size: 13px;
+            font-weight: bold;
+            margin: 5px 0 0 0;
+          }
+        }
+      }
+    }
+    .userComment {
+      .ui-TextField {
+        -webkit-font-smoothing: antialiased;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        -ms-border-radius: 3px;
+        -o-border-radius: 3px;
+        border-radius: 3px;
+        color: #999;
+        font-size: 16px;
+        font-weight: normal;
+        margin-bottom: 3px;
+        width: 642px;
+        cursor: text;
+        position: relative;
+        .content {
+          -webkit-border-radius: 1px;
+          -moz-border-radius: 1px;
+          -ms-border-radius: 1px;
+          -o-border-radius: 1px;
+          border-radius: 1px;
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+          -webkit-box-shadow: 0 0 1px rgba(0,0,0,0.44) inset;
+          -moz-box-shadow: 0 0 1px rgba(0,0,0,0.44) inset;
+          box-shadow: 0 0 1px rgba(0,0,0,0.44) inset;
+          background: #f0f0f0;
+          border: 1px solid #d1d1d1;
+          color: #717171;
+          display: block;
+          min-height: 1em;
+          outline: none;
+          padding: 8px;
+          width: 100%;
+          word-wrap: break-word;
+          resize: vertical;
         }
       }
     }
