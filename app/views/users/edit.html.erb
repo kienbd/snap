@@ -1,35 +1,52 @@
 <% provide(:title, "Edit user") %>
 
+<h1 class="big-title"> Account Settings </h2>
+
+
+<div class="intermission">
+  <h2>Basic settings</h2>
+</div>
+
 <div class="row center signup-form-holder">
   <%= form_for @user do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
 
-    <div class="avatar-holder">
-      <%= f.file_field :avatar,onchange: "readURL(this)" %>
-      <div class="avatar-frame">
-        <img src="/assets/default_avatar.png"/>
-      </div>
-      <div class="avatar-button">
-        <label> Upload Avatar </label>
+    <div class="basic-settings">
+      <div class="avatar-holder">
+        <%= f.file_field :avatar,onchange: "readURL(this)" %>
+        <div class="avatar-frame">
+          <% if @user.avatar.nil?%>
+            <img src="/assets/default_avatar.png"/>
+          <% else %>
+            <%= image_tag @user.avatar.medium_avatar.url %>
+          <% end %>
+        </div>
+        <div class="avatar-button">
+          <label> Upload Avatar </label>
+        </div>
+
       </div>
 
+
+      <div class="user-infos">
+        <%= f.text_field :name ,placeholder: "Username"%>
+
+        <%= f.text_field :email,placeholder: "Email" %>
+
+        <%= f.password_field :password,placeholder: "Password" %>
+
+        <%= f.password_field :password_confirmation,placeholder:"Password Confirmation" %>
+
+      </div>
+    </div>
+    <div class="intermission">
+      <h2>Socials Settings</h2>
     </div>
 
-    <div class="user-infos">
-      <%= f.text_field :name ,placeholder: "Username"%>
-
-      <%= f.text_field :email,placeholder: "Email" %>
-
-      <%= f.password_field :password,placeholder: "Password" %>
-
-      <%= f.password_field :password_confirmation,placeholder:"Password Confirmation" %>
-
-      <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
-    </div>
-
-    <div class="social-btns">
+    <div class="social-btns-holder">
+      <div class="social-btn">
         <%= f.label :Facebook %>
-        <div class="btn-group" data-toggle="buttons-radio">
+        <div data-toggle="buttons-radio">
           <%if facebook?(current_user)%>
             <a class="btn active">ON</a>
             <a href= "/auth/facebook/destroy" class="btn">OFF</a>
@@ -38,9 +55,11 @@
             <a class="btn active">OFF</a>
           <%end%>
         </div>
+      </div>
 
+      <div class="social-btn">
         <%= f.label :Twitter %>
-        <div class="btn-group" data-toggle="buttons-radio">
+        <div data-toggle="buttons-radio">
           <%if twitter?(current_user)%>
             <a class="btn active">ON</a>
             <a href= "/auth/twitter/destroy" class="btn">OFF</a>
@@ -49,10 +68,10 @@
             <a class="btn active">OFF</a>
           <%end%>
         </div>
-        <hr>
-
+      </div>
+      <div class="social-btn">
         <%= f.label :Subcribe %>
-        <div class="btn-group" data-toggle="buttons-radio">
+        <div data-toggle="buttons-radio">
           <%if current_user.active?%>
             <a class="btn active">ON</a>
             <a href= "/toggle" class="btn">OFF</a>
@@ -61,10 +80,8 @@
             <a class="btn active">OFF</a>
           <%end%>
         </div>
-
-        <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
-      <% end %>
-    </div>
-
+      </div>
+      <%= f.submit "Save changes", class: "btn btn-large btn-primary",style: "margin-top: 20px" %>
   </div>
+  <% end %>
 </div>

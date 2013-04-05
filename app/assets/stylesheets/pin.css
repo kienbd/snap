@@ -24,7 +24,7 @@ ul,ol,h3,h4,h5,h6,pre,code,form,fieldset,legend,p,blockquote,th,td{margin: 0;pad
   #ContextBar a {font-weight: 300; text-decoration: underline;}
 
 /* Profile tabs */
-#profile #ContextBar {width: 1500px; margin: 0px auto; padding: 0; background: #faf7f7; overflow: hidden; border-bottom: none; line-height: 48px; box-shadow: inset 0 1px #fff, 0 1px 3px rgba(34,25,25,0.4); -moz-box-shadow: inset 0 1px #fff, 0 1px 3px rgba(34,25,25,0.4); -webkit-box-shadow: inset 0 1px #fff, 0 1px 3px rgba(34,25,25,0.4); z-index:100; }
+#profile #ContextBar {margin: 0px auto; padding: 0; background: #faf7f7; overflow: hidden; border-bottom: none; line-height: 48px; box-shadow: inset 0 1px #fff, 0 1px 3px rgba(34,25,25,0.4); -moz-box-shadow: inset 0 1px #fff, 0 1px 3px rgba(34,25,25,0.4); -webkit-box-shadow: inset 0 1px #fff, 0 1px 3px rgba(34,25,25,0.4); z-index:100; }
 #profile #ContextBar.fixed { left: 0; right: 0; top: -1px; }
 #profile #ContextBar .FixedContainer { overflow: hidden; margin: 0px auto -1px; }
 #profile #ContextBar a { text-decoration: none; }

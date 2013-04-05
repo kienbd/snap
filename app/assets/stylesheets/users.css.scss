@@ -18,7 +18,7 @@
 .sortable {display: block;zoom: 1;}
 .sortable li {display: inline-block;width: 236px;margin: 14px 7px 0 7px;float: left}
 .sortable .pinBoard { position: relative; }
-.boxes-holder {width: 1500px;margin: 0 auto}
+.boxes-holder {margin: 0 auto}
 
 
 
@@ -90,6 +90,7 @@
         z-index: 2;
         opacity: 0;
         cursor: pointer;
+        left: 0px;
       }
       input[type='file']:hover ~ .avatar-button {
         opacity: 1;
@@ -113,4 +114,39 @@
     margin-left: 220px;
     text-align: left;
   }
+}
+
+
+.edit_user {
+  .basic-settings {
+    display: block;
+    height: 230px;
+  }
+  .social-btns-holder {
+    width: 100%;
+    position: absolute;
+    top: 310px;
+    .social-btn {
+      width: 100%;
+      margin: 10px 0;
+    }
+  }
+}
+
+
+.big-title {
+  color: rgba(21,21,21,0.8);
+  text-shadow: 1px 2px 4px #e3e3e3,0 0 0 #000,1px 2px 4px #e3e3e3,0 1px 0 #fff;
+  font-size: 47px;
+  font-weight: bold;
+  line-height: 52px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 736px;
+  text-align: center;
+  line-height: 54px;
+  margin-top: 25px;
+  margin-bottom: 52px;
+  white-space: nowrap;
+  overflow: hidden;
 }
