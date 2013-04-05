@@ -1,10 +1,6 @@
 <%if !signed_in? %>
-  <h1>Welcome to Snap</h1>
-
-
-
+  <%= render partial: "layouts/welcome" %>
 <%else%>
-
 <div id="wrapper" class="BoardLayout" >
   <div id="ColumnContainer" >
 
