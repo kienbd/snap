@@ -376,11 +376,21 @@ ul.pinbar li {
 
 .box > .photo-detail {
   .image-holder {
-    background-color: white;
-    background-repeat: no-repeat;
-    background-position: 50%;
-    border-radius: 2px 2px 0 0;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+      position: relative;
+      background-color: white;
+      border-radius: 2px 2px 0 0;
+      border-bottom: 1px solid rgba(0,0,0,0.26);
+    .image-preview {
+      background-repeat: no-repeat;
+      background-position: center;
+      border-radius: 2px 2px 0 0;
+      &:hover {
+        cursor: -webkit-zoom-in;
+        cursor: -moz-zoom-in;
+        cursor: zoom-in;
+      }
+    }
+
     &:hover {
       opacity: 0.9;
       .functBtns-holder {
@@ -389,6 +399,15 @@ ul.pinbar li {
     }
     .functBtns-holder {
       display: none;
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      .photo-like-btn {
+        display: inline-block;
+      }
+      .photo-pon-btn {
+        display: inline-block;
+      }
     }
   }
   .photo-infos {

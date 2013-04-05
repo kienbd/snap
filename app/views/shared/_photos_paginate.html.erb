@@ -5,7 +5,10 @@
     <div class = "box col2">
       <div class="photo-detail" id="photo_<%=photo.id%>">
 
-        <div class="image-holder" style="height: <%=img_thumb(photo)[:height]%>px;width: 100%; background-image: url(<%= photo.image.thumb.url%>)" onclick="$.get('<%= photo_path(photo.id)%>',null)">
+        <div class="image-holder">
+          <a href="<%=photo_path(photo.id)%>" data-remote ="true">
+            <div class="image-preview" style="height: <%=img_thumb(photo)[:height]%>px;width: 100%; background-image: url(<%= photo.image.thumb.url%>)"></div>
+          </a>
           <div class="functBtns-holder">
             <div class="photo-like-btn">
               <% if !current_user.liked_photo?(photo) %>
@@ -98,7 +101,6 @@ $newElems.imagesLoaded(function(){
 
 $(".image-holder" ).click(function(e) {
   if($(e.toElement).hasClass("image-holder")) {
-
   }
 })
 </script>
