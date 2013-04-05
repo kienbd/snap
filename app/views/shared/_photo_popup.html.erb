@@ -1,13 +1,16 @@
 <div class="left_content">
   <div class="actions">
     <div class="repinLike">
-      <div class="btn-group pin">
-        <button type="button" class="btn btn-success btn-large">Pin It</button>
-        <button type="button" class="btn btn-success btn-large">100</button>
+      <div class="groupButton pin">
+        <%= button_to "Pin It", '#', remote: true, class: "btn btn-large btn-success firstChild" %>
+        <%= button_to "100", '#', remote: true, class: "btn btn-large btn-success lastChild" %>
       </div>
-      <div class="btn-group like">
-        <button type="button" class="btn btn-large">Like</button>
-        <button type="button" class="btn btn-large"><%= photo.likes.count %></button>
+      <div class="groupButton like">
+        <% if !current_user.liked_photo?(photo) %>
+          <%= render partial: 'likes/likeButtonGroup', :locals => { photo: photo } %>
+        <% else %>
+          <%= render partial: 'likes/unlikeButtonGroup', :locals => { photo: photo } %>
+        <% end %>
       </div>
     </div>
     <div class="shareGear">

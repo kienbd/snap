@@ -26,14 +26,14 @@
                     <% end %>
                   </ul>
                   <ul class="secondColumn">
-                    <% Category.all[noCategoryOfColumn+1..noCategoryOfColumn*2].each do |c| %>
+                    <% Category.all[noCategoryOfColumn+1..noCategoryOfColumn*2+1].each do |c| %>
                       <li>
                         <a class="item" href="<%= category_path(c.id) %>" data-force-refresh="1"><%= c.name %></a>
                       </li>
                     <% end %>
                   </ul>
                   <ul class="thirdColumn">
-                    <% Category.all[noCategoryOfColumn*2+1..noCategoryOfColumn*3].each do |c| %>
+                    <% Category.all[noCategoryOfColumn*2+2..noCategoryOfColumn*3+2].each do |c| %>
                       <li>
                         <a class="item" href="<%= category_path(c.id) %>" data-force-refresh="1"><%= c.name %></a>
                       </li>

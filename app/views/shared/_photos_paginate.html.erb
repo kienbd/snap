@@ -10,6 +10,9 @@
             <div class="image-preview" style="height: <%=img_thumb(photo)[:height]%>px;width: 100%; background-image: url(<%= photo.image.thumb.url%>)"></div>
           </a>
           <div class="functBtns-holder">
+            <div class="photo-pon-btn">
+              <%= render :partial => 'photos/photo_repin_form',locals: {photo: photo} %>
+            </div>
             <div class="photo-like-btn">
               <% if !current_user.liked_photo?(photo) %>
                 <%= render partial: "likes/like",locals: {photo: photo} %>
@@ -17,16 +20,13 @@
                 <%= render partial: "likes/unlike",locals: {photo: photo} %>
               <% end %>
             </div>
-            <div class="photo-pon-btn">
-              <%= render :partial => 'photos/photo_repin_form',locals: {photo: photo} %>
-            </div>
           </div>
         </div>
 
         <div class="photo-infos">
           <p><%= photo.description %></p>
           <div class="acts-on-user">
-            <a href="#" class="photo-act">100 Likes</a>
+            <a href="#" class="photo-act"><%=h photo.likes.count%> Likes</a>
             <a href="#" class="photo-act"> 100 Repins</a>
           </div>
         </div>

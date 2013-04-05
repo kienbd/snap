@@ -1,0 +1,5 @@
+<%= form_for(current_user.likes.build(photo_id: photo.id), remote: true) do |f| %>
+  <%= f.hidden_field :photo_id %>
+  <%= f.submit "Like", class: "btn btn-large firstChild" %>
+<% end %>
+<%= button_to photo.likes.count, '#', remote: true, class: "btn btn-large lastChild" %>

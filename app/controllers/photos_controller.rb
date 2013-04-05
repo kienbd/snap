@@ -88,6 +88,7 @@ class PhotosController < ApplicationController
     @photo = Photo.find(params[:id])
     if @photo
       respond_to do |format|
+        format.html
         format.js
       end
     else

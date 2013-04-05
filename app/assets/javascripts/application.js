@@ -23,4 +23,5 @@ var popupHide = function() {
   $('#back_fader').hide();
   $('#back_fader .popup_content').hide();
   $('body').css('overflow', 'auto');
+  window.history.go(-1);
 }
