@@ -95,8 +95,13 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
-      sign_in @user
-      redirect_to @user
+      respond_to do |format|
+        format.html {
+          sign_in @user
+          redirect_to @user
+        }
+        format.js
+      end
     else
       render 'edit'
     end
