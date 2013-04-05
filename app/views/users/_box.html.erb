@@ -1,24 +1,3 @@
-<div class="modal hidden" id="edit<%= box.id %>">
-  <div class="modal-header">
-    <h1>Update your box information</h1>
-  </div>
-
-  <div class="row center modal-body">
-
-    <%= form_for(box) do |f| %>
-    <%= render 'shared/error_messages', object: f.object %>
-
-    <%= f.label :title %>
-    <%= f.text_field :title, placeholder: "Board Name" %>
-    <%= f.label :category_id %>
-    <%= f.select :category_id, Category.all.collect { |n| [n.name, n.id] } %>
-    <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
-    <a href="/boxes/<%= box.id%>" class="btn btn-large btn-primary" data-confirm="You sure?" data-method="delete">Delete</a>
-    <div id="message"></div>
-    <% end %>
-  </div>
-</div>
-
 <li>
   <div class="pin pinBoard">
     <h3 class="serif"><a href="/boxes/<%="#{box.id}"%>"><%="#{box.title}"%></a></h3>
@@ -31,7 +10,7 @@
         <span class="cover">
           <span class="cover-preview">
             <%if !box.photos.last.nil? && !box.photos.last.image.nil? %>
-              <%= image_tag box.photos.last.image.url %>
+              <%= image_tag box.photos.last.image.thumb.url %>
             <%else%>
               <span class="cover empty"></span>
             <%end%>
@@ -42,7 +21,7 @@
           <% box.photos.order("created_at ASC").limit(4).each do |photo| %>
             <%if !photo.nil? && !photo.image.nil?%>
               <% @count = @count -1 %>
-              <%= image_tag photo.image.url %>
+              <%= image_tag photo.image.thumb.url %>
             <%end%>
           <%end%>
           <% @count.times do %>

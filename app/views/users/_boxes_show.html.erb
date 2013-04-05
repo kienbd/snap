@@ -1,5 +1,6 @@
-<div id="ColumnContainer" style="margin-left: 30px">
-  <ul class="sortable">
+<div id="ColumnContainer">
+  <div class="boxes-holder">
+    <ul class="sortable">
 
       <%= render partial: "box" , collection: @boxes %>
 
@@ -13,15 +14,16 @@
                 <%# <input type="text" name="boardName" id="boardName" placeholder="Box Name"> %>
                 <%# <span class="fff"></span> %>
               </div>
-            <%= f.submit "Create Box" , class: "Button RedButton Button13 createBoardSubmit", style: "width: 89px;margin-left: -43px"%>
-            <%= image_tag("BoardCellRep.png") %>
-          <%end%>
+              <%= f.submit "Create Box" , class: "Button RedButton Button13 createBoardSubmit", style: "width: 89px;margin-left: -43px"%>
+              <%= image_tag("BoardCellRep.png") %>
+            <%end%>
           </div>
         </li>
 
-    <%end%>
+      <%end%>
 
     </ul>
+  </div>
 
 </div>
 

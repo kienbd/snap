@@ -1,30 +1,33 @@
 <% provide(:title, "Edit user") %>
-<section style="margin-left: 30px;">
-  <div class ="pull-left">
-    <h1>Edit Profile</h1>
-  </div>
-</section>
-<section style="margin-left: 30px;">
-  <hr>
-  <%= form_for(@user)  do |f| %>
+
+<div class="row center signup-form-holder">
+  <%= form_for @user do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
-    <section>
-      <div class="span6 pull-left">
-        <%= f.label :email %>
-        <%= f.text_field :email %>
 
-        <%= f.label :name %>
-        <%= f.text_field :name %>
-
-        <%= f.label :gender %>
-        <%= f.select :gender,["Male","Female","Gay","Lesbian"] %>
-
-        <%= f.file_field :avatar %>
+    <div class="avatar-holder">
+      <%= f.file_field :avatar,onchange: "readURL(this)" %>
+      <div class="avatar-frame">
+        <img src="/assets/default_avatar.png"/>
       </div>
-    </section>
+      <div class="avatar-button">
+        <label> Upload Avatar </label>
+      </div>
 
-      <div class="span12 pull-left">
-        <hr>
+    </div>
+
+    <div class="user-infos">
+      <%= f.text_field :name ,placeholder: "Username"%>
+
+      <%= f.text_field :email,placeholder: "Email" %>
+
+      <%= f.password_field :password,placeholder: "Password" %>
+
+      <%= f.password_field :password_confirmation,placeholder:"Password Confirmation" %>
+
+      <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+    </div>
+
+    <div class="social-btns">
         <%= f.label :Facebook %>
         <div class="btn-group" data-toggle="buttons-radio">
           <%if facebook?(current_user)%>
@@ -35,7 +38,7 @@
             <a class="btn active">OFF</a>
           <%end%>
         </div>
-	<br><br>
+
         <%= f.label :Twitter %>
         <div class="btn-group" data-toggle="buttons-radio">
           <%if twitter?(current_user)%>
@@ -46,8 +49,8 @@
             <a class="btn active">OFF</a>
           <%end%>
         </div>
-	<br>
         <hr>
+
         <%= f.label :Subcribe %>
         <div class="btn-group" data-toggle="buttons-radio">
           <%if current_user.active?%>
@@ -58,11 +61,10 @@
             <a class="btn active">OFF</a>
           <%end%>
         </div>
-	<br><br>
-        <hr>
+
         <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
       <% end %>
     </div>
-</section>
 
-
+  </div>
+</div>
