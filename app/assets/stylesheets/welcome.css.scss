@@ -1,0 +1,49 @@
+.welcome_splash {
+  .content {
+    position: relative;
+    padding-bottom: 25px;
+    padding-top: 50px;
+  }
+  .logo {
+    background: url("/assets/login_icons.png");
+    width: 291px;
+    height: 69px;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 50px;
+  }
+  h2 {
+    letter-spacing: -0.0125em;
+    font-weight: normal;
+    font-size: 24px;
+    font-family: 'Georgia';
+    color: #3d3d3d;
+    margin: 0px;
+    margin-bottom: 50px;
+    line-height: 24px;
+    padding-bottom: 0;
+  }
+  .joinButtons {
+    margin: 0 auto;
+    overflow: hidden;
+    width: 288px;
+    .btn {
+      width: 110px;
+    }
+    .login {
+      float: left;
+    }
+    .join {
+      float: right;
+    }
+  }
+  .screenshot {
+    width: 70%;
+    overflow: hidden;
+    margin: 0 auto;
+    img {
+      border: 0;
+      position: relative;
+    }
+  }
+}
