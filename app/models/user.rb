@@ -129,6 +129,16 @@ class User < ActiveRecord::Base
     photos
   end
 
+
+  def all_photos
+    photos = []
+    self.boxes.each do |b|
+      photos.concat b.photos
+    end
+    photos = photos.sort_by{|t| - t.created_at.to_i}.uniq
+    photos
+  end
+
   private
 
   def create_persistence_token

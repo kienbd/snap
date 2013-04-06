@@ -1,5 +1,5 @@
-<p>
-<div class="row pull-left">
+
+<div class="row center search-row">
   <div class="span6" style="font-size: 20px;margin-top:5%">
     <a href =  "/search/?search=<%="#{params[:search]}" %>" style="text-decoration: underline;color: black">Box</a>
     ·
@@ -10,14 +10,12 @@
     <span class = "greyselected" style="color: #8C7E7E" >   — search results for <%= "#{params[:search]}" %>  </span>
   </div>
 </div>
-</p>
+
 <div class="content">
-  <ul class="nav nav-list " style = "width: 130%;margin-top: 5%;margin-left:30px">
+  <div class="user-in-boxes-holder">
     <% @users.each do |user| %>
-      <li class="users">
-      <%= link_to user.name, user%>
-      </li>
+      <%= render partial: "users/user_in_box" ,locals: {user: user} %>
     <%end%>
-  </ul>
+  </div>
 </div>
 
