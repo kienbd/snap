@@ -16,7 +16,10 @@ class BoxesController < ApplicationController
 
       if @box.save
         follower_follow_this_box(@box)
-        redirect_back_or user_path(current_user)
+        respond_to do |format|
+          format.html {redirect_back_or user_path(current_user)}
+          format.js
+        end
       else
         redirect_back_or user_path(current_user)
       end

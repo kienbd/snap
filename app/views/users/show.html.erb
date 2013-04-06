@@ -3,8 +3,8 @@
 <div class="user-show-header-holder">
 
   <div class="user-show-profile">
-    <%= form_for(@user, remote: true) do |f| %>
     <div class="avatar-holder">
+    <%= form_for(@user, remote: true) do |f| %>
         <%= f.file_field :avatar, onchange: "change_avatar(this)" %>
       <div class="avatar-frame">
         <% if @user.avatar.nil? %>

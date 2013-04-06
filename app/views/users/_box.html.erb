@@ -1,3 +1,4 @@
+<% if !box.title.nil? %>
 <li>
   <div class="pin pinBoard">
     <h3 class="serif"><a href="/boxes/<%="#{box.id}"%>"><%="#{box.title}"%></a></h3>
@@ -39,3 +40,4 @@
     </div>
   </div>
 </li>
+<% end %>

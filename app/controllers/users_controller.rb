@@ -14,7 +14,11 @@ class UsersController < ApplicationController
 
   def show
     store_location
-    @user = User.find(params[:id])
+    if params[:id].nil?
+      @user = User.find_by_name(params[:username])
+    else
+      @user = User.find_by_id(params[:id])
+    end
     @boxes = @user.boxes
     @count_photo = 0
     @user.boxes.each do |box|

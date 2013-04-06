@@ -16,9 +16,17 @@
 }
 
 .sortable {display: block;zoom: 1;}
-.sortable li {display: inline-block;width: 236px;margin: 14px 7px 0 7px;float: left}
+.sortable li {display: inline-block;width: 236px;height: 304px;margin: 14px 7px 0 7px;float: left}
 .sortable .pinBoard { position: relative; }
 .boxes-holder {margin: 0 auto}
+
+.createBoard {
+  text-align: center;
+  .FancyContainer {
+    width:224px;
+    margin: 0 auto;
+  }
+}
 
 
 

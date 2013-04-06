@@ -24,9 +24,9 @@ Snap::Application.routes.draw do
       get :following, :followers, :photos, :likedphotos
     end
     collection do
-
     end
   end
+
   resources :boxes do
     member do
       get :followers
@@ -76,6 +76,7 @@ Snap::Application.routes.draw do
   match '/upload/facebook', to: 'photos#facebook'
   match '/upload/url', to: 'photos#url'
   match '/upload/pc', to: 'photos#pc'
+
 
 
   # The priority is based upon order of creation:
