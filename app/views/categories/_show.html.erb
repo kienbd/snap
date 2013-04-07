@@ -2,7 +2,7 @@
   <div id="ColumnContainer" >
 
     <section class="content">
-      <%= render :partial => 'shared/photos_paginate' %>
+      <%= render :partial => 'shared/photos_paginate', :locals => { :@category => @category, :@photos => @photos} %>
     </section>
 
   </div>

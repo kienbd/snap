@@ -1,0 +1,2 @@
+$('#appContent.container .mainContent').hide().html("<%=j render partial: 'categories/show', :locals => { :@category => @category, :@photos => @photos } %>").fadeIn("slow");
+window.history.pushState('category<%=@category.id%>','categoryShow','/categories/<%=@category.id%>');

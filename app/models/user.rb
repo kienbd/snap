@@ -33,6 +33,7 @@ class User < ActiveRecord::Base
   dependent:   :destroy
 
   has_many :followers, through: :reverse_user_follow_relationships, source: :follower
+  has_many :comments, dependent: :destroy
 
   has_many :user_box_follows, foreign_key: "user_id",
   dependent: :destroy

@@ -5,20 +5,7 @@ class TopsController < ApplicationController
 
     if signed_in?
       if current_user.following_boxes.count == 0
-        @photos=[]
-        if params[:category_id].nil? || Category.count < params[:category_id].to_i
-          Category.all.each do |c|
-            c.boxes.each do |b|
-              @photos.concat b.photos
-           end
-          end
-        else
-          @category = Category.find(params[:category_id])
-          @category.boxes.each do |b|
-            @photos.concat b.photos
-         end
-        end
-        @photos = @photos.sort_by{|t| - t.created_at.to_i}
+        @photos= Photo.order("created_at desc").all
         @photos = @photos.paginate(page: params[:page], per_page: 15)
       else
 
@@ -30,7 +17,6 @@ class TopsController < ApplicationController
         # friends_auth = Authentication.where('provider = "facebook" AND uid in (?)', friends_id)
         # @friends_profile = friends_auth.map{|f| f.user if f.user.active?}
       # end
-
         @photos = current_user.following_photos.paginate(page: params[:page])
       end
     end
