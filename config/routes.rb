@@ -82,7 +82,7 @@ Snap::Application.routes.draw do
     post "/share/photo/email/create" => :share_photo_via_email, as: "share_photo_via_email"
   end
 
-
+  mount Resque::Server, :at => "/resque"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

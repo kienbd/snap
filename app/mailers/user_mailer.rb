@@ -17,13 +17,13 @@ class UserMailer < ActionMailer::Base
     mail(:to => recipient.email, :subject => "verification Instructions")
   end
 
-  def sharePhoto(from, name_to, mail_to, message, photo)
+  def sharePhoto(from_user, name_to, mail_to, message, photo)
     @name_to = name_to
     @message = message
-    @url = "http://#{Settings.hostname}#{photo_path(photo.id)}"
+    @url = "http://#{Settings.hostname}#{photo_path(photo["id"])}"
     @photo = photo
-    @from = from
-    mail(to: mail_to, subject: "Your firend, #{from} share a photo")
+    @from_user = from_user
+    mail(to: mail_to, subject: "Your firend, #{from_user["name"]} share a photo")
   end
 
 end

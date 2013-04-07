@@ -8,7 +8,6 @@ gem 'rails', '3.2.6'
 gem 'mysql2','0.3.11'
 gem "rails-erd"
 gem "rails_config"
-
 gem 'execjs'
 gem "therubyracer", "~> 0.11.4"
 gem 'bootstrap-sass', '2.0.0'
@@ -27,10 +26,14 @@ gem 'fb_graph'
 gem 'paperclip'
 gem 'mail', '2.4.4'
 gem 'rmagick'
-
 gem 'carrierwave'
-
 gem 'tweet-button'
+
+gem 'redis'
+gem 'redis-objects', :require => 'redis/objects'
+gem 'resque', :require => 'resque/server'
+gem 'resque-scheduler', :require => 'resque_scheduler'
+gem 'resque-pool', '0.2.0'
 
 
 # Gems used only for assets and not required

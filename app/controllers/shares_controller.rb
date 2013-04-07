@@ -12,8 +12,9 @@ class SharesController < ApplicationController
     name_to = params[:name_to]
     message = params[:message]
     photo = Photo.find(params[:photo_id])
-    mail = UserMailer.sharePhoto(current_user.name, name_to, mail_to, message, photo )
-    mail.deliver
+    Resque.enqueue(Jobs::SendPhotoShareMail, current_user, name_to, mail_to, message, photo)
+    # mail = UserMailer.sharePhoto(current_user.name, name_to, mail_to, message, photo )
+    # mail.deliver
 
     respond_to do |format|
       format.js

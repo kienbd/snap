@@ -22,6 +22,7 @@ class AuthenticationsController < ApplicationController
       # current_user.apply_omniauth(omniauth)
       current_user.save
       flash[:info] = 'Authentication successful.'
+      sign_in current_user
       redirect_back_or edit_user_path(current_user)
     else
       # User is new to this application
