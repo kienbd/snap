@@ -1,0 +1,84 @@
+<%= form_for Photo.new do |f| %>
+<div class="upload-form-holder">
+  <div class="phase-1">
+    <h1>Add a pon </h1>
+    <div class="add-pon-form">
+      <div class="pon-uploader">
+        <div class="image-uploader">
+          <div type="button" class="choose-btn">
+            <span> Choose File </span>
+          </div>
+          <%= f.file_field  :image,onchange: "changePhase(this)" %>
+          <div class="upload-progress">
+            <span> Please choose a file </span>
+          </div>
+        </div>
+      </div>
+      <div class="divider">
+        <span> Or Pon via URL </span>
+      </div>
+      <div class=url-uploader>
+        <input type='text' name="photo[remote_image_url]" id="remoteURl" placeholder="http://..."/>
+        <div type="button" class='Button13 Button WhiteButton InlineButton' onclick="changePhase()">
+          <span> Find </span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="phase-2">
+    <h1>Upload a pon </h1>
+    <div class="avatar-holder">
+      <div class="avatar-frame">
+          <img src="/assets/default_avatar.png"/>
+      </div>
+    </div>
+    <ul>
+      <li>
+        <h3> Board </h3>
+        <div>
+          <%= f.collection_select :box_id, current_user.boxes.all, :id, :title %>
+        </div>
+      </li>
+
+      <li>
+        <h3> Name </h3>
+        <div>
+          <%= f.text_field :name %>
+        </div>
+      </li>
+
+      <li>
+        <h3> Description </h3>
+        <div>
+          <%= f.text_area :description %>
+        </div>
+      </li>
+    </ul>
+
+    <div class="formFooter">
+        <%= f.file_field  :image,onchange: "readURL(this)" %>
+      <div class="formFooter-btns">
+        <%= f.submit "PON IT" ,class: "btn btn-success" %>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+<% end %>
+
+
+<script type="text/javascript">
+  var changePhase = function(that) {
+    if(typeof that != "undefined")
+      readURL(that);
+    else {
+      $(".avatar-frame img").attr("src",$("#remoteURl").val());
+    }
+    $(".phase-1").hide();
+    $(".phase-2").show();
+    $('#mini_back_fader .mini_popup_content').css("width","651px");
+  }
+
+</script>

@@ -8,39 +8,43 @@ class PhotosController < ApplicationController
 	end
 
 	def new
-	end
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
 
-	def pc
-		@photo=Photo.new
-		store_location
-	end
+  def pc
+    @photo=Photo.new
+    store_location
+  end
 
-	def url
-		@photo=Photo.new
-		store_location
-	end
+  def url
+    @photo=Photo.new
+    store_location
+  end
 
-	def facebook
-		@photo=Photo.new
-		token = current_user.authentications.find_by_provider('facebook').access_token
+  def facebook
+    @photo=Photo.new
+    token = current_user.authentications.find_by_provider('facebook').access_token
 
-		client = FBGraph::Client.new(:client_id => GRAPH_APP_ID, :secret_id => GRAPH_SECRET, :token => token)
-        @photos =client.selection.me.photos.limit(0).info!
-        @photos = @photos.data.data.map(&:source)
+    client = FBGraph::Client.new(:client_id => GRAPH_APP_ID, :secret_id => GRAPH_SECRET, :token => token)
+    @photos =client.selection.me.photos.limit(0).info!
+    @photos = @photos.data.data.map(&:source)
 
-        user =FbGraph::User.me(token)
-        albums=user.albums.map(&:photos);
-        albums.each do |album|
-        	uploaded_photos= album.collection
-        	uploaded_photos.each do |uploaded_photo|
-        		@photos << uploaded_photo[:source]
-        	end
-        end
-        @photos = @photos.paginate(page: params[:page],per_page: 10)
-        store_location
-	end
+    user =FbGraph::User.me(token)
+    albums=user.albums.map(&:photos);
+    albums.each do |album|
+      uploaded_photos= album.collection
+      uploaded_photos.each do |uploaded_photo|
+        @photos << uploaded_photo[:source]
+      end
+    end
+    @photos = @photos.paginate(page: params[:page],per_page: 10)
+    store_location
+  end
 
-	def create
+  def create
     if params[:photo][:remote_image_url] == ""
       params[:photo].delete("remote_image_url")
     elsif !params[:photo][:remote_image_url].nil? && params[:photo][:remote_image_url].index("http://#{Settings.hostname}/").nil?
@@ -52,37 +56,37 @@ class PhotosController < ApplicationController
       end
     end
 
-		@photo=Photo.new(params[:photo])
-		if @photo.save
-			@flashfacebook = "Upload new photo successfully"
-			respond_to do |format|
-				format.html { redirect_back_or upload_path }
-				format.js
-			end
+    @photo=Photo.new(params[:photo])
+    if @photo.save
+      @flashfacebook = "Upload new photo successfully"
+      respond_to do |format|
+        format.html { redirect_back_or upload_path }
+        format.js
+      end
 
-		else
-			@flashfacebook = "Upload failed"
-			respond_to do |format|
-				format.html { render 'pc' }
-				format.js
-			end
-		end
+    else
+      @flashfacebook = "Upload failed"
+      respond_to do |format|
+        format.html { render 'pc' }
+        format.js
+      end
+    end
 
-	end
+  end
 
-	def edit
-		@photo=Photo.find(params[:id])
-	end
+  def edit
+    @photo=Photo.find(params[:id])
+  end
 
-	def update
-		@photo = Photo.find(params[:id])
-		if @photo.update_attributes(params[:photo])
-			flash[:success] = "Photo details updated"
-			redirect_to boxes_path
-		else
-			render 'edit'
-		end
-	end
+  def update
+    @photo = Photo.find(params[:id])
+    if @photo.update_attributes(params[:photo])
+      flash[:success] = "Photo details updated"
+      redirect_to boxes_path
+    else
+      render 'edit'
+    end
+  end
 
   def show
     @photo = Photo.find(params[:id])
