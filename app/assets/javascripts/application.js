@@ -25,3 +25,15 @@ var popupHide = function() {
   $('body').css('overflow', 'auto');
   window.history.go(-1);
 }
+
+var miniPopupShow = function() {
+  $('#mini_back_fader').show();
+  $('#back_fader').css('overflow','hidden');
+  $('body').css('overflow') != 'hidden' ? $('body').css('overflow', 'hidden') : null;
+}
+
+var miniPopupHide = function() {
+  $('#mini_back_fader').hide();
+  $('#back_fader').css('overflow','auto');
+  $('#back_fader').css('display') == 'none' ? $('body').css('overflow', 'auto') : null;
+}

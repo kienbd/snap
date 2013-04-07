@@ -15,6 +15,17 @@
         <%= yield %>
       </div>
       <%= render :partial => 'layouts/popup' %>
+
+      <div id="mini_back_fader"  onclick="(event.target == this.getElementsByClassName('mask')[0]) || (event.target == this.getElementsByClassName('mini_popup_wrapper')[0]) ? miniPopupHide() : null;">
+        <div class="mask"></div>
+        <div class="mini_popup_wrapper">
+          <div class="mini_popup_content">
+              <div style="height:300px">
+              </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </body>
 </html>

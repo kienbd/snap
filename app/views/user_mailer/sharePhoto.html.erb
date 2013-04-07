@@ -1,0 +1,12 @@
+<h1>Ponterest</h1>
+<p>Hi <%=h @name_to %>, </p>
+
+<p><%=h @from %>  want to share a photo with you</p>
+
+<p><%=h @from %> said, "<%=h @message %>"</p>
+
+<%= image_tag @photo.image.url %><br/>
+
+<%= link_to "Click to see it", @url %><br/>
+
+<p>If the above URL does not work, try copying and pasting it into your browser. If you continue to have problems, please feel free to contact us. </p>

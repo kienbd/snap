@@ -16,4 +16,14 @@ class UserMailer < ActionMailer::Base
     @user_verification_url = verification_url(recipient.persistence_token)
     mail(:to => recipient.email, :subject => "verification Instructions")
   end
+
+  def sharePhoto(from, name_to, mail_to, message, photo)
+    @name_to = name_to
+    @message = message
+    @url = "http://#{Settings.hostname}#{photo_path(photo.id)}"
+    @photo = photo
+    @from = from
+    mail(to: mail_to, subject: "Your firend, #{from} share a photo")
+  end
+
 end

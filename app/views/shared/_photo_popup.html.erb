@@ -20,6 +20,32 @@
           <span class="buttonText">Share</span>
         </button>
       </div>
+      <div id="shareActions" class="Module Dropdown">
+        <div class="shareActionsWrapper">
+          <span class="caret closeupShareCaret large"></span>
+          <div class="dropdownContainer closeupShare">
+            <div class="ajax PinCloseupShare Module">
+              <div class="moduleMask"></div>
+              <button type="button" class="btn btn-large">
+                <em></em>
+                <span class="buttonText">Twitter</span>
+              </button>
+              <button type="button" class="facebookShareButton btn btn-large" onclick="fbFeed()">
+                <em></em>
+                <span class="buttonText">Facebook</span>
+              </button>
+              <button type="button" class="emailShareButton btn btn-large" onclick="$.get('<%= new_share_photo_via_email_path(photo.id) %>',null)">
+                <em></em>
+                <span class="buttonText">Email</span>
+              </button>
+              <button type="button" class="btn btn-large">
+                <em></em>
+                <span class="buttonText">Embed</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="image">
@@ -42,17 +68,49 @@
           </div>
           <p class="commentContent"><%=h photo.description%></p>
           <% if !photo.is_origin? %>
-          <p class="viaPinner">
-            Pinned From <%=h link_to photo.owner_user.name, user_path(photo.owner_user.id) %>
+            <p class="viaPinner">
+              Pinned From <%=h link_to photo.owner_user.name, user_path(photo.owner_user.id) %>
           </p>
-          <% end %>
-        </div>
+        <% end %>
       </div>
     </div>
-      <%= render partial: 'shared/photo_popup_comments', :locals => { comments: photo.comments, photo: photo } %>
-    </div>
+  </div>
+  <%= render partial: 'shared/photo_popup_comments', :locals => { comments: photo.comments, photo: photo } %>
+</div>
   </div>
   <div class="right_content">
     <div class="right1"></div>
     <div class="right2"></div>
   </div>
+
+<script>
+  $(document).ready(function() {
+    window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '<%= Settings.facebookId %>', // App ID
+          status     : true, // check login status
+          cookie     : true, // enable cookies to allow the server to access the session
+          xfbml      : true  // parse XFBML
+        });
+    };
+      // Load the SDK Asynchronously
+    (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    window.fbFeed = function() {
+      FB.ui({
+          method: 'feed',
+          name: '<%= photo.description %>',
+          link: 'http://localhost:3000<%= photo_path(photo.id) %>'
+        });
+    };
+    });
+    $(function(){
+      $('head').append('<meta property="og:image" content="<%= photo.image.url %>"/>');
+      $('head').append('<link rel="image_src" href="<%= photo.image.url %>" />');
+    });
+</script>

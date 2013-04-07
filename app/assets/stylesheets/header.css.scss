@@ -396,7 +396,7 @@
 }
 
 .Module.Dropdown {
-  & > .dropdownContainer {
+  & .dropdownContainer {
     &:hover {
       display: block !important;
     }
