@@ -40,11 +40,10 @@ Snap::Application.routes.draw do
   resources :likes
   resources :comments
   resources :photos do
-    collection do
-      post :repin
-    end
     member do
       get :like_users
+      post :repin
+      get :new_repin
     end
   end
   resources :sessions, only: [ :new, :create, :destroy]

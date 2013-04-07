@@ -1,0 +1,143 @@
+.BoxPicker.Module {
+  color: #333;
+  font-weight: bold;
+  display: inline-block;
+  .boxPickerInnerWrapper {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 1px 3px 0 rgba(0,0,0,0.33);
+    -moz-box-shadow: 0 1px 3px 0 rgba(0,0,0,0.33);
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.33);
+    background: #fbfbfb;
+    border: 1px solid #b6b6b6;
+    /* bottom: 12px; */
+    display: none;
+    margin-left: -6px;
+    position: absolute;
+    top: 23px;
+    z-index: 752;
+    width: 312px;
+    &:hover {
+      display: block !important;
+    }
+    .createBox {
+      overflow: hidden;
+      margin: 9px 6px 0px 6px;
+      .createBoxTitle {
+        float: left;
+        padding: 7px;
+        width: 228px;
+        background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f0f0f0), color-stop(100%, #f5f5f5));
+        background: -webkit-linear-gradient(#f0f0f0,#f5f5f5);
+        background: -moz-linear-gradient(#f0f0f0,#f5f5f5);
+        background: -o-linear-gradient(#f0f0f0,#f5f5f5);
+        background: linear-gradient(#f0f0f0,#f5f5f5);
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        -ms-border-radius: 3px;
+        -o-border-radius: 3px;
+        border-radius: 3px;
+        -webkit-box-shadow: 0 0 3px rgba(0,0,0,0.12) inset;
+        -moz-box-shadow: 0 0 3px rgba(0,0,0,0.12) inset;
+        box-shadow: 0 0 3px rgba(0,0,0,0.12) inset;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        /* width: 100%; */
+        border: 1px solid #d6d3ce;
+        color: #333;
+        font-size: 14px;
+        padding: 7px;
+        &:focus {
+          -webkit-box-shadow: 0 0 5px 0 rgba(0,0,0,0.15) inset;
+          -moz-box-shadow: 0 0 5px 0 rgba(0,0,0,0.15) inset;
+          box-shadow: 0 0 5px 0 rgba(0,0,0,0.15) inset;
+          background: #fff;
+          outline: 0;
+        }
+      }
+      .createBoxButton {
+        border-radius: 2px;
+        float: right;
+      }
+    }
+    .boxPickerInner {
+      -webkit-overflow-scrolling: touch;
+      overflow-y: scroll;
+      bottom: 5px;
+      color: #333;
+      font-size: 13px;
+      left: 5px;
+      /* position: absolute; */
+      top: 50px;
+      z-index: 751;
+      width: 302px;
+      /* height: auto; */
+      /* width: 7px; */
+      -webkit-appearance: none;
+      /* background-color: rgba(0,0,0,0.5); */
+      border-radius: 4px;
+      -webkit-box-shadow: 0 0 1px rgba(255,255,255,0.5);
+      max-height: 200px;
+      ul {
+        margin: 0 5px 5px 7px;
+        padding: 0;
+        .boxPickerItem {
+          white-space: nowrap;
+          overflow: hidden;
+          -ms-text-overflow: ellipsis;
+          -o-text-overflow: ellipsis;
+          text-overflow: ellipsis;
+          cursor: pointer;
+          padding: 6px 13px;
+          list-style: none;
+          &:hover {
+            background-color: #ebe8e8;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            -ms-border-radius: 3px;
+            -o-border-radius: 3px;
+            border-radius: 3px;
+          }
+          &.selected {
+            background: #cb2027;
+            color: white;
+          }
+        }
+      }
+    }
+  }
+  .boxPickerOuter {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #f0f0f0));
+    background: -webkit-linear-gradient(#ffffff,#f0f0f0);
+    background: -moz-linear-gradient(#ffffff,#f0f0f0);
+    background: -o-linear-gradient(#ffffff,#f0f0f0);
+    background: linear-gradient(#ffffff,#f0f0f0);
+    border: 1px solid #c1c1c1;
+    cursor: pointer;
+    font-size: 13px;
+    padding: 7px 0px 7px 0px;
+    /* position: relative; */
+    display: inline-block;
+    width: 280px;
+    text-align: center;
+    .currentBox {
+      white-space: nowrap;
+      overflow: hidden;
+      -ms-text-overflow: ellipsis;
+      -o-text-overflow: ellipsis;
+      text-overflow: ellipsis;
+      .currentBoxTitle {
+        overflow: hidden;
+      }
+    }
+  }
+}

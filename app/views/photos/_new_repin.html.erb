@@ -1,0 +1,66 @@
+<%= form_tag repin_photo_path, remote: true, class: "miniPopupForm" do %>
+  <h1>Repon Photo</h1>
+  <%= hidden_field_tag 'origin_photo_id', origin_photo.id %>
+  <ul>
+    <li>
+      <h3>Box</h3>
+      <div class="BoxPicker Module">
+        <div class="boxPickerInnerWrapper">
+          <div class="createBox">
+            <%= text_field "title", nil, class: "createBoxTitle", placeholder: "Create New Box" %>
+            <div class="btn createBoxButton">Create</div>
+          </div>
+          <div class="boxPickerInner">
+            <ul>
+              <% count = 0 %>
+              <% boxes.each do |b| %>
+                <li class="boxPickerItem <%= count == 0 ? 'selected' : '' %>" data-id="<%=b.id%>"><%=h b.title %></li>
+                <% count += 1 %>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+        <div class="boxPickerOuter">
+          <div class="currentBox" data-id="<%= boxes.first.id %>" onmouseover="$('.miniPopupForm .BoxPicker.Module .boxPickerInnerWrapper').css('display','block')" onmouseout="$('.miniPopupForm .BoxPicker.Module .boxPickerInnerWrapper').css('display','')">
+            <span class="currentBoxTitle"><%=h boxes.first.title%></span>
+            <%= hidden_field_tag 'box_id', boxes.first.id, class: "box_id_form_tag" %>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li>
+      <h3>Description</h3>
+      <%= text_field_tag 'description', nil, placeholder: "" %>
+    </li>
+  </ul>
+  <div class="preview">
+    <%= image_tag origin_photo.image.url %>
+  </div>
+  <div class="form footer">
+    <div class="footerButtons">
+      <%= submit_tag "Pon it", class: "btn btn-large" %>
+    </div>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  $('.miniPopupForm .BoxPicker.Module .boxPickerInner ul li').click(function(){
+    $el = $('.miniPopupForm .BoxPicker.Module .boxPickerOuter .currentBox');
+    $el.attr('data-id',$(this).attr('data-id'));
+    $el.find('.currentBoxTitle').text($(this).text());
+    $('.miniPopupForm .box_id_form_tag').val($(this).attr('data-id'));
+    $(this).siblings().removeClass('selected');
+    $(this).addClass('selected');
+  });
+  $('.miniPopupForm .BoxPicker.Module .boxPickerInnerWrapper .createBox .createBoxButton').click(function(){
+    var boxTitle = $(this).siblings('input[name*="title"]').val();
+    if (boxTitle.length > 0) {
+      $.ajax({
+        url: "<%= boxes_path %>",
+        type: "POST",
+        dataType: "script",
+        data: { box: { title: boxTitle } }
+      });
+    }
+  });
+</script>

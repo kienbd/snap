@@ -1,7 +1,7 @@
 class Box < ActiveRecord::Base
   attr_accessible :title, :user_id, :category_id
 
-  validates :title, presence: true, length: {maximum: 50}
+  validates :title, presence: true, length: {maximum: 50}, uniqueness: { scope: :user_id }
 
   belongs_to :owner, class_name: "User", foreign_key: "user_id"
   belongs_to :category
