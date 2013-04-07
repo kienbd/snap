@@ -20,11 +20,10 @@ class UsersController < ApplicationController
       @user = User.find_by_id(params[:id])
     end
     @boxes = @user.boxes
-    @count_photo = 0
-    @user.boxes.each do |box|
-      @count_photo += box.photos.count
+    respond_to do |format|
+      format.html
+      format.js
     end
-    @count_like = @user.likes.count
   end
 
   def send_invite
@@ -35,29 +34,39 @@ class UsersController < ApplicationController
   def followers
     @user = User.find(params[:id])
     @followers = @user.followers
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
 
   def following
     @user = User.find(params[:id])
     @following = @user.following_users
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def photos
     store_location
-    @photos = []
     @user = User.find(params[:id])
-    @user.boxes.each do |box|
-      @photos[@photos.length..@photos.length] = box.photos
+    @photos = @user.photos.paginate(page: params[:page],per_page: 15)
+    respond_to do |format|
+      format.html
+      format.js
     end
-    @photos = @photos.sort_by{|t| - t.created_at.to_i}
-    @photos = @photos.paginate(page: params[:page],per_page: 15)
-
   end
 
   def likedphotos
     @user = User.find(params[:id])
     @photos = @user.liked_photos.paginate(page: params[:page],per_page: 15)
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
 

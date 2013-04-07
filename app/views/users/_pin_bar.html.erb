@@ -1,28 +1,25 @@
-<body id="profile" class="hidefixed" >
+<div id="profile" class="hidefixed" >
   <div id="ContextBar" class="container sticky" style= "margin-top: 20px">
     <div class="FixedContainer">
       <ul class="links pinbar">
 
         <li>
-        <a href="/users/<%="#{@user.id}"%>" class="selected">
+        <a href="<%=h user_path(@user.id)%>" data-remote="true" class="toggle">
           <strong><%=@user.boxes.count%></strong> Boxes
         </a>
         </li>
 
-
         <li>
-        <a href="/users/<%="#{@user.id}"%>/photos">
+        <a href="<%= photos_user_path(@user.id) %>" data-remote="true" class="toggle">
           <strong>
-
-            <%= @count_photo%>
+            <%= @user.photos.count %>
           </strong> Photos
         </a>
         </li>
 
-
         <li>
-        <a href="/users/<%="#{@user.id}"%>/likedphotos">
-          <strong><%=@count_like%></strong> Like
+        <a href="<%= likedphotos_user_path(@user.id) %>" data-remote="true" class="toggle">
+          <strong><%= @user.liked_photos.count %></strong> Like
         </a>
         </li>
 
@@ -31,14 +28,13 @@
       <ul class="follow pinbar">
 
         <li id='follower-pinbar'>
-        <a href="/users/<%="#{@user.id}"%>/followers">
+        <a href="<%= followers_user_path(@user.id) %>" data-remote="true" class="toggle">
           <strong><%=@user.followers.count%></strong> Followers
         </a>
         </li>
 
-
         <li id='following-pinbar'>
-        <a href="/users/<%="#{@user.id}"%>/following">
+        <a href="<%= following_user_path(@user.id) %>" data-remote="true" class="toggle">
           <strong><%=@user.following_users.count%></strong> Following
         </a>
         </li>
@@ -49,10 +45,14 @@
         <a class="Button13 Button WhiteButton" href="/users/<%="#{@user.id}"%>/edit">Edit Profile</a>
         <a id="RearrangeCancel" class="close hidden" tooltip="&lt;strong&gt;Cancel&lt;/strong&gt;" href="#">close</a>
       <%else%>
-        <%= render "users/follow_user_form", :@user => @user %>
+        <%= render partial: "users/follow_user_form", locals: { :user => @user }%>
       <%end%>
       </div>
 
     </div>
   </div>
 </body>
+
+<script type="text/javascript">
+  $('[href="' + window.location.pathname + '"]').addClass('selected');
+</script>

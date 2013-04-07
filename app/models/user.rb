@@ -39,13 +39,14 @@ class User < ActiveRecord::Base
   dependent: :destroy
 
   has_many :following_boxes, through: :user_box_follows, source: :box
+  has_many :following_photos, through: :following_boxes, source: :photos, order: "created_at desc"
 
-  has_many :boxes, class_name: "Box"
+  has_many :boxes, class_name: "Box", dependent: :destroy
+  has_many :photos, through: :boxes, source: :photos, order: "created_at desc"
 
-  has_many :likes, foreign_key: "user_id",
-  dependent: :destroy
+  has_many :likes, foreign_key: "user_id",dependent: :destroy
 
-  has_many :liked_photos, through: :likes, source: :photo
+  has_many :liked_photos, through: :likes, source: :photo, order: "created_at desc"
 
   has_many :authentications, dependent: :destroy
 
@@ -121,25 +122,6 @@ class User < ActiveRecord::Base
 
   def verify?
     self.verified
-  end
-
-  def following_photos
-    photos = []
-    self.following_boxes.each do |b|
-      photos.concat b.photos
-    end
-    photos = photos.sort_by{|t| - t.created_at.to_i}.uniq
-    photos
-  end
-
-
-  def all_photos
-    photos = []
-    self.boxes.each do |b|
-      photos.concat b.photos
-    end
-    photos = photos.sort_by{|t| - t.created_at.to_i}.uniq
-    photos
   end
 
   private

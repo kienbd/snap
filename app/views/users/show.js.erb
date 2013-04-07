@@ -1,0 +1,4 @@
+$('section.content').hide().html("<%=j render :partial => 'boxes_show' %>").fadeIn("slow");
+$('#profile .FixedContainer a.toggle').removeClass('selected');
+window.history.pushState('user<%=@user.id%>','userShow','<%= user_path(@user.id) %>');
+$('[href="' + window.location.pathname + '"]').addClass('selected');

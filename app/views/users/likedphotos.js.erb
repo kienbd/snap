@@ -1,0 +1,4 @@
+$('section.content').hide().html("<%=j render :partial => 'shared/photos_paginate' %>").fadeIn("slow");
+$('#profile .FixedContainer a.toggle').removeClass('selected');
+window.history.pushState('likedphotosOfUser<%=@user.id%>','likedPhotos','<%= likedphotos_user_path(@user.id) %>');
+$('[href="' + window.location.pathname + '"]').addClass('selected');

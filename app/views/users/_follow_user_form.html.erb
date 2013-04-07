@@ -1,9 +1,7 @@
-<% unless current_user?(@user) %>
-
-  <% if current_user.following?(@user) %>
-    <%= render 'users/unfollow_user' %>
+<% unless current_user?(user) %>
+  <% if current_user.following?(user) %>
+    <%= render partial: 'users/unfollow_user', locals: { user: user } %>
   <% else %>
-    <%= render 'users/follow_user' %>
+    <%= render partial: 'users/follow_user', locals: { user: user } %>
   <% end %>
-
 <% end %>

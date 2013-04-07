@@ -1,0 +1,7 @@
+var $el = $('section.content').hide().html("");
+<% @following.each do | following | %>
+  $el.append("<%=j render 'users/user_in_box', user: following %>").fadeIn("show");
+<%end%>
+$('#profile .FixedContainer a.toggle').removeClass('selected');
+window.history.pushState('followingOfUser<%=@user.id%>','following','<%= following_user_path(@user.id) %>');
+$('[href="' + window.location.pathname + '"]').addClass('selected');

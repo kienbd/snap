@@ -1,5 +1,11 @@
-  <h2>photos of <%= @user.name %></h2>
+<%= render :partial => 'users/commonView' %>
+<section class="content">
+    <%= render :partial => 'shared/photos_paginate' %>
+</section>
 
- <section class="content" style="margin-left: 30px;">
-    <%= render :partial => 'photos/photos_paginate' %>
-  </section>
+<script type="text/javascript">
+  var change_avatar = function(e) {
+    readURL(e);
+    $(".edit_user").submit();
+  }
+</script>
