@@ -19,6 +19,7 @@ class AuthenticationsController < ApplicationController
     elsif current_user
       # User is signed in but has not already authenticated with this social network
       current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'], :access_token => token, :token_secret => token_secret)
+      current_user.remote_avatar_url = omniauth["info"]["image"].gsub!('square','large')
       # current_user.apply_omniauth(omniauth)
       current_user.save
       flash[:info] = 'Authentication successful.'
