@@ -1,4 +1,4 @@
-.emailShareForm {
+.miniPopupForm {
   -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.44);
   -moz-box-shadow: 0 2px 5px rgba(0,0,0,0.44);
   box-shadow: 0 2px 5px rgba(0,0,0,0.44);
@@ -29,7 +29,7 @@
     border-radius: 3px;
     background: #fff;
     margin: 0;
-    li {
+    & > li {
       overflow: hidden;
       border-top: 1px solid #dfdfdf;
       padding: 15px 21px 15px 27px;
@@ -72,6 +72,13 @@
         color: #333;
         font-size: 14px;
         padding: 7px;
+        &:focus {
+          -webkit-box-shadow: 0 0 5px 0 rgba(0,0,0,0.15) inset;
+          -moz-box-shadow: 0 0 5px 0 rgba(0,0,0,0.15) inset;
+          box-shadow: 0 0 5px 0 rgba(0,0,0,0.15) inset;
+          background: #fff;
+          outline: 0;
+        }
       }
     }
   }
@@ -148,3 +155,5 @@
     }
   }
 }
+
+

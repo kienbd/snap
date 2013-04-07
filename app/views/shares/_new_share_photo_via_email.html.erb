@@ -1,4 +1,4 @@
-<%= form_tag share_photo_via_email_path, remote: true, class: "emailShareForm" do %>
+<%= form_tag share_photo_via_email_path, remote: true, class: "miniPopupForm" do %>
   <h1>Email Photo</h1>
   <%= hidden_field_tag 'photo_id', photo.id %>
   <ul>
@@ -24,4 +24,3 @@
     </div>
   </div>
 <% end %>
-

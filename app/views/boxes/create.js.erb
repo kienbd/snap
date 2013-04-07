@@ -1,0 +1,10 @@
+$('.miniPopupForm .BoxPicker.Module .boxPickerInnerWrapper .createBox .createBoxTitle').val('');
+$('.miniPopupForm .BoxPicker.Module .boxPickerInner ul').append("<li\ class=\"boxPickerItem\"\ data-id=\"" + "<%=h @box.id%>" + "\">" + "<%= @box.title%>" + "</li>");
+$('.miniPopupForm .BoxPicker.Module .boxPickerInner ul li').last().click(function(){
+  $el = $('.miniPopupForm .BoxPicker.Module .boxPickerOuter .currentBox');
+  $el.attr('data-id',$(this).attr('data-id'));
+  $el.find('.currentBoxTitle').text($(this).text());
+  $('.miniPopupForm .box_id_form_tag').val($(this).attr('data-id'));
+  $(this).siblings().removeClass('selected');
+  $(this).addClass('selected');
+});
