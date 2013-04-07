@@ -42,6 +42,7 @@ Snap::Application.routes.draw do
   resources :photos do
     member do
       get :like_users
+      get :pon_users
       post :repin
       get :new_repin
     end

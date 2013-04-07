@@ -2,3 +2,9 @@ $('.miniPopupForm .form.footer .footerButtons [type="submit"]').val('Ponned').cs
 setTimeout(function(){
   miniPopupHide();
 },2000);
+$el = $('.left_content .actions .repinLike .groupButton.pon form[action*="pon_users"] input[type="submit"]');
+if ($el.length != 0)
+  $el.val("<%= @origin.repin_count %>");
+$el2 = $('#container .box .photo-detail#photo_<%= @origin.id %> .acts-on-user .pons');
+if ($el2.length != 0)
+  $el2.text("<%= @origin.repin_count %> Pons");

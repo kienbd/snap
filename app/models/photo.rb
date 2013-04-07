@@ -1,6 +1,6 @@
 require 'open-uri'
 class Photo < ActiveRecord::Base
-  attr_accessible :box_id, :description, :name, :image,:origin_owner_id
+  attr_accessible :box_id, :description, :name, :image,:origin_id, :repin_count
 
   validates :name, presence: true
   validates :box_id, presence: true
@@ -13,6 +13,10 @@ class Photo < ActiveRecord::Base
   # like
   has_many :likes, dependent: :destroy
   has_many :like_users, through: :likes, source: :user
+  has_many :pons, class_name: :Photo, foreign_key: :origin_id
+  has_many :pon_users, through: :pons, source: :owner_user, uniq: true
+  belongs_to :origin_photo, class_name: :Photo, foreign_key: :origin_id
+  has_one :origin_owner_user, through: :origin_photo, source: :owner_user
 
   # comments
   has_many :comments, dependent: :destroy
@@ -32,7 +36,11 @@ class Photo < ActiveRecord::Base
   end
 
   def is_origin?
-    return self.origin_owner_id.nil?
+    return self.origin_id.nil?
+  end
+
+  def increase_repin_count
+    return self.update_attributes(repin_count: self.repin_count+1)
   end
 
   private

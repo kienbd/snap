@@ -2,3 +2,6 @@ $("#photo_<%=@photo.id%> .photo-like-btn").html("<%=j render partial: 'likes/unl
 $el = $('.left_content .actions .repinLike .groupButton.like');
 if ($el.length != 0)
   $el.html("<%=j render partial: 'likes/unlikeButtonGroup', :locals => { photo: @photo }%>");
+$el2 = $('#container .box .photo-detail#photo_<%= @photo.id %> .acts-on-user .likes');
+if ($el2.length != 0)
+  $el2.text("<%= @photo.likes.count %> Likes");

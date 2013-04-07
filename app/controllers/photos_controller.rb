@@ -111,6 +111,11 @@ class PhotosController < ApplicationController
     @users = photo.like_users
   end
 
+  def pon_users
+    photo = Photo.find(params[:id])
+    @users = photo.pon_users
+  end
+
   def new_repin
     @repin = Photo.new
     @origin_photo = Photo.find(params[:id])
@@ -121,13 +126,15 @@ class PhotosController < ApplicationController
   end
 
   def repin
-    origin = Photo.find(params[:origin_photo_id])
-    box = Box.find(params[:box_id])
-    repin = box.photos.new(name: origin.name,description: params[:description],origin_owner_id: origin.owner_user.id,image: origin.image)
-    if repin.save
-      respond_to do |format|
-        format.html
-        format.js
+    @origin = Photo.find(params[:origin_photo_id])
+    @box = Box.find(params[:box_id])
+    @repin = @box.photos.new(name: @origin.name,description: params[:description],origin_id: @origin.id,image: @origin.image)
+    if @repin.valid? && @origin.increase_repin_count
+      if @repin.save
+        respond_to do |format|
+          format.html
+          format.js
+        end
       end
     end
   end

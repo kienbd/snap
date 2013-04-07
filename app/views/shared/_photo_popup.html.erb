@@ -1,9 +1,9 @@
 <div class="left_content">
   <div class="actions">
     <div class="repinLike">
-      <div class="groupButton pin">
-        <%= button_to "Pin It", '#', remote: true, class: "btn btn-large btn-success firstChild" %>
-        <%= button_to "100", '#', remote: true, class: "btn btn-large btn-success lastChild" %>
+      <div class="groupButton pon">
+        <%= button_to "Pon It", new_repin_photo_path(photo.id), method: "get", remote: true, class: "btn btn-large btn-success firstChild" %>
+        <%= button_to photo.repin_count, pon_users_photo_path(photo.id), method: "get", class: "btn btn-large btn-success lastChild" %>
       </div>
       <div class="groupButton like">
         <% if !current_user.liked_photo?(photo) %>
@@ -69,7 +69,7 @@
           <p class="commentContent"><%=h photo.description%></p>
           <% if !photo.is_origin? %>
             <p class="viaPinner">
-              Pinned From <%=h link_to photo.owner_user.name, user_path(photo.owner_user.id) %>
+              Pinned From <%=h link_to photo.origin_owner_user.name, user_path(photo.owner_user.id) %>
           </p>
         <% end %>
       </div>

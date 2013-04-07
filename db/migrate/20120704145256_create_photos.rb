@@ -4,7 +4,7 @@ class CreatePhotos < ActiveRecord::Migration
       t.string :description
       t.string :name
       t.integer :box_id
-      t.integer :origin_owner_id
+      t.integer :origin_id
       t.integer :repin_count , default: 0
       t.string :image
 

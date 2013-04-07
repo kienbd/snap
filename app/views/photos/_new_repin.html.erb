@@ -21,9 +21,9 @@
           </div>
         </div>
         <div class="boxPickerOuter">
-          <div class="currentBox" data-id="<%= boxes.first.id %>" onmouseover="$('.miniPopupForm .BoxPicker.Module .boxPickerInnerWrapper').css('display','block')" onmouseout="$('.miniPopupForm .BoxPicker.Module .boxPickerInnerWrapper').css('display','')">
-            <span class="currentBoxTitle"><%=h boxes.first.title%></span>
-            <%= hidden_field_tag 'box_id', boxes.first.id, class: "box_id_form_tag" %>
+          <div class="currentBox" data-id="<%= boxes.first != nil ? boxes.first.id : '' %>" onmouseover="$('.miniPopupForm .BoxPicker.Module .boxPickerInnerWrapper').css('display','block')" onmouseout="$('.miniPopupForm .BoxPicker.Module .boxPickerInnerWrapper').css('display','')">
+            <span class="currentBoxTitle"><%=h boxes.first != nil ? boxes.first.title : 'Create New Box'%></span>
+            <%= hidden_field_tag 'box_id', boxes.first != nil ? boxes.first.id : nil, class: "box_id_form_tag" %>
           </div>
         </div>
       </div>
