@@ -4,3 +4,279 @@
   padding-top: 25px;
   padding-bottom: 25px;
 }
+
+
+.upload-form-holder {
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.44);
+  -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.44);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.44);
+  margin-bottom: 0;
+  width: auto;
+  margin: 0 auto 70px;
+  h1 {
+    text-align: left;
+    border-bottom: 1px solid #e7e7e7;
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+    min-height: 20px;
+    padding: 17px 18px 13px 18px;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+  }
+  .add-pon-form {
+    background: #f0f0f0;
+    .pon-uploader {
+      width: 541px;
+      text-align: left;
+      .image-uploader {
+        background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ededed), color-stop(100%, #f9f9f9));
+        background: -webkit-linear-gradient(#ededed,#f9f9f9);
+        background: -moz-linear-gradient(#ededed,#f9f9f9);
+        background: -o-linear-gradient(#ededed,#f9f9f9);
+        background: linear-gradient(#ededed,#f9f9f9);
+        -webkit-border-radius: 0 0 3px 3px;
+        -moz-border-radius: 0 0 3px 3px;
+        -ms-border-radius: 0 0 3px 3px;
+        -o-border-radius: 0 0 3px 3px;
+        border-radius: 0 0 3px 3px;
+        background: #f0f0f0;
+        padding: 15px 20px;
+        position: relative;
+        input[type='file'] {
+          height: 30px;
+          position: absolute;
+          top: 12px;
+          margin: 0;
+          opacity: 0;
+          z-index: 2;
+        }
+        .choose-btn {
+          z-index:1;
+          float: left;
+          font-size: 13px;
+          margin: -1px;
+          padding: 6px 12px 7px;
+          position: relative;
+          -webkit-font-smoothing: antialiased;
+          background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e3262e), color-stop(100%, #ab171e));
+          background-image: -webkit-linear-gradient(#e3262e,#ab171e);
+          background-image: -moz-linear-gradient(#e3262e,#ab171e);
+          background-image: -o-linear-gradient(#e3262e,#ab171e);
+          background-image: linear-gradient(#e3262e,#ab171e);
+          -webkit-box-shadow: 0 1px 0 0 rgba(255,255,255,0.34);
+          -moz-box-shadow: 0 1px 0 0 rgba(255,255,255,0.34);
+          box-shadow: 0 1px 0 0 rgba(255,255,255,0.34);
+          background-color: #ab171e;
+          border: 1px solid;
+          border-bottom-color: #820a0f;
+          border-left-color: #9a1015;
+          border-right-color: #9a1015;
+          border-top-color: #af151b;
+          color: #fff;
+          text-shadow: 0 -1px rgba(0,0,0,0.11);
+          span {
+            font-size: 13px;
+            color: #fff;
+            text-shadow: 0 -1px rgba(0,0,0,0.11);
+            cursor: pointer;
+            font-weight: bold;
+            white-space: nowrap;
+          }
+          &:active {
+            background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #bb1618), color-stop(100%, #e22123));
+            background-image: -webkit-linear-gradient(#bb1618,#e22123);
+            background-image: -moz-linear-gradient(#bb1618,#e22123);
+            background-image: -o-linear-gradient(#bb1618,#e22123);
+            background-image: linear-gradient(#bb1618,#e22123);
+            -webkit-box-shadow: 0 1px 7px 0 rgba(0,0,0,0.5) inset;
+            -moz-box-shadow: 0 1px 7px 0 rgba(0,0,0,0.5) inset;
+            box-shadow: 0 1px 7px 0 rgba(0,0,0,0.5) inset;
+            background-color: #e22123;
+            border-color: #99161b;
+            text-shadow: 0 1px rgba(0,0,0,0.6);
+          }
+        }
+        .upload-progress {
+          -webkit-border-radius: 0 3px 3px 0;
+          -moz-border-radius: 0 3px 3px 0;
+          -ms-border-radius: 0 3px 3px 0;
+          -o-border-radius: 0 3px 3px 0;
+          border-radius: 0 3px 3px 0;
+          -webkit-box-shadow: 0 0 4px rgba(0,0,0,0.31) inset;
+          -moz-box-shadow: 0 0 4px rgba(0,0,0,0.31) inset;
+          box-shadow: 0 0 4px rgba(0,0,0,0.31) inset;
+          overflow: hidden;
+          height: 31px;
+          position: relative;
+          top: -1px;
+          span {
+            white-space: nowrap;
+            overflow: hidden;
+            -ms-text-overflow: ellipsis;
+            -o-text-overflow: ellipsis;
+            text-overflow: ellipsis;
+            color: #333;
+            display: block;
+            float: left;
+            font-size: 14px;
+            margin-left: 7px;
+            margin-top: 4px;
+            padding: 3px;
+          }
+        }
+      }
+    }
+    .url-uploader {
+      overflow: hidden;
+      background: #f0f0f0;
+      padding: 19px;
+      input[type='text'] {
+        background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f0f0f0), color-stop(100%, #f5f5f5));
+        background: -webkit-linear-gradient(#f0f0f0,#f5f5f5);
+        background: -moz-linear-gradient(#f0f0f0,#f5f5f5);
+        background: -o-linear-gradient(#f0f0f0,#f5f5f5);
+        background: linear-gradient(#f0f0f0,#f5f5f5);
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        -ms-border-radius: 3px;
+        -o-border-radius: 3px;
+        border-radius: 3px;
+        -webkit-box-shadow: 0 0 3px rgba(0,0,0,0.12) inset;
+        -moz-box-shadow: 0 0 3px rgba(0,0,0,0.12) inset;
+        box-shadow: 0 0 3px rgba(0,0,0,0.12) inset;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        width: 100%;
+        border: 1px solid #d6d3ce;
+        color: #333;
+        font-size: 14px;
+        padding: 7px;
+        width: 400px;
+      }
+      div[type='button']{
+        width: 75px;
+        border-radius: 5px;
+        display: inline-block;
+        margin-left: 10px;
+      }
+    }
+  }
+  .phase-1 {
+    display: block;
+  }
+  .phase-2 {
+    display: none;
+    .avatar-holder {
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      -ms-border-radius: 3px;
+      -o-border-radius: 3px;
+      border-radius: 3px;
+      position: relative;
+      overflow: hidden;
+      background: #f7f7f7;
+      border: 1px solid #b1b1b1;
+      float: right;
+      height: 145px;
+      margin: 15px 15px 0 0;
+      position: relative;
+      width: 145px;
+      margin-right: 20px;
+      img {
+        bottom: 0;
+        display: block;
+        left: 0;
+        max-height: 100%;
+        margin: auto;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: auto;
+        max-width: 100%;
+        height: auto;
+        vertical-align: middle;
+        border: 0;
+      }
+    }
+    ul {
+      margin-right: 167px;
+      background: #fff;
+      margin: 0;
+      li {
+        overflow: hidden;
+        padding: 15px 21px 15px 27px;
+        padding-left: 18px;
+        padding-right: 21px;
+
+        h3 {
+          width: 130px;
+          -webkit-font-smoothing: antialiased;
+          color: #555;
+          float: left;
+          padding: 4px 10px 0 0;
+          margin: 0;
+        }
+        div {
+          margin-left: 140px;
+          min-height: 28px;
+          padding-left: 1px;
+        }
+        textarea {
+          height: 110px;
+        }
+      }
+    }
+    .formFooter {
+      -webkit-border-radius: 0 0 3px 3px;
+      -moz-border-radius: 0 0 3px 3px;
+      -ms-border-radius: 0 0 3px 3px;
+      -o-border-radius: 0 0 3px 3px;
+      border-radius: 0 0 3px 3px;
+      background: #f0f0f0;
+      clear: both;
+      border-top: 1px solid #dadada;
+      padding: 10px 20px;
+      &:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+      input[type='file'] {
+        margin: 10px;
+        width: 90px !important;
+      }
+      .formFooter-btns {
+        float: right;
+        .btn-success {
+          height: 40px;
+          width: 80px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+
+}
+
+.divider {
+  border-bottom: 1px solid #e0e0e0;
+  margin: 10px 0;
+  span {
+    background: #f0f0f0;
+    color: #666;
+    display: block;
+    font-size: 15px;
+    font-weight: 500;
+    margin: 0 auto -8px auto;
+    text-align: center;
+    width: 170px;
+  }
+}

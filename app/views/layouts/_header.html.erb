@@ -94,7 +94,7 @@
                   <a class="myBoards" href="<%=user_path(current_user.id)%>">Your Boards</a>
                 </li>
                 <li data-index="2">
-                  <a class="addPin" href="/">Add Pin</a>
+                  <a class="addPin" href="<%=upload_path%>" data-remote="true">Add Pin</a>
                 </li>
                 <li data-index="3">
                   <a class="" href="<%= edit_user_path(current_user.id) %>">Settings</a>

@@ -22,6 +22,7 @@ var popupShow = function() {
 var popupHide = function() {
   $('#back_fader').hide();
   $('#back_fader .popup_content').hide();
+  $('#back_fader .popup_content').css("width","");
   $('body').css('overflow', '');
   window.history.go(-1);
 }
@@ -34,6 +35,7 @@ var miniPopupShow = function() {
 
 var miniPopupHide = function() {
   $('#mini_back_fader').hide();
+  $('#mini_back_fader .mini_popup_content').css("width","");
   $('#back_fader').css('overflow','');
   $('#back_fader').css('display') == 'none' ? $('body').css('overflow', '') : null;
 }
