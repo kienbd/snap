@@ -7,7 +7,7 @@ ul,ol,h3,h4,h5,h6,pre,code,form,fieldset,legend,p,blockquote,th,td{margin: 0;pad
 #profile .createBoard.pinBoard {position: relative;}
 #profile .createBoard.pinBoard input {width: 222px; margin-bottom: 10px; text-align: center;}
 #profile .createBoard.pinBoard label {left: 0; text-align: center; width: 100%;}
-#profile .createBoard.pinBoard .createBoardSubmit {position: absolute; top: 115px; left: 50%; margin-left: -53px;}
+#profile .createBoard.pinBoard .createBoardSubmit {position: absolute; top: 150px; left: 50%; margin-left: -53px;}
 
 .noscroll.hidefixed #CategoriesBar.fixed, .noscroll.hidefixed #Header {display: none;}
 .noscroll.hidefixed#CategoriesBarPage #Header, .noscroll.hidefixed#profile #Header {display: block;}

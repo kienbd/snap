@@ -1,3 +1,44 @@
-<%= render :partial => 'pin_bar' %>
 
+
+<div class="user-show-header-holder">
+
+  <div class="user-show-profile">
+    <div class="avatar-holder">
+    <%= form_for(@user, remote: true) do |f| %>
+        <%= f.file_field :avatar, onchange: "change_avatar(this)" %>
+      <div class="avatar-frame">
+        <% if @user.avatar.nil? %>
+          <img src="/assets/default_avatar.png"/>
+        <% else %>
+          <%= image_tag @user.avatar.medium_avatar.url %>
+        <% end %>
+      </div>
+      <div class="avatar-button">
+        <label> Upload Avatar </label>
+      </div>
+    </div>
+    <%end%>
+
+    <div class="user-infos">
+      <h2 class="user-name"><%= @user.name %></h2>
+    </div>
+  </div>
+
+  <div class="user-show-repon-owner">
+    <h3> Friends </h3>
+    <ul>
+
+    </ul>
+  </div>
+
+</div>
+
+<%= render :partial => 'pin_bar' %>
 <%= render :partial => 'boxes_show' %>
+
+<script type="text/javascript">
+  var change_avatar = function(e) {
+    readURL(e);
+    $(".edit_user").submit();
+  }
+</script>

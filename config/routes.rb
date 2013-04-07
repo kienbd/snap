@@ -24,9 +24,9 @@ Snap::Application.routes.draw do
       get :following, :followers, :photos, :likedphotos
     end
     collection do
-
     end
   end
+
   resources :boxes do
     member do
       get :followers
@@ -81,6 +81,7 @@ Snap::Application.routes.draw do
     get "/share/photo/:photo_id/email" => :new_share_photo_via_email, as: "new_share_photo_via_email"
     post "/share/photo/email/create" => :share_photo_via_email, as: "share_photo_via_email"
   end
+
 
 
   # The priority is based upon order of creation:

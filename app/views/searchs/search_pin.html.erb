@@ -1,4 +1,5 @@
-<div class="row pull-left">
+
+<div class="row center search-row">
   <div class="span6" style="font-size: 20px;margin-top:5%">
     <a href =  "/search/?search=<%="#{params[:search]}" %>" style="text-decoration: underline;color: black">Box</a>
     ·
@@ -10,7 +11,7 @@
   </div>
   <br>
 </div>
-<br><br><br><br>
+
 <section class = "content">
-<%= render :partial => 'photos/photo_paginate' %>
+  <%= render :partial => 'photos/photos_paginate' %>
 </section>

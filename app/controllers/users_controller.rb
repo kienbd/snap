@@ -14,7 +14,11 @@ class UsersController < ApplicationController
 
   def show
     store_location
-    @user = User.find(params[:id])
+    if params[:id].nil?
+      @user = User.find_by_name(params[:username])
+    else
+      @user = User.find_by_id(params[:id])
+    end
     @boxes = @user.boxes
     @count_photo = 0
     @user.boxes.each do |box|
@@ -95,8 +99,13 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
-      sign_in @user
-      redirect_to @user
+      respond_to do |format|
+        format.html {
+          sign_in @user
+          redirect_to @user
+        }
+        format.js
+      end
     else
       render 'edit'
     end

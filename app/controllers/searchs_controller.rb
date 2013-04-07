@@ -25,7 +25,7 @@ class SearchsController < ApplicationController
     @results = []
     @results.clear
     Box.all.each do |box|
-      if box.name.downcase.include? params[:search].downcase
+      if box.title.downcase.include? params[:search].downcase
         @results.push box
       end
     end

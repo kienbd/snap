@@ -7,11 +7,10 @@
         <% @new_box = @user.boxes.build %>
         <li class="Form FancyForm">
           <div class="pin pinBoard createBoard">
-            <%= form_for(@new_box) do |f| %>
+            <%= form_for(@new_box,remote: true) do |f| %>
               <div class="FancyContainer">
                 <%= f.text_field :title,placeholder: "Box Name" %>
-                <%# <input type="text" name="boardName" id="boardName" placeholder="Box Name"> %>
-                <%# <span class="fff"></span> %>
+                <%= f.select :category_id, Category.all.collect { |n| [n.name, n.id] } %>
               </div>
               <%= f.submit "Create Box" , class: "Button RedButton Button13 createBoardSubmit", style: "width: 89px;margin-left: -43px"%>
               <%= image_tag("BoardCellRep.png") %>
@@ -21,7 +20,7 @@
 
       <%end%>
 
-      <%= render partial: "box" , collection: @boxes %>
+      <%= render partial: "users/box" , collection: @boxes %>
 
     </ul>
   </div>

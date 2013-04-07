@@ -62,7 +62,7 @@
         </div>
         <div class="ui-SearchForm Module"><form action="/search/" method="GET" name="search">
             <div class="search Module ui-TypeaheadField">
-              <input type="text" name="q" value="" placeholder="Search" autocomplete="off" class="field">
+              <input type="text" name="search" value="" placeholder="Search" autocomplete="off" class="field">
               <div class="hidden ui-Typeahead Module" style="display: none;">
                 <ul class="results"></ul>
               </div>
@@ -88,10 +88,10 @@
               <div class="moduleMask"></div>
               <ul class="ajax List Module">
                 <li data-index="0">
-                  <a class="myPins" href="/tadx/pins/">Your Pins</a>
+                  <a class="myPins" href="<%=photos_user_path(current_user)%>">Your Pins</a>
                 </li>
                 <li data-index="1">
-                  <a class="myBoards" href="/tadx/boards/">Your Boards</a>
+                  <a class="myBoards" href="<%=user_path(current_user.id)%>">Your Boards</a>
                 </li>
                 <li data-index="2">
                   <a class="addPin" href="/">Add Pin</a>
