@@ -62,31 +62,31 @@ class UsersController < ApplicationController
 
 
   def new
-
+    auth = session[:omniauth]
+    authentication = session[:authentication]
+    @user = User.new
+    (@user.authentications << authentication; session.delete :authentication) if authentication
+    if auth
+      @user.remote_avatar_url = auth["info"]["image"].gsub!('square','large')
+      @user.name = auth["info"]["name"]
+      @user.email = auth["info"]["email"]
+      session.delete :omniauth
+    end
   end
 
   def create
     @user = User.new(params[:user])
-    authentication = session[:authentication]
-    if authentication
-      @user.authentications << authentication
-      @user.verify!
-      session.delete :authentication
-      if @user.save
-        flash[:notice] = "Thanks for signing up"
-        sign_in @user
-        redirect_to root_path
-      else
-        render 'new'
-      end
-    else
-      if @user.save
+    if @user.save
+      if !@user.authentications
         deliver_verification_instructions(@user)
         flash[:notice] = "Thanks for signing up, we've delivered an email to you with instructions on how to complete your registration!"
-        redirect_to root_path
       else
-        render 'new'
+        @user.verify!
+        sign_in @user
       end
+      redirect_to root_path
+    else
+      render 'new'
     end
   end
 

@@ -20,9 +20,10 @@
     <%= render 'shared/error_messages', object: f.object %>
 
     <div class="avatar-holder">
-      <%= f.file_field :avatar,onchange: "readURL(this)" %>
+      <%= f.file_field :avatar,onchange: "readURL(this);$('.avatar-holder .remote_avatar').remove()" %>
+      <%= f.hidden_field :remote_avatar_url, class: "remote_avatar" %>
       <div class="avatar-frame">
-        <img src="/assets/default_avatar.png"/>
+        <img src="<%= @user.remote_avatar_url != nil ? @user.remote_avatar_url : '/assets/default_avatar.png' %>"/>
       </div>
       <div class="avatar-button">
         <label> Upload Avatar </label>
@@ -31,6 +32,7 @@
     </div>
 
     <div class="user-infos">
+
       <%= f.text_field :name ,placeholder: "Username"%>
 
       <%= f.text_field :email,placeholder: "Email" %>
@@ -38,6 +40,13 @@
       <%= f.password_field :password,placeholder: "Password" %>
 
       <%= f.password_field :password_confirmation,placeholder:"Password Confirmation" %>
+
+      <%= f.fields_for :authentications do |ff| %>
+        <%= ff.hidden_field :provider %>
+        <%= ff.hidden_field :uid %>
+        <%= ff.hidden_field :access_token %>
+        <%= ff.hidden_field :token_secret %>
+      <% end %>
 
       <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
     </div>

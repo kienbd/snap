@@ -29,6 +29,7 @@ class AuthenticationsController < ApplicationController
       # user = User.new
       authentication = Authentication.new(:provider => omniauth['provider'], :uid => omniauth['uid'], :access_token => token, :token_secret => token_secret)
       session[:authentication] = authentication
+      session[:omniauth] = omniauth
       # user.apply_omniauth(omniauth)
 
       redirect_to signup_path
