@@ -43,6 +43,9 @@ Snap::Application.routes.draw do
     collection do
       post :repin
     end
+    member do
+      get :like_users
+    end
   end
   resources :sessions, only: [ :new, :create, :destroy]
   resources :user_box_follows, only: [ :create, :destroy]

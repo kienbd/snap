@@ -2,4 +2,4 @@
   <%= f.hidden_field :photo_id %>
   <%= f.submit "Like", class: "btn btn-large firstChild" %>
 <% end %>
-<%= button_to photo.likes.count, '#', remote: true, class: "btn btn-large lastChild" %>
+<%= button_to photo.likes.count, like_users_photo_path(photo.id), method: "get", class: "btn btn-large lastChild" %>

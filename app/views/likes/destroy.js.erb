@@ -1,4 +1,4 @@
 $("#photo_<%=@photo.id%> .photo-like-btn").html("<%=j render partial: 'likes/like', locals:{photo: @photo}%> ");
-$el = $('.photoShowWrapper .left_content .actions .repinLike .groupButton.like');
+$el = $('.left_content .actions .repinLike .groupButton.like');
 if ($el.length != 0)
   $el.html("<%=j render partial: 'likes/likeButtonGroup', :locals => { photo: @photo }%>");

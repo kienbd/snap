@@ -106,6 +106,10 @@ class PhotosController < ApplicationController
     redirect_back_or box_path(box)
   end
 
+  def like_users
+    photo = Photo.find(params[:id])
+    @users = photo.like_users
+  end
 
   def repin
     origin = Photo.find(params[:origin_id])
