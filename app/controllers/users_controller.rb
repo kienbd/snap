@@ -77,7 +77,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      if !@user.authentications
+      if @user.authentications.empty?
         deliver_verification_instructions(@user)
         flash[:notice] = "Thanks for signing up, we've delivered an email to you with instructions on how to complete your registration!"
       else

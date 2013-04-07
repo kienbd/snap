@@ -13,8 +13,8 @@ class UserMailer < ActionMailer::Base
   end
 
   def verify(recipient)
-    @user_verification_url = verification_url(recipient.persistence_token)
-    mail(:to => recipient.email, :subject => "verification Instructions")
+    @user_verification_url = verification_url(recipient["persistence_token"])
+    mail(:to => recipient["email"], :subject => "verification Instructions")
   end
 
   def sharePhoto(from_user, name_to, mail_to, message, photo)

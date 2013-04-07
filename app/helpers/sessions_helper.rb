@@ -77,7 +77,8 @@ module SessionsHelper
   end
 
   def deliver_verification_instructions(user)
-    mail = UserMailer.verify(user)
-    mail.deliver
+    Resque.enqueue(Jobs::SendVerifyMail, user)
+    # mail = UserMailer.verify(user)
+    # mail.deliver
   end
 end
