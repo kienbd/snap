@@ -1,6 +1,5 @@
 <div id="ColumnContainer">
   <div class="boxes-holder" style="width: 1250px">
-    <ul class="sortable">
 
 
       <% if params[:search].nil? && current_user?(@user) %>
@@ -19,6 +18,8 @@
         </li>
 
       <%end%>
+
+    <ul class="sortable">
 
       <%= render partial: "users/box" , collection: @boxes %>
 

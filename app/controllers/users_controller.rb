@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     else
       @user = User.find_by_id(params[:id])
     end
-    @boxes = @user.boxes
+    @boxes = @user.boxes.order("created_at DESC")
     respond_to do |format|
       format.html
       format.js
