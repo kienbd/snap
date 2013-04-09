@@ -21,9 +21,7 @@ Snap::Application.routes.draw do
 
   resources :users do
     member do
-      get :following, :followers, :photos, :likedphotos
-    end
-    collection do
+      get :following, :followers, :photos, :likedphotos, :find_facebook_friends
     end
   end
 

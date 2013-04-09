@@ -69,6 +69,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def find_facebook_friends
+    @user = User.find(params[:id])
+    if @friends = fbfriends_in_pon_not_connect(@user)
+      respond_to do |format|
+        format.html
+        format.js
+      end
+    else
+      # not connect with facebook
+      # do something
+    end
+  end
 
   def new
     auth = session[:omniauth]

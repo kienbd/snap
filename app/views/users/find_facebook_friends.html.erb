@@ -1,0 +1,13 @@
+<div class="InfoBarBase FindFriendsInfoBar Module">
+  <h3 class="headerText">
+    Find friends from Facebook
+  </h3>
+</div>
+<div class="content">
+  <div class="user-in-boxes-holder">
+    <% @friends.each do |fr| %>
+      <%= render partial: "users/user_in_box" ,locals: {user: fr} %>
+  <%end%>
+  </div>
+</div>
+
