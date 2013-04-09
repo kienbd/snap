@@ -79,8 +79,12 @@
 </div>
   </div>
   <div class="right_content">
-    <div class="right1"></div>
-    <div class="right2"></div>
+    <div class="right1">
+      <%= render :partial => 'shared/photo_in_box_right1_popup', locals: { box: photo.box } %>
+    </div>
+    <div class="right2">
+      <%= render :partial => 'shared/photo_in_category_right2_popup', locals: { category: photo.box.category } %>
+    </div>
   </div>
 
 <script>
