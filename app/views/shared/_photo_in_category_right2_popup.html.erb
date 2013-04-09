@@ -1,0 +1,9 @@
+<div class="categoryPonsGrid">
+  <div class="categoryHeader">
+    <a href="<%= category_path(category.id) %>">
+      <span class="des">Others pons in</span>
+      <span class="category"><%=h category.name %></span>
+    </a>
+  </div>
+  <%= render :partial => 'shared/pons_grid_wrapper', locals: { photos: category.photos.limit(25) } %>
+</div>

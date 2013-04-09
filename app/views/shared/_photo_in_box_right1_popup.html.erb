@@ -1,0 +1,11 @@
+<div class="boxPonsGrid">
+  <div class="boxHeader">
+    <a href="<%= box_path(box.id) %>">
+      <span class="thumbAvatarWrapper" style="background: url(<%=box.owner.avatar.thumb.url%>)"></span>
+      <span class="title"><%=h box.title %></span>
+      <span class="belongToCateogry"><%=h box.category.name %></span>
+    </a>
+  </div>
+  <%= render :partial => 'shared/pons_grid_wrapper', locals: { photos: box.photos.limit(25) } %>
+  <%= render "boxes/follow_box_form",:box => box %>
+</div>

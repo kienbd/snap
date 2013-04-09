@@ -1,0 +1,7 @@
+<div class="ponsGridWrapper">
+  <% photos.each do |p| %>
+    <div class="item" id="<%=p.id%>">
+      <%= link_to image_tag(p.image.thumb.url), photo_path(p.id), class: "image" %>
+    </div>
+  <% end %>
+</div>
