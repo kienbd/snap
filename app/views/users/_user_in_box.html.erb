@@ -4,17 +4,29 @@
       <h3 class="username"><%= user.name %></h3>
       <div class="userThumbs">
         <span class="user-avatar">
-          <%= image_tag user.avatar.medium_avatar.url %>
+          <% if !user.avatar.nil? %>
+            <%= image_tag user.avatar.medium_avatar.url %>
+          <% else %>
+            <image src="/assets/default_avatar.png" />
+          <% end %>
         </span>
-
-        <% user.photos.slice(0,5).each_with_index do |photo,i| %>
+        <% photos = user.photos.slice(0,5) %>
+        <% 5.times do |i| %>
           <% if i < 2 || i == 4 %>
             <span class="thumbHolder rightWrap">
-              <%= image_tag photo.image.medium_avatar.url %>
+              <% if !photos[i].nil? %>
+                <%= image_tag photos[i].image.medium_avatar.url %>
+              <% else %>
+                <image />
+              <% end%>
             </span>
           <% else %>
             <span class="thumbHolder">
-              <%= image_tag photo.image.medium_avatar.url %>
+              <% if !photos[i].nil? %>
+                <%= image_tag photos[i].image.medium_avatar.url %>
+              <% else %>
+                <image />
+              <% end%>
             </span>
           <% end %>
         <% end %>

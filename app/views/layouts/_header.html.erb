@@ -43,16 +43,16 @@
                 <div class="AboutLinks ajax Module">
                   <ul class="ajax List Module">
                     <li data-index="0">
-                      <a class="" href="http://about.pinterest.com/">About</a>
+                      <a class="" href="/about">About</a>
                     </li>
                     <li data-index="1">
-                      <a class="" href="http://business.pinterest.com/">Businesses</a>
+                      <a class="" href="/businesses">Businesses</a>
                     </li>
                     <li data-index="2">
-                      <a class="skinny" href="http://about.pinterest.com/terms/">Privacy &amp; Terms</a>
+                      <a class="skinny" href="/terms">Privacy &amp; Terms</a>
                     </li>
                     <li data-index="3">
-                      <a class="skinny" href="http://about.pinterest.com/copyright/">Copyright &amp; Trademark</a>
+                      <a class="skinny" href="/copyright/">Copyright &amp; Trademark</a>
                     </li>
                   </ul>
                 </div>
@@ -77,7 +77,11 @@
       <div class="rightHeaderContent">
         <div class="UserMenu Module" data-is-hovering="">
           <a href="<%= user_path(current_user.id) %>" class="usernameLink" data-force-refresh="1">
-            <span class="profileImage" style="background-image:url(<%= current_user.avatar.small_avatar.url %>)"></span>
+            <% if !current_user.avatar.nil? %>
+              <span class="profileImage" style="background-image:url(<%= current_user.avatar.small_avatar.url %>)"></span>
+            <% else %>
+              <span class="profileImage" style="background-image:url(default_avatar.png)"></span>
+            <% end %>
             <span class="profileName"><%= current_user.name%></span>
           </a>
         </div>
@@ -100,7 +104,7 @@
                   <a class="" href="<%= edit_user_path(current_user.id) %>">Settings</a>
                 </li>
                 <li data-index="4">
-                  <a class="" href="http://help.pinterest.com/" data-ga="site_help">Help Center</a>
+                  <a class="" href="/" data-ga="site_help">Help Center</a>
                 </li>
                 <li data-index="5">
                   <a class="findFriends" href="/find_friends/">Find Friends</a>
