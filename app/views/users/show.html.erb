@@ -12,6 +12,22 @@
   $(document).ready(function() {
     $(".sortable").sortable( {
       containment: ".content",
+      start: function() {
+      },
+      update: function() {
+        ids = $.map($(".list-container .list-item"),function(e,index) {
+          return {box_id: $(e).attr("id"),position: (index+1)}
+        });
+        $.ajax({
+          dataType: 'script',
+          type: 'get',
+          url: '/users/update_boxes_position' ,
+          data: {boxes_attributes: ids,id: <%= current_user.id%>},
+          success : function() {
+          }
+        });
+
+      }
     });
     $(".sortable").sortable("enable");
   });
