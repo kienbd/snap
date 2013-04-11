@@ -1,5 +1,5 @@
 class Box < ActiveRecord::Base
-  attr_accessible :title, :user_id, :category_id
+  attr_accessible :title, :user_id, :category_id,:position
 
   validates :title, presence: true, length: {maximum: 50}, uniqueness: { scope: :user_id }
 

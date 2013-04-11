@@ -15,9 +15,10 @@
       start: function() {
       },
       update: function() {
-        ids = $.map($(".list-container .list-item"),function(e,index) {
-          return {box_id: $(e).attr("id"),position: (index+1)}
+        var ids = $.map($(".sortable .user-box"),function(e,index) {
+          return {id: $(e).attr("id"),position: (index+1)}
         });
+        console.log(ids);
         $.ajax({
           dataType: 'script',
           type: 'get',

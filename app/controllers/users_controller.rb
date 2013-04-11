@@ -142,7 +142,10 @@ class UsersController < ApplicationController
 
   def update_boxes_position
     user = User.find(params[:id])
-    user.update_attribute(params[:boxes_attributes])
+    params[:user] = {}
+    params[:user][:boxes_attributes] = params[:boxes_attributes]
+    user.update_attributes(params[:user])
+    sign_in user
     respond_to do |format|
       format.js
     end

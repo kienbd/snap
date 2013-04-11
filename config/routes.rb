@@ -24,6 +24,7 @@ Snap::Application.routes.draw do
       get :following, :followers, :photos, :likedphotos
     end
     collection do
+      get :update_boxes_position
     end
   end
 
