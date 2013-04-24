@@ -29,6 +29,7 @@
 }
 
 .centeredWithinWrapper {
+  text-align: center;
   margin: 0 auto;
   width: 100% !important;
 }
@@ -37,6 +38,10 @@
   margin-left: 7px;
   float: left;
   width: 236px;
+}
+.logo-home img {
+  height: 50px;
+  margin-top: -8px;
 }
 
 .categoriesButton {
