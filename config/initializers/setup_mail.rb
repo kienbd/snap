@@ -3,8 +3,8 @@ require 'development_mail_interceptor'
 ActionMailer::Base.smtp_settings = {
   :address => "smtp.gmail.com",
   :port => 587,
-  :user_name => 'snapa.lifetime@gmail.com',
-  :password => 'lehaitrieu',
+  :user_name => 'ponterest@gmail.com',
+  :password => '123456789!',
   :authentication => 'plain',
   :enable_starttls_auto => true }
 
