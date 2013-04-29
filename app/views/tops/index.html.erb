@@ -82,25 +82,28 @@
   var arr = [];
   for(var i = nl.length; i--; arr.unshift(nl[i]));
   arr.forEach(function(e) {
-    img = document.createElement('img');
-    img.src = e.src;
-    if(img.width > 100) {
-      img.className +='pon-img';
-      img.onclick = function() {
-        nl_c = document.getElementsByClassName('pon-img-chosen');
-        arr = [];
-        for(var i = nl_c.length; i--; arr.unshift(nl_c[i]));
-        arr.forEach(function(e) {
-          e.className = 'pon-img';
-        });
+    a = /.*\.(\w+)/.exec(e.src);
+    if(a[1] != 'gif') {
+      img = document.createElement('img');
+      img.src = e.src;
+      if(img.width > 100) {
+        img.className +='pon-img';
+        img.onclick = function() {
+          nl_c = document.getElementsByClassName('pon-img-chosen');
+          arr = [];
+          for(var i = nl_c.length; i--; arr.unshift(nl_c[i]));
+          arr.forEach(function(e) {
+            e.className = 'pon-img';
+          });
 
-        this.className += ' pon-img-chosen';
-        f.appendChild(inp_rem);
-        inp_rem.value = this.src;
-        bt.removeAttribute('disabled');
+          this.className += ' pon-img-chosen';
+          f.appendChild(inp_rem);
+          inp_rem.value = this.src;
+          bt.removeAttribute('disabled');
 
-      };
-      div_i.appendChild(img);
+        };
+        div_i.appendChild(img);
+      }
     }
   });
 
@@ -125,6 +128,7 @@
       height: 100%;
       overflow: auto;
       background: rgba(226, 228, 228, 0.84);
+      z-index: 999;
     }
     .pon-popup-sub {
       filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
@@ -134,7 +138,7 @@
       -ms-transform: scale(1);
       -o-transform: scale(1);
       transform: scale(1);
-      -webkit-border-radius: 3px;
+      -webkit-border-radius: 3px350px;
       -moz-border-radius: 3px;
       -ms-border-radius: 3px;
       -o-border-radius: 3px;
@@ -149,7 +153,7 @@
       position: relative;
       text-align: left;
       width: 750px;
-      min-height: 350px;
+      min-height: 300px;
       padding-bottom: 15px;
 
     }
@@ -207,7 +211,25 @@
       resize: none;
     }
     .pon-form-holder input[type=\'submit\'] {
-
+      margin: 20px 0 0 250px;
+      border: 1px solid white;
+      color: white;
+      border-radius: 3px;
+      height: 40px;
+      width: 80px;
+      font-weight: bold;
+      background-color: #5bb65b;
+      background-image: -moz-linear-gradient(top, #62c462, #51a351);
+      background-image: -ms-linear-gradient(top, #62c462, #51a351);
+      background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#62c462), to(#51a351));
+      background-image: -webkit-linear-gradient(top, #62c462, #51a351);
+      background-image: -o-linear-gradient(top, #62c462, #51a351);
+      background-image: linear-gradient(top, #62c462, #51a351);
+      background-repeat: repeat-x;
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=\'#FF62C462\', endColorstr=\'#FF51A351\', GradientType=0);
+      border-color: #51a351 #51a351 #387038;
+      border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) fadein(rgba(0, 0, 0, 0.1), 15%);
+      filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
     }
     .pon-popup .pon-image-holder {
       width: 395px;
