@@ -1,12 +1,129 @@
 <a href="javascript:{
   var pop = document.createElement('div');
-  pop.className += 'pon-pop-up';
+  pop.className += 'pon-popup';
   var div_h = document.createElement('div');
-  div_h.className += ''
+  div_h.className += 'pon-form-holder';
   var div_i = document.createElement('div');
+  div_i.className += 'pon-image-holder';
   var f = document.createElement('form');
+  f.method = 'post';
+  f.action = 'http://localhost:3000/photos/';
+  f.character_set = 'utf-8';
+  f.setAttribute('data-remote',true);
+
+  var inp_loc = document.createElement('input');
+  inp_loc.name = 'location';
+  inp_loc.type = 'hidden';
+  inp_loc.value = document.URL;
+
+  var inp_rem = document.createElement('input');
+  inp_rem.type = 'hidden';
+  inp_rem.name = 'photo[remote_image_url]';
+
+  var inp_box = document.createElement('select');
+  inp_box.name = 'photo[box_id]';
+
+  var boxes = [{val: 1,key: 'Sipes and Sons'},{val: 6,key: 'Abunias coa'}];
+
+  var option;
+
+  boxes.forEach(function(e) {
+    option = document.createElement('option');
+    option.innerHTML = e.key;
+    option.value = e.val;
+    inp_box.add(option,null);
+  });
+
+  var inp_nam = document.createElement('input');
+  inp_nam.type = 'text';
+  inp_nam.name = 'photo[name]';
 
 
+  var inp_des = document.createElement('input');
+  inp_des.type = 'text';
+  inp_des.name = 'photo[description]';
+
+
+  var bt = document.createElement('input');
+  bt.type = 'submit';
+  bt.value = 'click';
+  bt.disabled = 'disabled';
+
+
+  f.appendChild(inp_loc);
+  f.appendChild(inp_rem);
+  f.appendChild(inp_box);
+  f.appendChild(inp_nam);
+  f.appendChild(inp_des);
+  f.appendChild(bt);
+
+  div_h.appendChild(f);
+
+
+  nl = document.getElementsByTagName('img');
+  var arr = [];
+  for(var i = nl.length; i--; arr.unshift(nl[i]));
+  arr.forEach(function(e) {
+    img = document.createElement('img');
+    img.src = e.src;
+    img.className +='pon-img';
+    img.onclick = function() {
+      nl_c = document.getElementsByClassName('pon-img-chosen');
+      arr = [];
+      for(var i = nl_c.length; i--; arr.unshift(nl_c[i]));
+      arr.forEach(function(e) {
+        e.className = 'pon-img';
+      });
+
+      this.className += ' pon-img-chosen';
+      f.appendChild(inp_rem);
+      inp_rem.value = this.src;
+      bt.removeAttribute('disabled');
+
+    };
+    div_i.appendChild(img);
+  });
+
+  pop.appendChild(div_h);
+  pop.appendChild(div_i);
+
+
+  var css = document.createElement('style');
+  css.type = 'text/css';
+  css.innerHTML = '
+    .pon-popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(226, 228, 228, 0.84);
+    }
+    .pon-popup .pon-form-holder {
+
+    }
+    .pon-form-holder input[type=\'text\'] {
+
+    }
+    .pon-form-holder input[type=\'text\'][name*=\'description\'] {
+
+    }
+    .pon-form-holder input[type=\'submit\'] {
+
+    }
+    .pon-popup .pon-image-holder {
+
+    }
+    .pon-img {
+
+    }
+    .pon-img-chosen {
+
+    }
+  ';
+
+  document.body.appendChild(css);
+  document.body.appendChild(pop);
   }"> Pon It </a>
 
 
