@@ -83,7 +83,7 @@
   for(var i = nl.length; i--; arr.unshift(nl[i]));
   arr.forEach(function(e) {
     a = /.*\.(\w+)/.exec(e.src);
-    if(a[1] != 'gif') {
+    if(a && a[1] != 'gif') {
       img = document.createElement('img');
       img.src = e.src;
       if(img.width > 100) {
@@ -214,25 +214,22 @@
       margin: 20px 0 0 250px;
       border: 1px solid white;
       color: white;
-      border-radius: 3px;
+      border-radius: 5px;
       height: 40px;
       width: 80px;
       font-weight: bold;
-      background-color: #5bb65b;
-      background-image: -moz-linear-gradient(top, #62c462, #51a351);
-      background-image: -ms-linear-gradient(top, #62c462, #51a351);
-      background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#62c462), to(#51a351));
-      background-image: -webkit-linear-gradient(top, #62c462, #51a351);
-      background-image: -o-linear-gradient(top, #62c462, #51a351);
-      background-image: linear-gradient(top, #62c462, #51a351);
-      background-repeat: repeat-x;
-      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=\'#FF62C462\', endColorstr=\'#FF51A351\', GradientType=0);
-      border-color: #51a351 #51a351 #387038;
-      border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) fadein(rgba(0, 0, 0, 0.1), 15%);
-      filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+      background: #e570e7;
+      background: -moz-linear-gradient(top, #e570e7 0%, #c85ec7 47%, #a849a3 100%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e570e7), color-stop(47%,#c85ec7), color-stop(100%,#a849a3));
+      background: -webkit-linear-gradient(top, #e570e7 0%,#c85ec7 47%,#a849a3 100%);
+      background: -o-linear-gradient(top, #e570e7 0%,#c85ec7 47%,#a849a3 100%);
+      background: -ms-linear-gradient(top, #e570e7 0%,#c85ec7 47%,#a849a3 100%);
+      background: linear-gradient(to bottom, #e570e7 0%,#c85ec7 47%,#a849a3 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=\'#e570e7\', endColorstr=\'#a849a3\',GradientType=0 );
     }
     .pon-popup .pon-image-holder {
       width: 395px;
+      min-height: 340px;
       display: inline-block;
       padding-top: 2px;
       padding-left: 2px;
