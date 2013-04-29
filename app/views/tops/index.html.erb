@@ -1,6 +1,8 @@
 <a href="javascript:{
   var pop = document.createElement('div');
   pop.className += 'pon-popup';
+  var pop_sub = document.createElement('div');
+  pop_sub.className += 'pon-popup-sub';
   var div_h = document.createElement('div');
   div_h.className += 'pon-form-holder';
   var div_i = document.createElement('div');
@@ -39,22 +41,38 @@
   inp_nam.name = 'photo[name]';
 
 
-  var inp_des = document.createElement('input');
-  inp_des.type = 'text';
+  var inp_des = document.createElement('textarea');
+  inp_des.type = 'textarea';
+  inp_des.setAttribute('rows','20');
+  inp_des.setAttribute('cols','40');
   inp_des.name = 'photo[description]';
 
 
   var bt = document.createElement('input');
   bt.type = 'submit';
-  bt.value = 'click';
+  bt.value = 'PON';
   bt.disabled = 'disabled';
 
+  var label;
 
   f.appendChild(inp_loc);
   f.appendChild(inp_rem);
+
+  label = document.createElement('h3');
+  label.innerHTML = 'Board';
+  f.appendChild(label);
   f.appendChild(inp_box);
+
+  label = document.createElement('h3');
+  label.innerHTML = 'Name';
+  f.appendChild(label);
   f.appendChild(inp_nam);
+
+  label = document.createElement('h3');
+  label.innerHTML = 'Descrption';
+  f.appendChild(label);
   f.appendChild(inp_des);
+
   f.appendChild(bt);
 
   div_h.appendChild(f);
@@ -66,26 +84,34 @@
   arr.forEach(function(e) {
     img = document.createElement('img');
     img.src = e.src;
-    img.className +='pon-img';
-    img.onclick = function() {
-      nl_c = document.getElementsByClassName('pon-img-chosen');
-      arr = [];
-      for(var i = nl_c.length; i--; arr.unshift(nl_c[i]));
-      arr.forEach(function(e) {
-        e.className = 'pon-img';
-      });
+    if(img.width > 100) {
+      img.className +='pon-img';
+      img.onclick = function() {
+        nl_c = document.getElementsByClassName('pon-img-chosen');
+        arr = [];
+        for(var i = nl_c.length; i--; arr.unshift(nl_c[i]));
+        arr.forEach(function(e) {
+          e.className = 'pon-img';
+        });
 
-      this.className += ' pon-img-chosen';
-      f.appendChild(inp_rem);
-      inp_rem.value = this.src;
-      bt.removeAttribute('disabled');
+        this.className += ' pon-img-chosen';
+        f.appendChild(inp_rem);
+        inp_rem.value = this.src;
+        bt.removeAttribute('disabled');
 
-    };
-    div_i.appendChild(img);
+      };
+      div_i.appendChild(img);
+    }
   });
 
-  pop.appendChild(div_h);
-  pop.appendChild(div_i);
+
+  label = document.createElement('h2');
+  label.innerHTML = 'Pon It';
+  pop_sub.appendChild(label);
+  pop_sub.appendChild(div_h);
+  pop_sub.appendChild(div_i);
+
+  pop.appendChild(pop_sub);
 
 
   var css = document.createElement('style');
@@ -97,28 +123,110 @@
       left: 0;
       width: 100%;
       height: 100%;
+      overflow: auto;
       background: rgba(226, 228, 228, 0.84);
     }
-    .pon-popup .pon-form-holder {
+    .pon-popup-sub {
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+      opacity: 1;
+      -webkit-transform: scale(1);
+      -moz-transform: scale(1);
+      -ms-transform: scale(1);
+      -o-transform: scale(1);
+      transform: scale(1);
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      -ms-border-radius: 3px;
+      -o-border-radius: 3px;
+      border-radius: 3px;
+      -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+      -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+      opacity: 1;
+      background: #fff;
+      margin: 100px auto 0;
+      position: relative;
+      text-align: left;
+      width: 750px;
+      min-height: 350px;
+      padding-bottom: 15px;
 
+    }
+    .pon-popup .pon-form-holder {
+      width: 350px;
+      display: inline-block;
+      vertical-align: top;
+    }
+    .pon-popup h3 {
+      width: 100px;
+      display: inline-block;
+      padding-left: 10px;
+      vertical-align: top;
+
+    }
+    .pon-popup h2 {
+      text-align: left;
+      border-bottom: 1px solid #e7e7e7;
+      color: #333;
+      font-size: 24px;
+      font-weight: bold;
+      margin: 0;
+      min-height: 20px;
+      padding: 17px 18px 13px 18px;
+      position: relative;
+      white-space: nowrap;
+      overflow: hidden;
+      -ms-text-overflow: ellipsis;
+      -o-text-overflow: ellipsis;
+      text-overflow: ellipsis;
+    }
+    .pon-form-holder select {
+      width: 220px;
+      margin-top: 11px;
     }
     .pon-form-holder input[type=\'text\'] {
-
+      margin-top: 11px;
+      width: 214px;
+      line-height: 18px;
+      color: #555555;
+      border: 1px solid #ccc;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
     }
-    .pon-form-holder input[type=\'text\'][name*=\'description\'] {
-
+    .pon-form-holder textarea[name*=\'description\'] {
+      width: 214px;
+      margin-top: 11px;
+      height: 120px;
+      color: #555555;
+      border: 1px solid #ccc;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      resize: none;
     }
     .pon-form-holder input[type=\'submit\'] {
 
     }
     .pon-popup .pon-image-holder {
-
+      width: 395px;
+      display: inline-block;
+      padding-top: 2px;
+      padding-left: 2px;
+      border-left: 1px solid #e7e7e7
     }
     .pon-img {
-
+      opacity: 0.7;
+      width: 123px;
+      border: 2px solid rgba(175, 175, 175, 0.58);
+      margin: 2px;
+      vertical-align: top;
+      float: left;
     }
     .pon-img-chosen {
-
+      opacity: 1;
+      border: 2px solid rgba(228, 22, 154, 0.81)
     }
   ';
 

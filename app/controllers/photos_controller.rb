@@ -45,6 +45,7 @@ class PhotosController < ApplicationController
   end
 
   def create
+    binding.pry
     if params[:photo][:remote_image_url] == ""
       params[:photo].delete("remote_image_url")
     elsif !params[:photo][:remote_image_url].nil? && params[:photo][:remote_image_url].index("http://#{Settings.hostname}/").nil?
