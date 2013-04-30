@@ -476,6 +476,7 @@ ul.pinbar li {
 
 
 .btn-success {
+  border: 1px solid rgb(151, 57, 117);
   background: #e570e7; /* Old browsers */
   background: -moz-linear-gradient(top, #e570e7 0%, #c85ec7 47%, #a849a3 100%); /* FF3.6+ */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e570e7), color-stop(47%,#c85ec7), color-stop(100%,#a849a3)); /* Chrome,Safari4+ */
@@ -490,4 +491,17 @@ ul.pinbar li {
   &:hover {
     background-position: 0 0;
   }
+}
+
+
+.bookmarlet {
+  position: absolute;
+  z-index: 10;
+  top: 10px;
+  right: 10px;
+  background: url('assets/pon_it.png');
+  width: 80px;
+  height: 37px;
+  background-size: 80px 40px;
+  color: white;
 }
