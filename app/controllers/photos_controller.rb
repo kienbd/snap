@@ -60,7 +60,7 @@ class PhotosController < ApplicationController
     if @photo.save
       @flashfacebook = "Upload new photo successfully"
       respond_to do |format|
-        format.html { redirect_back_or upload_path }
+        format.html { redirect_back_or params[:location]  }
         format.js
       end
 

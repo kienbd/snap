@@ -23,6 +23,9 @@ Snap::Application.routes.draw do
     member do
       get :following, :followers, :photos, :likedphotos, :find_facebook_friends
     end
+    collection do
+      get :update_boxes_position
+    end
   end
 
   resources :boxes do

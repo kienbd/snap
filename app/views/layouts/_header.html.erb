@@ -43,16 +43,16 @@
                 <div class="AboutLinks ajax Module">
                   <ul class="ajax List Module">
                     <li data-index="0">
-                      <a class="" href="http://about.pinterest.com/">About</a>
+                      <a class="" href="/about">About</a>
                     </li>
                     <li data-index="1">
-                      <a class="" href="http://business.pinterest.com/">Businesses</a>
+                      <a class="" href="/businesses">Businesses</a>
                     </li>
                     <li data-index="2">
-                      <a class="skinny" href="http://about.pinterest.com/terms/">Privacy &amp; Terms</a>
+                      <a class="skinny" href="/terms">Privacy &amp; Terms</a>
                     </li>
                     <li data-index="3">
-                      <a class="skinny" href="http://about.pinterest.com/copyright/">Copyright &amp; Trademark</a>
+                      <a class="skinny" href="/copyright/">Copyright &amp; Trademark</a>
                     </li>
                   </ul>
                 </div>
@@ -72,12 +72,18 @@
         </div>
       </div>
 
-      <%# <a href="/" data-force-refresh="1"><h1>Pinterest</h1></a> %>
+      <a href="/" data-force-refresh="1" class="logo-home">
+        <img src="/assets/login_icons.png"/>
+      </a>
 
       <div class="rightHeaderContent">
         <div class="UserMenu Module" data-is-hovering="">
           <a href="<%= user_path(current_user.id) %>" class="usernameLink" data-force-refresh="1">
-            <span class="profileImage" style="background-image:url(<%= current_user.avatar.small_avatar.url %>)"></span>
+            <% if !current_user.avatar.nil? %>
+              <span class="profileImage" style="background-image:url(<%= current_user.avatar.small_avatar.url %>)"></span>
+            <% else %>
+              <span class="profileImage" style="background-image:url(default_avatar.png)"></span>
+            <% end %>
             <span class="profileName"><%= current_user.name%></span>
           </a>
         </div>
@@ -88,19 +94,19 @@
               <div class="moduleMask"></div>
               <ul class="ajax List Module">
                 <li data-index="0">
-                  <a class="myPins" href="<%=photos_user_path(current_user)%>">Your Pins</a>
+                  <a class="myPins" href="<%=photos_user_path(current_user)%>">Your Pons</a>
                 </li>
                 <li data-index="1">
                   <a class="myBoards" href="<%=user_path(current_user.id)%>">Your Boards</a>
                 </li>
                 <li data-index="2">
-                  <a class="addPin" href="<%=upload_path%>" data-remote="true">Add Pin</a>
+                  <a class="addPin" href="<%=upload_path%>" data-remote="true">Add Pon</a>
                 </li>
                 <li data-index="3">
                   <a class="" href="<%= edit_user_path(current_user.id) %>">Settings</a>
                 </li>
                 <li data-index="4">
-                  <a class="" href="http://help.pinterest.com/" data-ga="site_help">Help Center</a>
+                  <a class="" href="/" data-ga="site_help">Help Center</a>
                 </li>
                 <li data-index="5">
                   <a class="findFriends" href="<%=h find_facebook_friends_user_path(current_user.id) %>">Find Friends</a>

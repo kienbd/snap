@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     else
       @user = User.find_by_id(params[:id])
     end
-    @boxes = @user.boxes
+    @boxes = @user.boxes.order("position ASC,created_at DESC")
     respond_to do |format|
       format.html
       format.js
@@ -150,6 +150,17 @@ class UsersController < ApplicationController
 
   def admin_page
 
+  end
+
+  def update_boxes_position
+    user = User.find(params[:id])
+    params[:user] = {}
+    params[:user][:boxes_attributes] = params[:boxes_attributes]
+    user.update_attributes(params[:user])
+    sign_in user
+    respond_to do |format|
+      format.js
+    end
   end
 
   private

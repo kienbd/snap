@@ -20,6 +20,15 @@
 .sortable .pinBoard { position: relative; }
 .boxes-holder {margin: 0 auto}
 
+
+li.FancyForm {
+  display: inline-block;
+  float: left;
+  height: 303px;
+  width: 236px;
+  margin: 14px 7px 0 7px;
+}
+
 .createBoard {
   text-align: center;
   .FancyContainer {

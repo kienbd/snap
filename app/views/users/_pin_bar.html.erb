@@ -13,7 +13,7 @@
         <a href="<%= photos_user_path(@user.id) %>" data-remote="true" class="toggle">
           <strong>
             <%= @user.photos.count %>
-          </strong> Photos
+          </strong> Pons
         </a>
         </li>
 
@@ -43,7 +43,6 @@
       <div class="action">
         <%if current_user?(@user) %>
         <a class="Button13 Button WhiteButton" href="/users/<%="#{@user.id}"%>/edit">Edit Profile</a>
-        <a id="RearrangeCancel" class="close hidden" tooltip="&lt;strong&gt;Cancel&lt;/strong&gt;" href="#">close</a>
       <%else%>
         <%= render partial: "users/follow_user_form", locals: { :user => @user }%>
       <%end%>

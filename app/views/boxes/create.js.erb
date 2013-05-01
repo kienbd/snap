@@ -8,3 +8,9 @@ $('.miniPopupForm .BoxPicker.Module .boxPickerInner ul li').last().click(functio
   $(this).siblings().removeClass('selected');
   $(this).addClass('selected');
 });
+
+
+var item = "<%=j render partial: 'users/box',locals: {box: @box} %>";
+$(item).hide().prependTo("ul.sortable").fadeIn('slow');
+
+

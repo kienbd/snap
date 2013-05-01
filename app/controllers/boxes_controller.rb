@@ -14,6 +14,7 @@ class BoxesController < ApplicationController
         @box = current_user.boxes.build(title: title, category_id: 32)
       end
 
+      @user = current_user
       if @box.save
         follower_follow_this_box(@box)
         respond_to do |format|

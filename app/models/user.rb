@@ -12,7 +12,9 @@
 class User < ActiveRecord::Base
   include AuthenticationsHelper
 
-  attr_accessible :email, :name, :password, :password_confirmation,:gender,:avatar, :remote_avatar_url, :authentications_attributes
+  attr_accessible :email, :name, :password, :password_confirmation,:gender,:avatar, :remote_avatar_url, :authentications_attributes,:boxes_attributes
+
+
   has_secure_password
 
   before_save { |user| user.email = email.downcase }
@@ -51,6 +53,7 @@ class User < ActiveRecord::Base
   has_many :authentications, dependent: :destroy
 
   accepts_nested_attributes_for :authentications
+  accepts_nested_attributes_for :boxes
 
   mount_uploader :avatar, ImageUploader
 

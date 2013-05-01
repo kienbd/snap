@@ -7,5 +7,30 @@
   var change_avatar = function(e) {
     readURL(e);
     $(".edit_user").submit();
-  }
+  };
+
+  $(document).ready(function() {
+    $(".sortable").sortable( {
+      containment: ".content",
+      start: function() {
+      },
+      update: function() {
+        var ids = $.map($(".sortable .user-box"),function(e,index) {
+          return {id: $(e).attr("id"),position: (index+1)}
+        });
+        console.log(ids);
+        $.ajax({
+          dataType: 'script',
+          type: 'get',
+          url: '/users/update_boxes_position' ,
+          data: {boxes_attributes: ids,id: <%= current_user.id%>},
+          success : function() {
+          }
+        });
+
+      }
+    });
+    $(".sortable").sortable("enable");
+  });
+
 </script>
