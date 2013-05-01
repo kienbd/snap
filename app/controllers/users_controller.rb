@@ -77,6 +77,7 @@ class UsersController < ApplicationController
         format.js
       end
     else
+      @friends = []
       # not connect with facebook
       # do something
     end
