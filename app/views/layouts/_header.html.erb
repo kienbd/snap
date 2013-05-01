@@ -109,7 +109,7 @@
                   <a class="" href="/" data-ga="site_help">Help Center</a>
                 </li>
                 <li data-index="5">
-                  <a class="findFriends" href="/find_friends/">Find Friends</a>
+                  <a class="findFriends" href="<%=h find_facebook_friends_user_path(current_user.id) %>">Find Friends</a>
                 </li>
                 <li data-index="6">
                   <a class="" href="<%= signout_path %>" data-ga="site_logout">Log Out</a>
