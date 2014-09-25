@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.6'
+# gem 'rails', '3.2.6'
+gem 'rails', '3.2.18'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -24,7 +25,7 @@ gem 'fbgraph'
 gem 'pry'
 gem 'fb_graph'
 gem 'paperclip'
-gem 'mail', '2.4.4'
+gem 'mail'
 gem 'rmagick'
 gem 'carrierwave'
 gem 'tweet-button'
