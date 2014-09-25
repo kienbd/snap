@@ -19,3 +19,4 @@
 /config/database.*
 Gemfile.lock
 Gemfile.lock.*
+config/database.yml
