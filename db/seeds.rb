@@ -151,9 +151,9 @@ end
 #make new db
   make_users
   make_categories
-  make_boxes
-  make_photos
-  make_relationships
-  # make_users_like_photos
+#  make_boxes
+#  make_photos
+#  make_relationships
+#  make_users_like_photos
 
 puts 'seed completed'

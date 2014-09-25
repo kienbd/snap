@@ -29,10 +29,10 @@ gem 'rmagick'
 gem 'carrierwave'
 gem 'tweet-button'
 
-gem 'redis'
-gem 'redis-objects', :require => 'redis/objects'
-gem 'resque', :require => 'resque/server'
-gem 'resque-scheduler', :require => 'resque_scheduler'
+gem 'redis', '3.0.4'
+gem 'redis-objects'
+gem 'resque'
+gem 'resque-scheduler', '2.5.5'
 gem 'resque-pool', '0.2.0'
 
 
