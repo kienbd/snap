@@ -25,16 +25,15 @@ gem 'pry'
 gem 'fb_graph'
 gem 'paperclip'
 gem 'mail', '2.4.4'
-gem 'rmagick'
+gem 'rmagick', '2.13.2', :require => false
 gem 'carrierwave'
 gem 'tweet-button'
 
-gem 'redis'
-gem 'redis-objects', :require => 'redis/objects'
-gem 'resque', :require => 'resque/server'
-gem 'resque-scheduler', :require => 'resque_scheduler'
+gem 'redis', '3.0.4'
+gem 'redis-objects'
+gem 'resque'
+gem 'resque-scheduler', '2.5.5'
 gem 'resque-pool', '0.2.0'
-
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -158,7 +158,7 @@ button.Button::-moz-focus-inner {padding: 0; border: 0;}
     .pin.domainPins .link img { width: 61px; height: 61px; }
   .pinBoard .likesComments {margin: 0; padding: 0 15px 10px; background-color: #fff;}
   .pinBoard .followBoard { padding: 0; text-align: center; border-top:1px #ccc solid; }
-  .pinBoard .followBoard .BoardMeta {float: left; width: auto; margin-top: 8px; font-size: 11px;:
+  .pinBoard .followBoard .BoardMeta {float: left; width: auto; margin-top: 8px; font-size: 11px;}
 
 /* Pin Activity */
 .pin.activity { background: #fff; box-shadow: 0 1px 3px rgba(34,25,25,0.4); -moz-box-shadow: 0 1px 2px rgba(34,25,25,0.4); -webkit-box-shadow: 0 1px 3px rgba(34,25,25,0.4); position: absolute }
@@ -218,7 +218,7 @@ a.remove_activity_invite:hover {text-decoration: none !important;}
 
 /* Building Feed */
 body#building {height: 100%;}
-#floater {position: relative; float: left; height:5 0%; margin-bottom: -200px; width: 1px;}
+#floater {position: relative; float: left; height: 50%; margin-bottom: -200px; width: 1px;}
 #centered {position: relative; clear: left; height: 400px; width: 400px; margin: 0 auto;}
 
 

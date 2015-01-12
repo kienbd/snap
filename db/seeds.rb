@@ -24,13 +24,12 @@ def make_users
     email = "user#{n+1}@gmail.com"
     password  = "123456789"
     temp = rand(31)
-    source = "http://localhost:8484/#{temp}.jpg"
-    image = open(source)
+    source = "http://lorempixel.com/400/200/people"
     u = User.create(name:     name,
      email:    email,
      password: password,
      password_confirmation: password,
-     avatar: image)
+     remote_avatar_url: source)
     if(n< 7)
       u.verify!
     end
@@ -59,7 +58,7 @@ end
 
 def make_boxes
   users = User.all(limit: 5)
-  5.times do
+  1.times do
     title = Faker::Company.name
     category = rand(32) + 1
     users.each { |user| user.boxes.create!(title: title, category_id: category)}
@@ -122,11 +121,13 @@ def make_photos
         name = Faker::PhoneNumber.phone_number
         description = Faker::Internet.domain_name
         temp = rand(30)
-        source = "http://localhost:8484/#{temp}.jpg"
-        image = open(source)
-        if !image.is_a? StringIO
-          b.photos.create(name: name, description: description, image: image)
-        end
+        # source = "http://localhost:8484/#{temp}.jpg"
+        a = size.sample
+        source = "http://lorempixel.com/#{a[:x]}/#{a[:y]}/sports"
+        # image = open(source)
+        # if !image.is_a? StringIO
+          b.photos.create(name: name, description: description, remote_image_url: source)
+        # end
       end
     end
   end
@@ -153,7 +154,7 @@ end
   make_categories
   make_boxes
   make_photos
-  make_relationships
-  # make_users_like_photos
+#  make_relationships
+#  make_users_like_photos
 
 puts 'seed completed'
