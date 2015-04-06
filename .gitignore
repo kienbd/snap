@@ -17,5 +17,5 @@
 /db/database.*
 /db/schema.rb
 /config/database.*
-Gemfile.lock
+#Gemfile.lock
 Gemfile.lock.*
