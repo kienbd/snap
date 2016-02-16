@@ -18,19 +18,22 @@ UserFollowRelationship.delete_all
 Like.delete_all
 Comment.delete_all
 
+
+USER_COUNT = 5
+BOX_COUNT = 5
+
 def make_users
-  10.times do |n|
+  USER_COUNT.times do |n|
     name  = Faker::Name.name
     email = "user#{n+1}@gmail.com"
     password  = "123456789"
-    temp = rand(31)
-    source = "http://localhost:8484/#{temp}.jpg"
+    source = "http://lorempixel.com/200/300"
     image = open(source)
     u = User.create(name:     name,
      email:    email,
      password: password,
      password_confirmation: password,
-     avatar: image)
+     avatar: source)
     if(n< 7)
       u.verify!
     end
@@ -58,8 +61,8 @@ def make_categories
 end
 
 def make_boxes
-  users = User.all(limit: 5)
-  5.times do
+  users = User.all
+  BOX_COUNT.times do
     title = Faker::Company.name
     category = rand(32) + 1
     users.each { |user| user.boxes.create!(title: title, category_id: category)}
@@ -70,15 +73,15 @@ end
 def make_relationships
   users = User.all
   user  = users.first
-  followed_users = users[2..10]
-  followers      = users[3..8]
+  followed_users = users[2..USER_COUNT]
+  followers      = users[3..USER_COUNT]
   followed_users.each { |followed| user.follow!(followed) }
   followers.each      { |follower| follower.follow!(user) }
   puts 'make relationships'
 end
 
 def make_notifications
-  users = User.all[3..10]
+  users = User.all[3..USER_COUNT]
   users.each do |user|
     Notification.create!(source_id: user.id, target_id: 1, relation_type: "user_user_relationships")
   end
@@ -109,7 +112,7 @@ def make_user_box_rel
 end
 
 def make_photos
-  users = User.all(limit: 5)
+  users = User.all
   size=[
     { x: 300, y: 400 },
     { x: 500, y: 500 },
@@ -121,8 +124,8 @@ def make_photos
       5.times do
         name = Faker::PhoneNumber.phone_number
         description = Faker::Internet.domain_name
-        temp = rand(30)
-        source = "http://localhost:8484/#{temp}.jpg"
+        px = size.sample
+        source = "http://lorempixel.com/#{px[:x]}/#{px[:y]}"
         image = open(source)
         if !image.is_a? StringIO
           b.photos.create(name: name, description: description, image: image)
@@ -151,9 +154,9 @@ end
 #make new db
   make_users
   make_categories
-#  make_boxes
-#  make_photos
-#  make_relationships
+  make_boxes
+  make_photos
+  make_relationships
 #  make_users_like_photos
 
 puts 'seed completed'

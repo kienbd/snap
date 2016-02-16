@@ -6,11 +6,11 @@ gem 'rails', '3.2.18'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2','0.3.11'
+gem 'mysql2'
 gem "rails-erd"
-gem "rails_config"
+#gem "rails_config"
+gem 'config', github: 'railsconfig/config'
 gem 'execjs'
-gem "therubyracer", "~> 0.11.4"
 gem 'bootstrap-sass', '2.0.0'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'faker', '1.0.1'
